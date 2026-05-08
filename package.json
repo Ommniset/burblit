@@ -1,0 +1,34 @@
+{
+  "name": "burblit",
+  "version": "1.0.0",
+  "description": "E2EE web messaging prototype",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ommniset/burblit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ommniset/burblit/issues"
+  },
+  "homepage": "https://github.com/Ommniset/burblit#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/ws": "^8.18.1",
+    "typescript": "^6.0.3"
+  }
+}
