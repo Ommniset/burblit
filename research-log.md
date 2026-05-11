@@ -170,3 +170,38 @@ and implement rate limiting. These will be documented as concrete
 mitigations in section 2.1 of the Interim Report.
 
 ---
+
+## Entry 5 — 11/05/2026
+
+### SMART Objectives (refined from Initial Proposal feedback)
+
+The following objectives replace the vague objectives from the Initial
+Proposal. Each objective is Specific, Measurable, Achievable, Relevant,
+and Time-bound, addressing the tutor feedback that objectives should
+"define success criteria".
+
+**Objective 1 — Real-time communication**
+Implement a WebSocket server using Node.js and the `ws` library that
+supports a minimum of two simultaneous client connections, verified
+by a functional demonstration of bidirectional message exchange
+between two browser tabs, to be completed by 20/05/2026.
+
+**Objective 2 — End-to-end encryption**
+Implement E2EE using libsodium-wrappers, with X25519 for key exchange
+and ChaCha20-Poly1305 for message encryption, such that the server
+never has access to plaintext message content at any point, verified
+by code review and network traffic inspection, to be completed by
+31/08/2026.
+
+**Objective 3 — Formal design artefacts**
+Produce a minimum of three formal design diagrams — a system
+architecture diagram, an ERD, and a UML sequence diagram of the
+X3DH handshake flow — to be completed by 14/05/2026.
+
+**Objective 4 — Post-quantum evaluation**
+Produce a documented comparative analysis of a hybrid X25519 + ML-KEM
+approach versus the classical X25519-only approach, including measured
+or estimated bandwidth overhead figures, to be completed by
+01/11/2026.
+
+---
