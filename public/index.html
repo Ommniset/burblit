@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Burblit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    #messages {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .message { margin-bottom: 8px; }
+    .info { color: grey; font-style: italic; }
+    input, button {
+      padding: 8px;
+      margin-right: 5px;
+    }
+    #chat-section { display: none; }
+  </style>
+</head>
+<body>
+
+  <h1>Burblit</h1>
+
+  <!-- Registration section -->
+  <div id="register-section">
+    <h3>Register</h3>
+    <input type="text" id="username-input" placeholder="Enter your username" />
+    <button onclick="register()">Connect</button>
+  </div>
+
+  <!-- Chat section (hidden until registered) -->
+  <div id="chat-section">
+    <h3>Chat</h3>
+    <div id="messages"></div>
+    <input type="text" id="recipient-input" placeholder="Send to (username)" />
+    <input type="text" id="message-input" placeholder="Type a message" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    let ws;
+
+    function register() {
+      const username = document.getElementById('username-input').value.trim();
+      if (!username) return;
+
+      // Connect to WebSocket server
+      ws = new WebSocket('ws://localhost:3000');
+
+      ws.onopen = () => {
+        // Send register message to server
+        ws.send(JSON.stringify({ type: 'register', username: username }));
+
+        // Show chat section, hide register section
+        document.getElementById('register-section').style.display = 'none';
+        document.getElementById('chat-section').style.display = 'block';
+      };
+
+      ws.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        const messagesDiv = document.getElementById('messages');
+
+        if (message.type === 'info') {
+          messagesDiv.innerHTML += `<div class="message info">${message.text}</div>`;
+        }
+
+        if (message.type === 'chat') {
+          messagesDiv.innerHTML += `<div class="message"><strong>${message.from}:</strong> ${message.text}</div>`;
+        }
+
+        // Auto-scroll to bottom
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      };
+
+      ws.onclose = () => {
+        addMessage('info', 'Disconnected from server');
+      };
+    }
+
+    function sendMessage() {
+      const recipient = document.getElementById('recipient-input').value.trim();
+      const text = document.getElementById('message-input').value.trim();
+      if (!recipient || !text) return;
+
+      ws.send(JSON.stringify({ type: 'chat', to: recipient, text: text }));
+      document.getElementById('message-input').value = '';
+    }
+  </script>
+
+</body>
+</html>
