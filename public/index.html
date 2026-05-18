@@ -49,6 +49,26 @@
 
   <script>
     let ws;
+    
+    // Generate a keypair using the browser's native Web Crypto API
+    async function initCrypto() {
+      const keypair = await window.crypto.subtle.generateKey(
+        { name: 'ECDH', namedCurve: 'P-256' },
+        true,
+        ['deriveKey']
+      );
+
+      // Export public key to display it
+      const publicKeyBuffer = await window.crypto.subtle.exportKey('spki', keypair.publicKey);
+      const publicKeyHex = Array.from(new Uint8Array(publicKeyBuffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+
+      console.log('Public key (hex):', publicKeyHex);
+      console.log('Private key generated and stored in memory — never leaves this browser');
+    }
+
+    initCrypto();
 
     function register() {
       const username = document.getElementById('username-input').value.trim();
