@@ -54,6 +54,7 @@ Open your browser at **http://localhost:3000**
 
 ## Project Structure
 
+```
 burblit/
 ├── src/
 │   └── server.ts        # Express + WebSocket server
@@ -66,6 +67,7 @@ burblit/
 ├── research-log.md      # Annotated research entries
 ├── tsconfig.json        # TypeScript configuration
 └── package.json         # Project dependencies
+```
 ---
 
 ## Out of Scope
