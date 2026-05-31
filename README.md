@@ -84,4 +84,3 @@ burblit/
 ## Out of Scope
 
 Group messaging, multimedia exchange, mobile application, federation.
-```
