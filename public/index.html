@@ -98,12 +98,17 @@
           messagesDiv.innerHTML += `<div class="message"><strong>${message.from}:</strong> ${message.text}</div>`;
         }
 
+        if (message.type === 'error') {
+          messagesDiv.innerHTML += `<div class="message info">⚠ ${message.text}</div>`;
+        }
+
         // Auto-scroll to bottom
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       };
 
       ws.onclose = () => {
-        addMessage('info', 'Disconnected from server');
+        document.getElementById('messages').innerHTML +=
+          '<div class="message info">Disconnected from server</div>';
       };
     }
 
