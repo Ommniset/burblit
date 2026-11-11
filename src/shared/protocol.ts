@@ -24,8 +24,23 @@ export const MAX_TEXT_LENGTH = 4096;
 /** Maximum size of a single WebSocket frame, in bytes. Enforced by `ws`. */
 export const MAX_MESSAGE_BYTES = 64 * 1024;
 
+/** Standard base64 with optional padding. Key material travels as base64 text. */
+export const BASE64_PATTERN = /^[A-Za-z0-9+/]+={0,2}$/;
+
+/** Generous upper bound for any single encoded public key or signature. */
+export const MAX_KEY_LENGTH = 512;
+
+/** Size of a published one-time prekey batch. */
+export const MAX_ONE_TIME_PREKEYS = 100;
+
+/** Per-recipient cap on messages held for an offline user. */
+export const MAX_PENDING_PER_RECIPIENT = 200;
+
+/** Maximum accepted body size for the key publication endpoint. */
+export const MAX_KEYS_BODY_BYTES = 128 * 1024;
+
 // ---------------------------------------------------------------------------
-// Client -> server
+// Client -> server (WebSocket)
 // ---------------------------------------------------------------------------
 
 export interface RegisterMessage {
@@ -38,12 +53,14 @@ export interface ChatMessage {
   to: string;
   /** Plaintext today; ciphertext from day 7 onwards. */
   text: string;
+  /** X3DH / ratchet header, opaque to the server. Absent until day 6. */
+  header?: string;
 }
 
 export type ClientMessage = RegisterMessage | ChatMessage;
 
 // ---------------------------------------------------------------------------
-// Server -> client
+// Server -> client (WebSocket)
 // ---------------------------------------------------------------------------
 
 export interface InfoMessage {
@@ -63,6 +80,52 @@ export interface IncomingChatMessage {
   /** Set by the server from connection state, never copied from the sender's frame. */
   from: string;
   text: string;
+  header?: string;
 }
 
 export type ServerMessage = InfoMessage | ErrorMessage | IncomingChatMessage;
+
+// ---------------------------------------------------------------------------
+// Prekey registry (HTTP)
+//
+// Every field below is public key material. Private keys never leave the
+// browser that generated them.
+// ---------------------------------------------------------------------------
+
+/** Body of `POST /keys`. All values base64-encoded. */
+export interface PublishKeysRequest {
+  username: string;
+  identityKey: string;
+  signedPrekey: string;
+  /** Signature over the signed prekey, produced with the identity key. */
+  signedPrekeySignature: string;
+  oneTimePrekeys: string[];
+}
+
+/**
+ * Response of `GET /keys/:username`.
+ *
+ * `oneTimePrekey` is null when the recipient's pool is exhausted. The sender
+ * then performs the handshake with one fewer Diffie-Hellman, which is
+ * permitted by X3DH at the cost of reduced forward secrecy for the first
+ * message. `oneTimePrekeyId` tells the recipient which key to use when
+ * reconstructing the shared secret.
+ */
+export interface PrekeyBundle {
+  username: string;
+  identityKey: string;
+  signedPrekey: string;
+  signedPrekeySignature: string;
+  oneTimePrekey: string | null;
+  oneTimePrekeyId: number | null;
+}
+
+/** True when `value` is a plausible base64 encoding of key material. */
+export function isKeyMaterial(value: unknown): value is string {
+  return (
+    typeof value === 'string' &&
+    value.length > 0 &&
+    value.length <= MAX_KEY_LENGTH &&
+    BASE64_PATTERN.test(value)
+  );
+}
