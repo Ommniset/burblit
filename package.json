@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "tsc -p tsconfig.json",
+    "build:client": "tsc -p tsconfig.client.json && esbuild src/client/main.ts --bundle --outfile=public/bundle.js --format=iife --target=es2020 --sourcemap",
+    "watch:client": "esbuild src/client/main.ts --bundle --outfile=public/bundle.js --format=iife --target=es2020 --sourcemap --watch",
     "start": "node dist/server.js"
   },
   "repository": {
@@ -33,6 +36,7 @@
     "@types/libsodium-wrappers": "^0.7.14",
     "@types/node": "^25.8.0",
     "@types/ws": "^8.18.1",
+    "esbuild": "^0.28.2",
     "typescript": "^6.0.3"
   }
 }

@@ -4,6 +4,13 @@ import { createServer as createHttpServer, Server as HttpServer, IncomingMessage
 import { createServer as createHttpsServer } from 'https';
 import { WebSocketServer, WebSocket } from 'ws';
 
+import {
+  USERNAME_PATTERN,
+  MAX_TEXT_LENGTH,
+  MAX_MESSAGE_BYTES,
+  type ClientMessage,
+} from './shared/protocol';
+
 // ---------------------------------------------------------------------------
 // Configuration
 //
@@ -39,11 +46,6 @@ const ALLOWED_ORIGINS = (
 // missing Origin is treated as a rejected Origin.
 const ALLOW_MISSING_ORIGIN = !IS_PRODUCTION;
 
-// Input validation
-const USERNAME_PATTERN = /^[a-zA-Z0-9_-]{3,20}$/;
-const MAX_MESSAGE_BYTES = 64 * 1024;
-const MAX_TEXT_LENGTH = 4096;
-
 // Rate limiting: sliding window, counted per connection.
 const RATE_LIMIT_WINDOW_MS = 10_000;
 const RATE_LIMIT_MAX_MESSAGES = 30;
@@ -57,19 +59,6 @@ const CLOSE_POLICY_VIOLATION = 1008;
 // The server only ever needs to understand the envelope. Message content is
 // opaque to it by design and will become ciphertext from day 7 onwards.
 // ---------------------------------------------------------------------------
-
-interface RegisterMessage {
-  type: 'register';
-  username: string;
-}
-
-interface ChatMessage {
-  type: 'chat';
-  to: string;
-  text: string;
-}
-
-type ClientMessage = RegisterMessage | ChatMessage;
 
 /**
  * Parses and validates an incoming frame.

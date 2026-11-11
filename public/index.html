@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Burblit</title>
   <style>
     body {
@@ -18,7 +19,7 @@
       margin-bottom: 10px;
       background: #f9f9f9;
     }
-    .message { margin-bottom: 8px; }
+    .message { margin-bottom: 8px; word-wrap: break-word; }
     .info { color: grey; font-style: italic; }
     input, button {
       padding: 8px;
@@ -34,93 +35,23 @@
   <!-- Registration section -->
   <div id="register-section">
     <h3>Register</h3>
-    <input type="text" id="username-input" placeholder="Enter your username" />
-    <button onclick="register()">Connect</button>
+    <input type="text" id="username-input" placeholder="Enter your username" autocomplete="off" />
+    <button type="button" id="connect-button">Connect</button>
   </div>
 
   <!-- Chat section (hidden until registered) -->
   <div id="chat-section">
     <h3>Chat</h3>
     <div id="messages"></div>
-    <input type="text" id="recipient-input" placeholder="Send to (username)" />
-    <input type="text" id="message-input" placeholder="Type a message" />
-    <button onclick="sendMessage()">Send</button>
+    <input type="text" id="recipient-input" placeholder="Send to (username)" autocomplete="off" />
+    <input type="text" id="message-input" placeholder="Type a message" autocomplete="off" />
+    <button type="button" id="send-button">Send</button>
   </div>
 
-  <script>
-    let ws;
-    
-    // Generate a keypair using the browser's native Web Crypto API
-    async function initCrypto() {
-      const keypair = await window.crypto.subtle.generateKey(
-        { name: 'ECDH', namedCurve: 'P-256' },
-        true,
-        ['deriveKey']
-      );
-
-      // Export public key to display it
-      const publicKeyBuffer = await window.crypto.subtle.exportKey('spki', keypair.publicKey);
-      const publicKeyHex = Array.from(new Uint8Array(publicKeyBuffer))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
-
-      console.log('Public key (hex):', publicKeyHex);
-      console.log('Private key generated and stored in memory — never leaves this browser');
-    }
-
-    initCrypto();
-
-    function register() {
-      const username = document.getElementById('username-input').value.trim();
-      if (!username) return;
-
-      // Connect to WebSocket server
-      ws = new WebSocket('ws://localhost:3000');
-
-      ws.onopen = () => {
-        // Send register message to server
-        ws.send(JSON.stringify({ type: 'register', username: username }));
-
-        // Show chat section, hide register section
-        document.getElementById('register-section').style.display = 'none';
-        document.getElementById('chat-section').style.display = 'block';
-      };
-
-      ws.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        const messagesDiv = document.getElementById('messages');
-
-        if (message.type === 'info') {
-          messagesDiv.innerHTML += `<div class="message info">${message.text}</div>`;
-        }
-
-        if (message.type === 'chat') {
-          messagesDiv.innerHTML += `<div class="message"><strong>${message.from}:</strong> ${message.text}</div>`;
-        }
-
-        if (message.type === 'error') {
-          messagesDiv.innerHTML += `<div class="message info">⚠ ${message.text}</div>`;
-        }
-
-        // Auto-scroll to bottom
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-      };
-
-      ws.onclose = () => {
-        document.getElementById('messages').innerHTML +=
-          '<div class="message info">Disconnected from server</div>';
-      };
-    }
-
-    function sendMessage() {
-      const recipient = document.getElementById('recipient-input').value.trim();
-      const text = document.getElementById('message-input').value.trim();
-      if (!recipient || !text) return;
-
-      ws.send(JSON.stringify({ type: 'chat', to: recipient, text: text }));
-      document.getElementById('message-input').value = '';
-    }
-  </script>
+  <!-- Bundled from src/client/main.ts by esbuild. The document contains no
+       inline script and no inline event handler, which is what allows a
+       restrictive Content Security Policy to be applied later. -->
+  <script src="bundle.js" defer></script>
 
 </body>
 </html>
