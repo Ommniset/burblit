@@ -14,6 +14,8 @@ import {
   type ServerMessage,
 } from '../shared/protocol';
 
+import { initSodium, toBase64, verifyX25519Exchange } from './crypto';
+
 // ---------------------------------------------------------------------------
 // DOM access
 // ---------------------------------------------------------------------------
@@ -245,21 +247,15 @@ messageInput.addEventListener('keydown', (event: KeyboardEvent) => {
   }
 });
 
-// TODO (day 4): replace with libsodium X25519 key generation behind the
-// KeyAgreement interface. The current routine generates an ECDH P-256 keypair
-// via Web Crypto and discards it, so it provides no security property; it is
-// retained only so the removal is a single, documented commit.
-async function initCrypto(): Promise<void> {
-  const keypair = await window.crypto.subtle.generateKey(
-    { name: 'ECDH', namedCurve: 'P-256' },
-    true,
-    ['deriveKey']
-  );
-  const exported = await window.crypto.subtle.exportKey('spki', keypair.publicKey);
-  const publicKeyHex = Array.from(new Uint8Array(exported))
-    .map((byte) => byte.toString(16).padStart(2, '0'))
-    .join('');
-  console.log('Public key (hex):', publicKeyHex);
+async function verifyCryptoAvailable(): Promise<void> {
+  try {
+    await initSodium();
+    const shared = await verifyX25519Exchange();
+    console.log('libsodium ready; X25519 exchange agrees. Shared secret:', toBase64(shared));
+  } catch (error) {
+    console.error('Cryptographic bootstrap failed:', error);
+    appendNotice('Cryptography unavailable in this browser');
+  }
 }
 
-void initCrypto();
+void verifyCryptoAvailable();
