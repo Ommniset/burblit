@@ -175,7 +175,7 @@ export interface PendingRow {
  * recorded as future work and is the principal residual risk in the threat
  * model.
  */
-export const publishBundle = db.transaction((bundle: PublishKeysRequest): void => {
+export const publishBundle = db.transaction((bundle: PublishKeysRequest): number[] => {
   const createdAt = Date.now();
 
   upsertUser.run({
@@ -196,15 +196,23 @@ export const publishBundle = db.transaction((bundle: PublishKeysRequest): void =
     createdAt,
   });
 
+  // The assigned identifiers are returned in publication order, so the
+  // publisher can associate each one with the private key it retained.
+  // Without them the recipient of a handshake cannot tell which of its
+  // one-time prekeys the sender consumed.
+  const oneTimePrekeyIds: number[] = [];
   for (const publicKey of bundle.oneTimePrekeys) {
-    insertPrekey.run({
+    const info = insertPrekey.run({
       username: bundle.username,
       keyType: 'one_time',
       publicKey,
       signature: null,
       createdAt,
     });
+    oneTimePrekeyIds.push(Number(info.lastInsertRowid));
   }
+
+  return oneTimePrekeyIds;
 });
 
 /**
@@ -290,4 +298,28 @@ export function acknowledgePending(id: number): void {
 
 export function closeDatabase(): void {
   db.close();
+}
+
+const selectUnusedPrekeyIds = db.prepare(`
+  SELECT id FROM Prekeys
+  WHERE username = ? AND key_type = 'one_time' AND used = 0
+  ORDER BY id ASC
+`);
+
+/**
+ * Reports what the registry holds for a user, consuming nothing.
+ *
+ * Exists separately from bundle retrieval because a client must be able to
+ * check its stored material against the registry on every connection, and
+ * checking by fetching a bundle would spend a one-time prekey each time.
+ */
+export function registryStatus(
+  username: string
+): { identityKey: string; availablePrekeyIds: number[] } | null {
+  const row = selectUser.get(username) as UserRow | undefined;
+  if (row === undefined) {
+    return null;
+  }
+  const ids = (selectUnusedPrekeyIds.all(username) as { id: number }[]).map((r) => r.id);
+  return { identityKey: row.identity_key, availablePrekeyIds: ids };
 }

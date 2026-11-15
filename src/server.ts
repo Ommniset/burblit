@@ -9,6 +9,7 @@ import {
   MAX_TEXT_LENGTH,
   MAX_MESSAGE_BYTES,
   MAX_ONE_TIME_PREKEYS,
+  MAX_PAYLOAD_LENGTH,
   MAX_KEYS_BODY_BYTES,
   isKeyMaterial,
   type ClientMessage,
@@ -19,6 +20,7 @@ import {
   fetchBundle,
   queueMessage,
   pendingFor,
+  registryStatus,
   acknowledgePending,
 } from './db';
 
@@ -109,7 +111,7 @@ function parseClientMessage(raw: string): { message: ClientMessage } | { error: 
     if (typeof candidate.text !== 'string' || candidate.text.length === 0) {
       return { error: 'invalid_text' };
     }
-    if (candidate.text.length > MAX_TEXT_LENGTH) {
+    if (candidate.text.length > MAX_PAYLOAD_LENGTH) {
       return { error: 'text_too_long' };
     }
     if (candidate.header !== undefined) {
@@ -193,12 +195,28 @@ app.post('/keys', (req: Request, res: Response) => {
     return;
   }
 
-  publishBundle(result.bundle);
+  const oneTimePrekeyIds = publishBundle(result.bundle);
   console.log(
     `Published bundle for ${result.bundle.username} ` +
-      `(${result.bundle.oneTimePrekeys.length} one-time prekeys)`
+      `(${oneTimePrekeyIds.length} one-time prekeys)`
   );
-  res.status(204).end();
+  res.status(200).json({ oneTimePrekeyIds });
+});
+
+app.get('/keys/:username/status', (req: Request, res: Response) => {
+  const username = req.params.username;
+  if (typeof username !== 'string' || !USERNAME_PATTERN.test(username)) {
+    res.status(400).json({ error: 'invalid_username' });
+    return;
+  }
+
+  const status = registryStatus(username);
+  if (status === null) {
+    res.status(404).json({ error: 'unknown_user' });
+    return;
+  }
+
+  res.json(status);
 });
 
 /**
@@ -384,7 +402,7 @@ wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
     }
 
     // --- Relay ------------------------------------------------------------
-    if (message.type === 'chat') {
+    if (message.type === 'chat') {      
       if (username === '') {
         reject(ws, 'not_registered', 'Register before sending messages');
         return;

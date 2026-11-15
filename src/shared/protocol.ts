@@ -21,6 +21,16 @@ export const USERNAME_PATTERN = /^[a-zA-Z0-9_-]{3,20}$/;
 /** Maximum length of a single message payload, in UTF-16 code units. */
 export const MAX_TEXT_LENGTH = 4096;
 
+/**
+ * Maximum length of the `text` field on the wire.
+ *
+ * Larger than MAX_TEXT_LENGTH because the field carries a base64-encoded
+ * nonce, ciphertext and authentication tag rather than the message itself.
+ * The plaintext bound is enforced by the client, which is the only party that
+ * can see a plaintext; the server bounds only what it actually receives.
+ */
+export const MAX_PAYLOAD_LENGTH = 16 * 1024;
+
 /** Maximum size of a single WebSocket frame, in bytes. Enforced by `ws`. */
 export const MAX_MESSAGE_BYTES = 64 * 1024;
 
@@ -128,4 +138,13 @@ export function isKeyMaterial(value: unknown): value is string {
     value.length <= MAX_KEY_LENGTH &&
     BASE64_PATTERN.test(value)
   );
+}
+
+export interface PublishKeysResponse {
+  oneTimePrekeyIds: number[];
+}
+
+export interface RegistryStatusResponse {
+  identityKey: string;
+  availablePrekeyIds: number[];
 }

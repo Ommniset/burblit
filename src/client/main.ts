@@ -13,8 +13,16 @@ import {
   type ClientMessage,
   type ServerMessage,
 } from '../shared/protocol';
-
 import { initSodium, toBase64, verifyX25519Exchange } from './crypto';
+import { loadOrCreateIdentity, clearIdentity, type Identity } from './identity';
+import {
+  sessionAsInitiator,
+  sessionAsResponder,
+  existingSession,
+  encryptMessage,
+  decryptMessage,
+  clearSessions,
+} from './session';
 
 // ---------------------------------------------------------------------------
 // DOM access
@@ -39,16 +47,27 @@ const registerSection = requireElement<HTMLDivElement>('register-section');
 const chatSection = requireElement<HTMLDivElement>('chat-section');
 const usernameInput = requireElement<HTMLInputElement>('username-input');
 const connectButton = requireElement<HTMLButtonElement>('connect-button');
+const resetButton = requireElement<HTMLButtonElement>('reset-button');
 const messagesPanel = requireElement<HTMLDivElement>('messages');
 const recipientInput = requireElement<HTMLInputElement>('recipient-input');
 const messageInput = requireElement<HTMLInputElement>('message-input');
 const sendButton = requireElement<HTMLButtonElement>('send-button');
 
 // ---------------------------------------------------------------------------
-// Connection state
+// Session state
 // ---------------------------------------------------------------------------
 
 let socket: WebSocket | null = null;
+let connecting = false;
+
+/**
+ * This client's long-term key material, loaded at connection time.
+ *
+ * Held at module scope because both halves of the handshake need it: the
+ * initiator performs Diffie-Hellman with its identity key, and the responder
+ * looks up the one-time prekey the initiator consumed.
+ */
+let identity: Identity | null = null;
 
 /**
  * Derives the WebSocket endpoint from the page origin, upgrading the scheme
@@ -142,10 +161,49 @@ function parseServerMessage(raw: string): ServerMessage | null {
     typeof candidate.from === 'string' &&
     typeof candidate.text === 'string'
   ) {
-    return { type: 'chat', from: candidate.from, text: candidate.text };
+    return {
+      type: 'chat',
+      from: candidate.from,
+      text: candidate.text,
+      ...(typeof candidate.header === 'string' ? { header: candidate.header } : {}),
+    };
   }
 
   return null;
+}
+
+/**
+ * Establishes or recovers the session for an incoming message, then decrypts.
+ *
+ * A message carrying a handshake header can always be read, because the
+ * header is sufficient to re-derive the root key. One that does not requires
+ * a session already in memory, and a reload destroys those: the failure is
+ * reported rather than hidden, since silently dropping a message the user's
+ * correspondent believes was delivered would be worse than saying so.
+ */
+async function receive(from: string, payload: string, header?: string): Promise<void> {
+  if (identity === null) {
+    return;
+  }
+
+  try {
+    const session =
+      header !== undefined
+        ? await sessionAsResponder(identity, from, header)
+        : existingSession(from);
+
+    if (session === null) {
+      appendNotice(`Cannot read a message from ${from}: no session established`);
+      return;
+    }
+
+    appendChat(from, decryptMessage(session, payload, from, identity.username));
+  } catch (error) {
+    // Reached when authentication fails, which means the ciphertext or the
+    // sender and recipient names were altered in transit.
+    console.error('Decryption failed:', error);
+    appendNotice(`Message from ${from} could not be authenticated and was discarded`);
+  }
 }
 
 function handleServerMessage(message: ServerMessage): void {
@@ -157,7 +215,7 @@ function handleServerMessage(message: ServerMessage): void {
       appendNotice(`Error (${message.code}): ${message.text}`);
       break;
     case 'chat':
-      appendChat(message.from, message.text);
+      void receive(message.from, message.text, message.header);
       break;
   }
 }
@@ -166,17 +224,47 @@ function handleServerMessage(message: ServerMessage): void {
 // Actions
 // ---------------------------------------------------------------------------
 
-function connect(): void {
+async function connect(): Promise<void> {
+  // The button is disabled on entry, but the Enter shortcut bypasses that, so
+  // re-entry is guarded explicitly rather than through the control's state.
+  // Concurrent entry matters here because publication is destructive: two
+  // overlapping runs would each replace the other's prekey batch.
+  if (connecting || socket !== null) {
+    return;
+  }
+  connecting = true;
+
   const username = usernameInput.value.trim();
 
   // Validated against the shared pattern before a frame is sent, so the user
   // gets immediate feedback rather than a round trip and a server rejection.
   if (!USERNAME_PATTERN.test(username)) {
     window.alert('Username must be 3-20 characters: letters, digits, hyphen or underscore.');
+    connecting = false;
     return;
   }
 
   connectButton.disabled = true;
+
+  // Key material must exist and be published before registering, so that a
+  // correspondent who fetches this user's bundle immediately afterwards finds
+  // something to fetch.
+  try {
+    identity = await loadOrCreateIdentity(username);
+  } catch (error) {
+    console.error('Identity setup failed:', error);
+    window.alert('Could not set up key material. See the console for details.');
+    connectButton.disabled = false;
+    connecting = false;
+    return;
+  }
+
+  console.log(
+    `Identity ready for ${username}.`,
+    `Fingerprint: ${toBase64(identity.identityKeyPair.publicKey).slice(0, 16)}...`,
+    `One-time prekeys held: ${Object.keys(identity.oneTimePrekeys).length}`
+  );
+
   socket = new WebSocket(websocketUrl());
 
   socket.addEventListener('open', () => {
@@ -198,6 +286,7 @@ function connect(): void {
   socket.addEventListener('close', () => {
     appendNotice('Disconnected from server');
     socket = null;
+    connecting = false;
     connectButton.disabled = false;
   });
 
@@ -206,7 +295,7 @@ function connect(): void {
   });
 }
 
-function sendMessage(): void {
+async function sendMessage(): Promise<void> {
   const to = recipientInput.value.trim();
   const text = messageInput.value.trim();
 
@@ -217,12 +306,36 @@ function sendMessage(): void {
   if (text.length === 0) {
     return;
   }
+  // The plaintext bound is enforced here because the client is the only party
+  // that can see a plaintext; the server bounds the encoded payload instead.
   if (text.length > MAX_TEXT_LENGTH) {
     appendNotice(`Message too long (limit ${MAX_TEXT_LENGTH} characters)`);
     return;
   }
+  if (identity === null) {
+    appendNotice('No key material loaded');
+    return;
+  }
 
-  send({ type: 'chat', to, text });
+  try {
+    // An existing session is reused whichever role this party holds in it. A
+    // handshake is run only when none exists, since each one consumes a
+    // one-time prekey from the recipient's finite published batch.
+    const session = existingSession(to) ?? (await sessionAsInitiator(identity, to));
+    const payload = encryptMessage(session, text, identity.username, to);
+
+    send({
+      type: 'chat',
+      to,
+      text: payload,
+      ...(session.header !== null ? { header: session.header } : {}),
+    });
+  } catch (error) {
+    console.error('Could not send message:', error);
+    appendNotice(`Could not send to ${to}: ${String(error)}`);
+    return;
+  }
+
   appendChat('you', text);
   messageInput.value = '';
   messageInput.focus();
@@ -232,21 +345,51 @@ function sendMessage(): void {
 // Wiring
 // ---------------------------------------------------------------------------
 
-connectButton.addEventListener('click', connect);
-sendButton.addEventListener('click', sendMessage);
+connectButton.addEventListener('click', () => void connect());
+sendButton.addEventListener('click', () => void sendMessage());
 
 usernameInput.addEventListener('keydown', (event: KeyboardEvent) => {
   if (event.key === 'Enter') {
-    connect();
+    void connect();
   }
 });
 
 messageInput.addEventListener('keydown', (event: KeyboardEvent) => {
   if (event.key === 'Enter') {
-    sendMessage();
+    void sendMessage();
   }
 });
 
+/**
+ * Development aid: discards local key material and every session derived from
+ * it, then closes the connection.
+ *
+ * Closing matters. Leaving the socket open would keep this client operating
+ * with keys held only in memory, which no longer exist in storage and whose
+ * public halves the registry may have replaced, producing failures that look
+ * like protocol defects rather than a deliberate reset.
+ */
+resetButton.addEventListener('click', () => {
+  const username = usernameInput.value.trim();
+  if (!USERNAME_PATTERN.test(username)) {
+    window.alert('Enter the username whose keys should be discarded.');
+    return;
+  }
+  void clearIdentity(username).then(() => {
+    clearSessions();
+    identity = null;
+    socket?.close();
+    window.alert(`Discarded local keys for ${username}. Reload before reconnecting.`);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Start-up
+// ---------------------------------------------------------------------------
+
+// Confirms that libsodium runs in the browser from the application bundle, and
+// that the X25519 exchange the handshake depends on produces an agreeing
+// secret on both sides. Removed once the handshake itself is covered by tests.
 async function verifyCryptoAvailable(): Promise<void> {
   try {
     await initSodium();
