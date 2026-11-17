@@ -201,18 +201,18 @@ export interface PendingRow {
 /**
  * Stores a user's public key material, replacing any previous bundle.
  *
- * KNOWN LIMITATION, documented rather than mitigated at this stage. The server
- * does not verify that the caller controls the username being claimed, so an
- * adversary can publish their own identity key under an unclaimed name and be
- * accepted as that user by anyone who subsequently fetches the bundle. The
- * signatures on the prekeys prevent the server from substituting key material
- * inside an existing bundle, but they cannot establish who the legitimate
- * owner of a name is: that requires an out-of-band channel, trust-on-first-use
- * pinning, or an authenticated account system. This is recorded as future work
- * and is the principal residual risk in the threat model.
- *
- * Returns the identifiers assigned to the one-time prekeys, in publication
- * order, so the publisher can associate each with the private key it retained.
+ * KNOWN LIMITATION, documented rather than mitigated. Publication is
+ * unauthenticated, and the upsert replaces an existing record, so any party
+ * may publish key material under any username, including one already
+ * registered. A correspondent who then fetches that bundle verifies its
+ * signatures successfully, because the bundle is internally consistent and
+ * signed by the publisher's own identity key, and establishes a session with
+ * the publisher while believing it to be the named user. The signatures
+ * prevent the relay from altering key material inside a bundle; they cannot
+ * establish who is entitled to a name. Binding the two requires proof of
+ * possession on republication, an out-of-band channel, or trust-on-first-use
+ * pinning in the client, none of which is in scope. This is the principal
+ * residual risk in the threat model.
  */
 export const publishBundle = db.transaction((bundle: PublishKeysRequest): number[] => {
   const createdAt = Date.now();

@@ -10,7 +10,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "tsc -p tsconfig.json",
     "build:client": "tsc -p tsconfig.client.json && esbuild src/client/main.ts --bundle --outfile=public/bundle.js --format=iife --target=es2020 --sourcemap && node scripts/copy-pqc.js",
-    "build:prod": "tsc -p tsconfig.json && tsc -p tsconfig.client.json && esbuild src/client/main.ts --bundle --minify --outfile=public/bundle.js --format=iife --target=es2020 && node scripts/copy-pqc.js",
+    "build:prod": "node -e \"require('fs').rmSync('public/bundle.js.map',{force:true})\" && tsc -p tsconfig.json && tsc -p tsconfig.client.json && esbuild src/client/main.ts --bundle --minify --outfile=public/bundle.js --format=iife --target=es2020 && node scripts/copy-pqc.js",
     "watch:client": "esbuild src/client/main.ts --bundle --outfile=public/bundle.js --format=iife --target=es2020 --sourcemap --watch",
     "build:test": "tsc -p tsconfig.test.json",
     "test": "npm run build && npm run build:test && node --test \"tests/**/*.test.js\"",
@@ -35,7 +35,6 @@
     "better-sqlite3": "^13.0.3",
     "express": "^5.2.1",
     "libsodium-wrappers": "^0.8.4",
-    "libsodium-wrappers-sumo": "^0.8.4",
     "ws": "^8.20.1"
   },
   "devDependencies": {

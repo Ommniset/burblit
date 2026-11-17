@@ -460,14 +460,17 @@ async function verifyCryptoAvailable(): Promise<void> {
 
   try {
     await initSodium();
-    const shared = await verifyX25519Exchange();
-    console.log('libsodium ready; X25519 exchange agrees. Shared secret:', toBase64(shared));
+
+    // Each check performs a complete exchange and throws if the two sides
+    // disagree. The secret itself is not reported: it is the output of an
+    // exchange the client performs with itself and discloses nothing, but a
+    // security application that writes anything so labelled to a log invites
+    // a reasonable objection, and the verification is no weaker without it.
+    await verifyX25519Exchange();
+    console.log('libsodium ready: X25519 exchange verified.');
 
     const mlkem = await verifyMlKemExchange();
-    console.log(
-      `ML-KEM-768 ready; encapsulation agrees in ${mlkem.elapsedMs.toFixed(2)} ms.`,
-      `Shared secret: ${toBase64(mlkem.sharedSecret)}`
-    );
+    console.log(`ML-KEM-768 ready: encapsulation verified in ${mlkem.elapsedMs.toFixed(2)} ms.`);
   } catch (error) {
     console.error('Cryptographic bootstrap failed:', error);
     appendNotice('Cryptography unavailable in this browser');

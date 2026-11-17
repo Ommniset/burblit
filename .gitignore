@@ -10,3 +10,4 @@ data/
 dist-test/
 data/test.db*
 public/dist/
+data/probe.db*
