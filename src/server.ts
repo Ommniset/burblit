@@ -3,6 +3,7 @@ import { readFileSync } from 'fs';
 import { createServer as createHttpServer, Server as HttpServer, IncomingMessage } from 'http';
 import { createServer as createHttpsServer } from 'https';
 import { WebSocketServer, WebSocket } from 'ws';
+import { securityHeaders } from './securityHeaders';
 
 import {
   USERNAME_PATTERN,
@@ -191,6 +192,16 @@ function parseKeysBody(body: unknown): { bundle: PublishKeysRequest } | { error:
 // ---------------------------------------------------------------------------
 
 const app = express();
+
+// Express announces itself by default, which tells an attacker what to
+// target without them having to probe for it.
+app.disable('x-powered-by');
+
+// Registered before the static handler so the headers cover the served
+// assets as well as the API. The scan found them missing from five
+// responses, not one.
+app.use(securityHeaders);
+
 app.use(express.json({ limit: MAX_KEYS_BODY_BYTES }));
 app.use(express.static('public'));
 
@@ -482,3 +493,4 @@ server.listen(PORT, () => {
   console.log(`Burblit server listening on ${scheme}://localhost:${PORT}`);
   console.log(`Allowed origins: ${ALLOWED_ORIGINS.join(', ')}`);
 });
+

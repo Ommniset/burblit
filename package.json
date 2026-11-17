@@ -2,7 +2,7 @@
   "name": "burblit",
   "version": "1.0.0",
   "description": "E2EE web messaging prototype",
-  "main": "index.js",
+  "main": "dist/server.js",
   "directories": {
     "doc": "docs"
   },
@@ -10,6 +10,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "tsc -p tsconfig.json",
     "build:client": "tsc -p tsconfig.client.json && esbuild src/client/main.ts --bundle --outfile=public/bundle.js --format=iife --target=es2020 --sourcemap && node scripts/copy-pqc.js",
+    "build:prod": "tsc -p tsconfig.json && tsc -p tsconfig.client.json && esbuild src/client/main.ts --bundle --minify --outfile=public/bundle.js --format=iife --target=es2020 && node scripts/copy-pqc.js",
     "watch:client": "esbuild src/client/main.ts --bundle --outfile=public/bundle.js --format=iife --target=es2020 --sourcemap --watch",
     "build:test": "tsc -p tsconfig.test.json",
     "test": "npm run build && npm run build:test && node --test \"tests/**/*.test.js\"",
@@ -22,7 +23,7 @@
     "url": "git+https://github.com/Ommniset/burblit.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adam Ben Ahmed Belachi",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {

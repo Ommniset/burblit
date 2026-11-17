@@ -4,35 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Burblit</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    #messages {
-      border: 1px solid #ccc;
-      height: 300px;
-      overflow-y: auto;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: #f9f9f9;
-    }
-    .message { margin-bottom: 8px; word-wrap: break-word; }
-    .info { color: grey; font-style: italic; }
-    input, button {
-      padding: 8px;
-      margin-right: 5px;
-    }
-    #chat-section { display: none; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <h1>Burblit</h1>
 
-  <!-- Registration section -->
   <div id="register-section">
     <h3>Register</h3>
     <input type="text" id="username-input" placeholder="Enter your username" autocomplete="off" />
@@ -40,24 +17,22 @@
     <button type="button" id="reset-button">Reset keys</button>
   </div>
 
-  <!-- Chat section (hidden until registered) -->
   <div id="chat-section">
     <h3>Chat</h3>
+
     <label for="mode-select">Key agreement</label>
     <select id="mode-select">
       <option value="auto">Automatic (hybrid when available)</option>
       <option value="hybrid">Require hybrid (X25519 + ML-KEM-768)</option>
       <option value="x25519">Classical only (X25519)</option>
     </select>
+
     <div id="messages"></div>
     <input type="text" id="recipient-input" placeholder="Send to (username)" autocomplete="off" />
     <input type="text" id="message-input" placeholder="Type a message" autocomplete="off" />
     <button type="button" id="send-button">Send</button>
   </div>
 
-  <!-- Bundled from src/client/main.ts by esbuild. The document contains no
-       inline script and no inline event handler, which is what allows a
-       restrictive Content Security Policy to be applied later. -->
   <script src="bundle.js" defer></script>
 
 </body>

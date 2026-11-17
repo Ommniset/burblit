@@ -1,0 +1,56 @@
+/*
+ * Moved out of the document so that the Content Security Policy can forbid
+ * inline styles. An inline <style> block would have required
+ * style-src 'unsafe-inline', and a policy that permits inline content is a
+ * weaker policy whichever element it is permitted for.
+ */
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+#messages {
+  border: 1px solid #ccc;
+  height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+}
+
+.message {
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.info {
+  color: grey;
+  font-style: italic;
+}
+
+input,
+button,
+select {
+  padding: 8px;
+  margin-right: 5px;
+}
+
+label {
+  margin-right: 5px;
+}
+
+/*
+ * Toggled from script. Assigning to element.style from JavaScript is a CSSOM
+ * operation and is not governed by style-src, unlike a style attribute
+ * written into the markup, so the policy above does not interfere with it.
+ */
+#chat-section {
+  display: none;
+}

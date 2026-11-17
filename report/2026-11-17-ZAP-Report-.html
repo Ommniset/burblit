@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZAP por Informe de Escaneo Checkmarx</title>
+<link
+	href="2026-11-17-ZAP-Report-/normalize/normalize.css" rel="stylesheet">
+<link
+	href="2026-11-17-ZAP-Report-/themes/original/main.css" rel="stylesheet">
+<link
+	href="2026-11-17-ZAP-Report-/themes/original/colors.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<h1>ZAP por Informe de Escaneo Checkmarx</h1>
+		<p>
+			<span>Generated with</span> <a href="https://zaproxy.org"><img
+				src="2026-11-17-ZAP-Report-/zap32x32.png" alt="The ZAP logo" class="zap-logo">ZAP</a>
+			<span>on mar 17 nov 2026, at 23:34:36</span>
+		</p>
+		<p>ZAP Versión: 2.17.0</p>
+		<p>
+			ZAP by <a href="https://checkmarx.com/">Checkmarx</a>
+		</p>
+	</header>
+
+	<main>
+
+		<section id="contents" class="contents">
+			<h2>Contents</h2>
+			<nav>
+				<ol>
+					<li><a
+						href="#about-this-report">About This Report</a>
+						<ol>
+							
+							<li><a
+								href="#report-parameters">Report Parameters</a></li>
+						</ol></li>
+					<data-th-block>
+					<li><a
+						href="#summaries">Summaries</a>
+						<ol>
+							<li><a
+								href="#risk-confidence-counts">Alert Counts by Risk and Confidence</a></li>
+							<li><a
+								href="#site-risk-counts">Alert Counts by Site and Risk</a></li>
+							<li><a
+								href="#alert-type-counts">Alert Counts by Alert Type</a></li>
+							<li><a
+								href="#insights">Insights</a></li>
+						</ol></li>
+					<li><a
+						href="#alerts">Alerts</a>
+						<ol>
+							
+							 
+							
+							
+							
+							
+							<li><a
+								href="#alerts--risk-2-confidence-3"><span>Risk</span>=<span
+									class="risk-level">Medio</span>, <span>Confidence</span>=<span
+									class="confidence-level">Alta</span> <span>(1)</span></a></li>
+							
+							<li><a
+								href="#alerts--risk-2-confidence-2"><span>Risk</span>=<span
+									class="risk-level">Medio</span>, <span>Confidence</span>=<span
+									class="confidence-level">Media</span> <span>(1)</span></a></li>
+							
+							
+							  
+							
+							
+							
+							
+							
+							
+							<li><a
+								href="#alerts--risk-1-confidence-2"><span>Risk</span>=<span
+									class="risk-level">Bajo</span>, <span>Confidence</span>=<span
+									class="confidence-level">Media</span> <span>(2)</span></a></li>
+							
+							
+							  
+							
+							
+							
+							
+							
+							
+							<li><a
+								href="#alerts--risk-0-confidence-2"><span>Risk</span>=<span
+									class="risk-level">Informativo</span>, <span>Confidence</span>=<span
+									class="confidence-level">Media</span> <span>(2)</span></a></li>
+							
+							
+							  
+						</ol></li>
+					<li><a
+						href="#appendix">Appendix</a>
+						<ol>
+							<li><a
+								href="#alert-types">Alert Types</a></li>
+						</ol></li>
+					</data-th-block>
+				</ol>
+			</nav>
+		</section>
+
+		<section
+			id="about-this-report" class="about-this-report">
+			<h2>About This Report</h2>
+
+			
+
+			<section
+				id="report-parameters">
+				<h3>Report Parameters</h3>
+				<div class="report-parameters--container">
+					<h4>Contexts</h4>
+					
+					
+					<p>No contexts were selected, so all contexts were included by default.</p>
+					  
+
+					<h4>Sites</h4>
+					
+					<p>The following sites were included:</p>
+					<ul class="sites-list">
+						<li><span class="site">http://localhost:3000</span></li>
+					</ul>
+					
+					<p>(If no sites were selected, all sites were included by default.)</p>
+					<p>An included site must also be within one of the included contexts for its data to be included in the report.</p>
+
+					<h4>Risk levels</h4>
+					<p>
+						<span>Included</span>:
+						 
+						<span class="included-risk-codes"><span class="risk-level">Alto</span>, <span class="risk-level">Medio</span>, <span class="risk-level">Bajo</span>, <span class="risk-level">Informativo</span></span>
+					</p>
+					<p>
+						<span>Excluded</span>:
+						 <span>None</span>
+						
+					</p>
+
+					<h4>Confidence levels</h4>
+					<p>
+						<span>Included</span>:
+						
+						
+						<span class="included-confidence-codes"><span class="confidence-level">Confirmado por Usuario</span>, <span class="confidence-level">Alta</span>, <span class="confidence-level">Media</span>, <span class="confidence-level">Baja</span></span>
+					</p>
+					<p>
+						<span>Excluded</span>:
+						
+						
+						<span class="included-confidence-codes"> <span class="confidence-level">Confirmado por Usuario</span>, <span class="confidence-level">Alta</span>, <span class="confidence-level">Media</span>, <span class="confidence-level">Baja</span>, <span class="confidence-level">Falso positivo</span></span>
+					</p>
+				</div>
+			</section>
+		</section>
+
+		
+		<section>
+			
+		</section>
+		
+		<section id="summaries" class="summaries">
+			<h2>Summaries</h2>
+
+			<section
+				id="risk-confidence-counts">
+				<h3>Alert Counts by Risk and Confidence</h3>
+				<table class="risk-confidence-counts-table">
+					<caption>
+						<p>This table shows the number of alerts for each level of risk and confidence included in the report.</p>
+						<p>(The percentages in brackets represent the count as a percentage of the total number of alerts included in the report, rounded to one decimal place.)</p>
+					</caption>
+					<colgroup>
+						<col>
+						<col>
+					</colgroup>
+					<colgroup>
+						<col
+							style="width: 14.0%"><col
+							style="width: 14.0%"><col
+							style="width: 14.0%"><col
+							style="width: 14.0%">
+						<col style="width: 14.0%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td colspan="2" rowspan="2"></td>
+							<th scope="colgroup"
+								colspan="5">Confidence</th>
+						</tr>
+						<tr>
+							<th scope="col">Confirmado por Usuario</th>
+							<th scope="col">Alta</th>
+							<th scope="col">Media</th>
+							<th scope="col">Baja</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="rowgroup"
+								rowspan="5">Risk</th>
+							<th scope="row">Alto</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>0</span><br> <span class="additional-info-percentages">(0,0 %)</span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row">Medio</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(16,7 %)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(16,7 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>2</span><br> <span class="additional-info-percentages">(33,3 %)</span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row">Bajo</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(33,3 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>2</span><br> <span class="additional-info-percentages">(33,3 %)</span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row">Informativo</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(33,3 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>2</span><br> <span class="additional-info-percentages">(33,3 %)</span></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(16,7 %)</span></td>
+							<td><span>5</span><br> <span
+								class="additional-info-percentages">(83,3 %)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0 %)</span></td>
+							<td><span>6</span><br> <span
+								class="additional-info-percentages">(100%)</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section
+				id="site-risk-counts">
+				<h3>Alert Counts by Site and Risk</h3>
+				<table class="site-risk-counts-table">
+					<caption>
+						<p>This table shows, for each site for which one or more alerts were raised, the number of alerts raised at each risk level.</p>
+						<p>Alerts with a confidence level of &quot;False Positive&quot; have been excluded from these counts.</p>
+						<p>(The numbers in brackets are the number of alerts raised for the site at or above that risk level.)</p>
+					</caption>
+					<colgroup>
+						<col>
+						<col>
+					</colgroup>
+					<colgroup>
+						<col
+							style="width: 16.25%"><col
+							style="width: 16.25%"><col
+							style="width: 16.25%"><col
+							style="width: 16.25%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td colspan="2" rowspan="2"></td>
+							<th scope="colgroup" colspan="4">Risk</th>
+						</tr>
+						<tr>
+							<th scope="col">
+								<span>Alto</span><br>  <span
+									class="additional-info-percentages">(= Alto)</span>  
+							</th>
+							<th scope="col">
+								<span>Medio</span><br>   <span
+									class="additional-info-percentages">(&gt;= Medio)</span> 
+							</th>
+							<th scope="col">
+								<span>Bajo</span><br>   <span
+									class="additional-info-percentages">(&gt;= Bajo)</span> 
+							</th>
+							<th scope="col">
+								<span>Informativo</span><br>   <span
+									class="additional-info-percentages">(&gt;= Informativo)</span> 
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="rowgroup"
+								rowspan="1">Site</th>
+							<th scope="row">http://localhost:3000</th>
+							
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(2)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(4)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(6)</span></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section
+				id="alert-type-counts">
+				<h3>Alert Counts by Alert Type</h3>
+				<table class="alert-type-counts-table">
+					<caption>
+						<p>This table shows the number of alerts of each alert type, together with the alert type&#39;s risk level.</p>
+						<p>(The percentages in brackets represent each count as a percentage, rounded to one decimal place, of the total number of alerts included in this report.)</p>
+					</caption>
+					<thead>
+						<tr>
+							<th scope="col">Alert type</th>
+							<th scope="col">Risk</th>
+							<th scope="col">Count</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-0">Cabecera Content Security Policy (CSP) no configurada</a></th>
+							<td class="risk-level">Medio</td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(16,7 %)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-1">Falta de cabecera Anti-Clickjacking</a></th>
+							<td class="risk-level">Medio</td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(16,7 %)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-2">El servidor divulga información mediante un campo(s) de encabezado de respuesta HTTP &#39;&#39;&#39;&#39;X-Powered-By&#39;&#39;&#39;&#39;</a></th>
+							<td class="risk-level">Bajo</td>
+							<td><span>5</span><br> <span
+								class="additional-info-percentages">(83,3 %)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-3">Falta encabezado X-Content-Type-Options</a></th>
+							<td class="risk-level">Bajo</td>
+							<td><span>5</span><br> <span
+								class="additional-info-percentages">(83,3 %)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-4">Aplicación Web Moderna</a></th>
+							<td class="risk-level">Informativo</td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(16,7 %)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-5">Divulgación de información - Comentarios sospechosos</a></th>
+							<td class="risk-level">Informativo</td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(33,3 %)</span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td>6</td>
+						</tr>
+					</tfoot>
+				</table>
+			</section>
+			
+			<section
+				id="insights">
+				<h3 class="left-header">Insights</h3>
+				
+				<table class="insights-table">
+						<caption>
+						<p>This table shows information that is likely to be very relevant to you, but which is not related to vulnerabilities, or potentially even related to the application in question.</p>
+					</caption>
+					<thead>
+					<tr>
+						<th scope="col">Level</th>
+						<th scope="col">Razón</th>
+						<th scope="col">Site</th>
+						<th scope="col">Descripción</th>
+						<th scope="col">Statistic</th>
+					</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+						<td class="risk-2">
+							<div>Medio</div>
+						</td>
+						<td>
+							<div>Exceeded High</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of responses with status code 4xx</div>
+						</td>
+						<td align="center">
+							<div>94 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-1">
+							<div>Bajo</div>
+						</td>
+						<td>
+							<div>Advertencia</div>
+						</td>
+						<td>
+							<div></div>
+						</td>
+						<td>
+							<div>ZAP errors logged - see the zap.log file for details</div>
+						</td>
+						<td align="center">
+							<div>4   </div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of responses with status code 1xx</div>
+						</td>
+						<td align="center">
+							<div>16 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of responses with status code 2xx</div>
+						</td>
+						<td align="center">
+							<div>5 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of responses with status code 3xx</div>
+						</td>
+						<td align="center">
+							<div>25 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of endpoints with content type application/json</div>
+						</td>
+						<td align="center">
+							<div>40 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of endpoints with content type text/html</div>
+						</td>
+						<td align="center">
+							<div>20 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of endpoints with content type text/javascript</div>
+						</td>
+						<td align="center">
+							<div>40 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of endpoints with method GET</div>
+						</td>
+						<td align="center">
+							<div>80 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Percentage of endpoints with method POST</div>
+						</td>
+						<td align="center">
+							<div>20 %</div>
+						</td>
+						</tr>
+					
+						<tr>
+						<td class="risk-0">
+							<div>Información</div>
+						</td>
+						<td>
+							<div>Informativo</div>
+						</td>
+						<td>
+							<div>http://localhost:3000</div>
+						</td>
+						<td>
+							<div>Count of total endpoints</div>
+						</td>
+						<td align="center">
+							<div>5   </div>
+						</td>
+						</tr>
+					
+					</tbody>
+				</table>
+			</section>
+		</section>
+
+		<section id="alerts" class="alerts">
+			<h2>Alerts</h2>
+			<ol>
+				
+				 
+				 
+				
+				
+				<li id="alerts--risk-2-confidence-3">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Medio</span>, <span>Confidence</span>=<span
+							class="confidence-level">Alta</span> <span>(1)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">http://localhost:3000</span> <span>(1)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-0">Cabecera Content Security Policy (CSP) no configurada</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:3000/</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/2021/A05_2021-Security_Misconfiguration/">OWASP_2021_A05</a></span> 
+				</li>
+				<li>
+					 <span>POLICY_QA_STD = </span>
+				</li>
+				<li>
+					 <span>POLICY_PENTEST = </span>
+				</li>
+				<li>
+					<span><a href="https://www.zaproxy.org/docs/desktop/addons/common-library/alerttags/#systemic">SYSTEMIC</a></span> 
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/693.html">CWE-693</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">OWASP_2017_A06</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/">OWASP_2025_A02</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>La Política de seguridad de contenido (CSP) es una capa adicional de seguridad que ayuda a detectar y mitigar ciertos tipos de ataques, incluidos Cross Site Scripting (XSS) y ataques de inyección de datos. Estos ataques se utilizan para todo, desde el robo de datos hasta la desfiguración del sitio o la distribución de malware. CSP proporciona un conjunto de encabezados HTTP estándar que permiten a los propietarios de sitios web declarar fuentes de contenido aprobadas que los navegadores deberían poder cargar en esa página; los tipos cubiertos son JavaScript, CSS, marcos HTML, fuentes, imágenes y objetos incrustados como applets de Java, ActiveX, archivos de audio y video.</p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (448 bytes)</summary>
+				
+				<pre><code>GET http://localhost:3000/ HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (317 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Tue, 17 Nov 2026 14:47:30 GMT
+ETag: W/&quot;7dd-1a1e9fa3147&quot;
+Content-Type: text/html; charset=utf-8
+Content-Length: 2013
+Date: Tue, 17 Nov 2026 22:27:36 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (2013 bytes)</summary>
+				
+				<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Burblit&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    #messages {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .message { margin-bottom: 8px; word-wrap: break-word; }
+    .info { color: grey; font-style: italic; }
+    input, button {
+      padding: 8px;
+      margin-right: 5px;
+    }
+    #chat-section { display: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Burblit&lt;/h1&gt;
+
+  &lt;!-- Registration section --&gt;
+  &lt;div id=&quot;register-section&quot;&gt;
+    &lt;h3&gt;Register&lt;/h3&gt;
+    &lt;input type=&quot;text&quot; id=&quot;username-input&quot; placeholder=&quot;Enter your username&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;connect-button&quot;&gt;Connect&lt;/button&gt;
+    &lt;button type=&quot;button&quot; id=&quot;reset-button&quot;&gt;Reset keys&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Chat section (hidden until registered) --&gt;
+  &lt;div id=&quot;chat-section&quot;&gt;
+    &lt;h3&gt;Chat&lt;/h3&gt;
+    &lt;label for=&quot;mode-select&quot;&gt;Key agreement&lt;/label&gt;
+    &lt;select id=&quot;mode-select&quot;&gt;
+      &lt;option value=&quot;auto&quot;&gt;Automatic (hybrid when available)&lt;/option&gt;
+      &lt;option value=&quot;hybrid&quot;&gt;Require hybrid (X25519 + ML-KEM-768)&lt;/option&gt;
+      &lt;option value=&quot;x25519&quot;&gt;Classical only (X25519)&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div id=&quot;messages&quot;&gt;&lt;/div&gt;
+    &lt;input type=&quot;text&quot; id=&quot;recipient-input&quot; placeholder=&quot;Send to (username)&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;message-input&quot; placeholder=&quot;Type a message&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;send-button&quot;&gt;Send&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Bundled from src/client/main.ts by esbuild. The document contains no
+       inline script and no inline event handler, which is what allows a
+       restrictive Content Security Policy to be applied later. --&gt;
+  &lt;script src=&quot;bundle.js&quot; defer&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Asegúrese de que su servidor web, servidor de aplicaciones, balanceador de carga, etc. esté configurado para establecer la cabecera Content-Security-Policy.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				<li id="alerts--risk-2-confidence-2">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Medio</span>, <span>Confidence</span>=<span
+							class="confidence-level">Media</span> <span>(1)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">http://localhost:3000</span> <span>(1)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-1">Falta de cabecera Anti-Clickjacking</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:3000/</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/2021/A05_2021-Security_Misconfiguration/">OWASP_2021_A05</a></span> 
+				</li>
+				<li>
+					 <span>POLICY_QA_STD = </span>
+				</li>
+				<li>
+					 <span>POLICY_PENTEST = </span>
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/1021.html">CWE-1021</a></span> 
+				</li>
+				<li>
+					<span><a href="https://www.zaproxy.org/docs/desktop/addons/common-library/alerttags/#systemic">SYSTEMIC</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/09-Testing_for_Clickjacking">WSTG-v42-CLNT-09</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">OWASP_2017_A06</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/">OWASP_2025_A02</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>La respuesta no protege contra ataques de &quot;ClickJacking&quot;. Debes incluir Content-Security-Policy con la directiva &quot;frame-ancestors&quot; o X-Frame-Options.</p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (448 bytes)</summary>
+				
+				<pre><code>GET http://localhost:3000/ HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (317 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Tue, 17 Nov 2026 14:47:30 GMT
+ETag: W/&quot;7dd-1a1e9fa3147&quot;
+Content-Type: text/html; charset=utf-8
+Content-Length: 2013
+Date: Tue, 17 Nov 2026 22:27:36 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (2013 bytes)</summary>
+				
+				<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Burblit&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    #messages {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .message { margin-bottom: 8px; word-wrap: break-word; }
+    .info { color: grey; font-style: italic; }
+    input, button {
+      padding: 8px;
+      margin-right: 5px;
+    }
+    #chat-section { display: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Burblit&lt;/h1&gt;
+
+  &lt;!-- Registration section --&gt;
+  &lt;div id=&quot;register-section&quot;&gt;
+    &lt;h3&gt;Register&lt;/h3&gt;
+    &lt;input type=&quot;text&quot; id=&quot;username-input&quot; placeholder=&quot;Enter your username&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;connect-button&quot;&gt;Connect&lt;/button&gt;
+    &lt;button type=&quot;button&quot; id=&quot;reset-button&quot;&gt;Reset keys&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Chat section (hidden until registered) --&gt;
+  &lt;div id=&quot;chat-section&quot;&gt;
+    &lt;h3&gt;Chat&lt;/h3&gt;
+    &lt;label for=&quot;mode-select&quot;&gt;Key agreement&lt;/label&gt;
+    &lt;select id=&quot;mode-select&quot;&gt;
+      &lt;option value=&quot;auto&quot;&gt;Automatic (hybrid when available)&lt;/option&gt;
+      &lt;option value=&quot;hybrid&quot;&gt;Require hybrid (X25519 + ML-KEM-768)&lt;/option&gt;
+      &lt;option value=&quot;x25519&quot;&gt;Classical only (X25519)&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div id=&quot;messages&quot;&gt;&lt;/div&gt;
+    &lt;input type=&quot;text&quot; id=&quot;recipient-input&quot; placeholder=&quot;Send to (username)&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;message-input&quot; placeholder=&quot;Type a message&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;send-button&quot;&gt;Send&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Bundled from src/client/main.ts by esbuild. The document contains no
+       inline script and no inline event handler, which is what allows a
+       restrictive Content Security Policy to be applied later. --&gt;
+  &lt;script src=&quot;bundle.js&quot; defer&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Parameter</th>
+		<td><pre><code>x-frame-options</code></pre></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Los navegadores web modernos admiten las cabeceras HTTP Content-Security-Policy y X-Frame-Options. Asegúrese de que una de ellas está configurada en todas las páginas web devueltas por su sitio/aplicación.</p>
+
+<p>Si espera que la página esté enmarcada solo por páginas en su servidor (por ejemplo, si forma parte de un FRAMESET), utilice SAMEORIGIN; de lo contrario, si no espera que la página esté enmarcada, utilice DENY. Alternativamente, considere implementar la directiva &quot;frame-ancestors&quot; de la Política de Seguridad de Contenidos.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				
+				  
+				 
+				
+				
+				
+				
+				<li id="alerts--risk-1-confidence-2">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Bajo</span>, <span>Confidence</span>=<span
+							class="confidence-level">Media</span> <span>(2)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">http://localhost:3000</span> <span>(2)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-2">El servidor divulga información mediante un campo(s) de encabezado de respuesta HTTP &#39;&#39;&#39;&#39;X-Powered-By&#39;&#39;&#39;&#39;</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:3000/dist/ml-kem-768.min.js</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/2021/A01_2021-Broken_Access_Control/">OWASP_2021_A01</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework">WSTG-v42-INFO-08</a></span> 
+				</li>
+				<li>
+					 <span>POLICY_QA_STD = </span>
+				</li>
+				<li>
+					 <span>POLICY_PENTEST = </span>
+				</li>
+				<li>
+					<span><a href="https://www.zaproxy.org/docs/desktop/addons/common-library/alerttags/#systemic">SYSTEMIC</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure.html">OWASP_2017_A03</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/">OWASP_2025_A01</a></span> 
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/497.html">CWE-497</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>El servidor de la web/aplicación está divulgando información mediante uno o más encabezados de respuesta HTTP &#39;&#39;&#39;&#39;X-Powered-By&#39;&#39;&#39;&#39;. El acceso a tal información podría facilitarle a los atacantes la identificación de otros marcos/componentes de los que su aplicación web depende y las vulnerabilidades a las que pueden estar sujetos tales componentes.</p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (385 bytes)</summary>
+				
+				<pre><code>GET http://localhost:3000/dist/ml-kem-768.min.js HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0
+Accept: */*
+Accept-Language: es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Referer: http://localhost:3000/bundle.js
+Sec-Fetch-Dest: script
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (325 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Mon, 16 Nov 2026 18:01:20 GMT
+ETag: W/&quot;d904-1a1e5854cb9&quot;
+Content-Type: text/javascript; charset=utf-8
+Content-Length: 55556
+Date: Tue, 17 Nov 2026 22:27:36 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body">
+				<summary>Response body (55556 bytes)</summary>
+				
+				<pre><code>async function LibOQS_ml_kem_768(moduleArg={}){var moduleRtn;var d=moduleArg,aa=!!globalThis.window,ba=!!globalThis.WorkerGlobalScope,n=globalThis.process?.versions?.node&amp;&amp;&quot;renderer&quot;!=globalThis.process?.type;if(n){const {createRequire:a}=await import(&quot;node:module&quot;);var require=a(import.meta.url)}var p=(a,b)=&gt;{throw b;},q=import.meta.url;
+if(n){var fs=require(&quot;node:fs&quot;);q.startsWith(&quot;file:&quot;)&amp;&amp;require(&quot;node:path&quot;).dirname(require(&quot;node:url&quot;).fileURLToPath(q));process.argv.slice(2);p=(a,b)=&gt;{process.exitCode=a;throw b;}}else if(aa||ba)try{new URL(&quot;.&quot;,q)}catch{}var r=console.log.bind(console),v=console.error.bind(console),w=!1;function ca(a){for(var b=0,c=a.length,e=new Uint8Array(c),f;b&lt;c;++b)f=a.charCodeAt(b),e[b]=~f&gt;&gt;8&amp;f;return e}var x,y,z,A,B,C,D,E,F,G,H=!1;
+function I(){var a=J.buffer;z=new Int8Array(a);B=new Int16Array(a);d.HEAPU8=A=new Uint8Array(a);new Uint16Array(a);d.HEAP32=C=new Int32Array(a);D=new Uint32Array(a);E=new Float32Array(a);F=new Float64Array(a);G=new BigInt64Array(a);new BigUint64Array(a)}function K(a){d.onAbort?.(a);a=&quot;Aborted(&quot;+a+&quot;)&quot;;v(a);w=!0;a=new WebAssembly.RuntimeError(a+&quot;. Build with -sASSERTIONS for more info.&quot;);y?.(a);throw a;}var L;async function da(a){return a}
+async function ea(a){var b=L;try{var c=await da(b);return await WebAssembly.instantiate(c,a)}catch(e){v(`failed to asynchronously prepare wasm: ${e}`),K(e)}}async function fa(a){return ea(a)}class ha{name=&quot;ExitStatus&quot;;constructor(a){this.message=`Program terminated with exit(${a})`;this.status=a}}
+for(var M=a=&gt;{for(;0&lt;a.length;)a.shift()(d)},N=[],O=[],ia=()=&gt;{var a=d.preRun.shift();O.push(a)},P=!0,ja=[null,[],[]],Q=globalThis.TextDecoder&amp;&amp;new TextDecoder,R=(a,b=0,c,e)=&gt;{var f=b;c=f+c;if(e)e=c;else{for(;a[f]&amp;&amp;!(f&gt;=c);)++f;e=f}if(16&lt;e-b&amp;&amp;a.buffer&amp;&amp;Q)return Q.decode(a.subarray(b,e));for(f=&quot;&quot;;b&lt;e;)if(c=a[b++],c&amp;128){var h=a[b++]&amp;63;if(192==(c&amp;224))f+=String.fromCharCode((c&amp;31)&lt;&lt;6|h);else{var g=a[b++]&amp;63;c=224==(c&amp;240)?(c&amp;15)&lt;&lt;12|h&lt;&lt;6|g:(c&amp;7)&lt;&lt;18|h&lt;&lt;12|g&lt;&lt;6|a[b++]&amp;63;65536&gt;c?f+=String.fromCharCode(c):
+(c-=65536,f+=String.fromCharCode(55296|c&gt;&gt;10,56320|c&amp;1023))}}else f+=String.fromCharCode(c);return f},ka=()=&gt;{if(n){var a=require(&quot;node:crypto&quot;);return b=&gt;a.randomFillSync(b)}return b=&gt;crypto.getRandomValues(b)},S=a=&gt;{(S=ka())(a)},T=a=&gt;{for(var b=0,c=0;c&lt;a.length;++c){var e=a.charCodeAt(c);127&gt;=e?b++:2047&gt;=e?b+=2:55296&lt;=e&amp;&amp;57343&gt;=e?(b+=4,++c):b+=3}return b},U=(a,b,c)=&gt;{var e=A;if(!(0&lt;c))return 0;var f=b;c=b+c-1;for(var h=0;h&lt;a.length;++h){var g=a.codePointAt(h);if(127&gt;=g){if(b&gt;=c)break;e[b++]=g}else if(2047&gt;=
+g){if(b+1&gt;=c)break;e[b++]=192|g&gt;&gt;6;e[b++]=128|g&amp;63}else if(65535&gt;=g){if(b+2&gt;=c)break;e[b++]=224|g&gt;&gt;12;e[b++]=128|g&gt;&gt;6&amp;63;e[b++]=128|g&amp;63}else{if(b+3&gt;=c)break;e[b++]=240|g&gt;&gt;18;e[b++]=128|g&gt;&gt;12&amp;63;e[b++]=128|g&gt;&gt;6&amp;63;e[b++]=128|g&amp;63;h++}}e[b]=0;return b-f},ma=(a,b,c,e)=&gt;{var f={string:k=&gt;{var l=0;if(null!==k&amp;&amp;void 0!==k&amp;&amp;0!==k){l=T(k)+1;var t=V(l);U(k,t,l);l=t}return l},array:k=&gt;{var l=V(k.length);z.set(k,l);return l}};a=d[&quot;_&quot;+a];var h=[],g=0;if(e)for(var m=0;m&lt;e.length;m++){var u=f[c[m]];u?(0===g&amp;&amp;
+(g=W()),h[m]=u(e[m])):h[m]=e[m]}c=a(...h);return c=function(k){0!==g&amp;&amp;la(g);return&quot;string&quot;===b?k?R(A,k):&quot;&quot;:&quot;boolean&quot;===b?!!k:k}(c)},X=new Uint8Array(123),Y=25;0&lt;=Y;--Y)X[48+Y]=52+Y,X[65+Y]=Y,X[97+Y]=26+Y;X[43]=62;X[47]=63;d.noExitRuntime&amp;&amp;(P=d.noExitRuntime);d.print&amp;&amp;(r=d.print);d.printErr&amp;&amp;(v=d.printErr);if(d.preInit)for(&quot;function&quot;==typeof d.preInit&amp;&amp;(d.preInit=[d.preInit]);0&lt;d.preInit.length;)d.preInit.shift()();d.ccall=ma;
+d.cwrap=(a,b,c,e)=&gt;{var f=!c||c.every(h=&gt;&quot;number&quot;===h||&quot;boolean&quot;===h);return&quot;string&quot;!==b&amp;&amp;f&amp;&amp;!e?d[&quot;_&quot;+a]:(...h)=&gt;ma(a,b,c,h,e)};d.setValue=function(a,b,c=&quot;i8&quot;){c.endsWith(&quot;*&quot;)&amp;&amp;(c=&quot;*&quot;);switch(c){case &quot;i1&quot;:z[a]=b;break;case &quot;i8&quot;:z[a]=b;break;case &quot;i16&quot;:B[a&gt;&gt;1]=b;break;case &quot;i32&quot;:C[a&gt;&gt;2]=b;break;case &quot;i64&quot;:G[a&gt;&gt;3]=BigInt(b);break;case &quot;float&quot;:E[a&gt;&gt;2]=b;break;case &quot;double&quot;:F[a&gt;&gt;3]=b;break;case &quot;*&quot;:D[a&gt;&gt;2]=b;break;default:K(`invalid type for setValue: ${c}`)}};
+d.getValue=function(a,b=&quot;i8&quot;){b.endsWith(&quot;*&quot;)&amp;&amp;(b=&quot;*&quot;);switch(b){case &quot;i1&quot;:return z[a];case &quot;i8&quot;:return z[a];case &quot;i16&quot;:return B[a&gt;&gt;1];case &quot;i32&quot;:return C[a&gt;&gt;2];case &quot;i64&quot;:return G[a&gt;&gt;3];case &quot;float&quot;:return E[a&gt;&gt;2];case &quot;double&quot;:return F[a&gt;&gt;3];case &quot;*&quot;:return D[a&gt;&gt;2];default:K(`invalid type for getValue: ${b}`)}};d.UTF8ToString=(a,b,c)=&gt;a?R(A,a,b,c):&quot;&quot;;d.stringToUTF8=(a,b,c)=&gt;U(a,b,c);d.lengthBytesUTF8=T;
+var la,V,W,J,na={d:a=&gt;{var b=A.length;a&gt;&gt;&gt;=0;if(268435456&lt;a)return!1;for(var c=1;4&gt;=c;c*=2){var e=b*(1+.2/c);e=Math.min(e,a+100663296);a:{e=(Math.min(268435456,65536*Math.ceil(Math.max(a,e)/65536))-J.buffer.byteLength+65535)/65536|0;try{J.grow(e);I();var f=1;break a}catch(h){}f=void 0}if(f)return!0}return!1},a:a=&gt;{P||(d.onExit?.(a),w=!0);p(a,new ha(a))},b:(a,b,c,e)=&gt;{for(var f=0,h=0;h&lt;c;h++){var g=D[b&gt;&gt;2],m=D[b+4&gt;&gt;2];b+=8;for(var u=0;u&lt;m;u++){var k=a,l=A[g+u],t=ja[k];0===l||10===l?((1===k?r:v)(R(t)),
+t.length=0):t.push(l)}f+=m}D[e&gt;&gt;2]=f;return 0},c:(a,b)=&gt;{S(A.subarray(a,a+b));return 0}},Z;
+Z=await (async function(){function a(c){c=Z=c.exports;d._OQS_KEM_new=c.g;d._OQS_KEM_keypair=c.h;d._OQS_KEM_encaps=c.i;d._OQS_KEM_decaps=c.j;d._OQS_KEM_free=c.k;d._OQS_init=c.l;d._OQS_destroy=c.m;d._OQS_MEM_secure_free=c.n;d._OQS_MEM_malloc=c.o;d._OQS_randombytes=c.p;d._free=c.q;d._malloc=c.r;la=c.s;V=c.t;W=c.u;J=c.e;I();return Z}var b={a:na};if(d.instantiateWasm)return new Promise(c=&gt;{d.instantiateWasm(b,(e,f)=&gt;{c(a(e,f))})});L??=ca(&#39; asm   s` ` ` `` `` ``` `\n `  ` `	 `~~` aa  ab ac ad lk		 	      \r             \n \n  pAA 	A°¹Ee f ng Dh mi lj kk jl 	m 	n (o Bp Kq )r Bs it hu g	F A@fde	c=ba`986_=^]\\986	[5ZYXWVUTSRQPO5NMLIHGFE\nÃk¢  -  &quot;@@ -  &quot;E\r@  F\r  A r  AÁ kAI &quot;A r  AÁ kAIF\r   -  ! Aj!  - !  Aj!  \r A ! A &quot; A r    AÁ kAI -  &quot; A r    AÁ kAIk    AÈlj       AÈlj   ¸ Aj! Aj! Aj!	 Aj!\n@  Atj&quot;.! .! . !\r   At&quot;j&quot;  j. &quot;  Ar&quot;j. &quot;l  j. &quot;  j. &quot;l  j. &quot;  j. lj  	j. &quot;  \nj. &quot;lj  \nj. &quot;  	j. ljj  j. &quot;  j. lj&quot;AlAuAÿel jAv;  \r l  lj  lj  lj  lj  lj&quot;AlAuAÿel jAv;  Aj&quot;AG\r éf.~    )°&quot;  )&quot;  )`&quot;\n  )8&quot;  )&quot;&quot;  )À&quot;  )&quot;  )p&quot;  )H&quot;  ) &quot;&quot;B&quot;  )h&quot;B&quot;   )¨&quot;  )&quot;	  )X&quot;  )0&quot;  )&quot;&quot;\rB&quot;  ) &quot;B&quot;   )¸&quot;  )&quot;  )@&quot;!  )&quot;&quot; &quot;%   )x&quot;  )P&quot;  )(&quot;&amp;  ) &quot;$&quot;B&quot;B&quot;(B&quot;#&quot;\&#39;  B&quot; B &quot; 	B-&quot;	  %B \r&quot;B=&quot;\rB&quot;%  B\&#39;&quot;  B)&quot;  B&quot;&quot;  \nB+&quot;\n  B&quot;  B&quot;&quot;  B\n&quot;  B8&quot;  B&quot;B&quot;&quot; &quot;B  B&gt;&quot;   !B7&quot;!B&quot;&quot;)  B&quot;   B&quot;&quot;*  B&quot;  &amp;B$&quot; &quot;&amp;  $&quot; \n  B,&quot;B&quot;  &quot;B&quot;   B&quot;&quot;&quot;&quot;&quot; 	  &quot;$B,&quot;   ! &quot;   \r&quot;!   &quot;+   &quot;,   &quot;-&quot;.  ( &quot;(  \nB &quot;\n   &quot; $   &quot;$&quot;B&quot;&quot;    &quot;  \r 	&quot;   &quot;   #&quot;#   &quot;\r&quot; &quot;B&quot;B&quot;&quot;&quot; B &quot; B=&quot;	 .B &quot; \rB&quot;\r  !B&quot;&quot;!  )B&quot;  \nB&quot;  %B&quot;\n&quot;%  B8&quot;  B$&quot;  -B&quot;&quot;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  ,B\&#39;&quot;  &amp;B)&quot; &quot;&amp;  (B\n&quot;    B&quot;(B&quot; &quot;  #B&quot;   +B&quot;#B&quot;&quot;)  \&#39;B+&quot;  B&quot; &quot;  *B&quot;  $B-&quot; 	B&quot;$&quot;\&#39;&quot;    &quot;B&quot;    &quot;   &quot; 	 \r &quot;   &quot;  &quot;  B&quot;	 &quot;   &quot; \n  &quot;   B&quot;   \r&quot;&quot;\rB&quot;B&quot;   	&quot;  ( &quot;	  # \n&quot;\n  B &quot;   &quot;&quot; B&quot; )B+&quot;&quot; B &quot; B&quot; \&#39;B \r&quot; 	B-&quot;	  &amp;B=&quot;\rB&quot;&amp;  B&quot;  B&quot;  B&quot;B&quot;(&quot;#  \nB\n&quot;  B8&quot;\n  B&quot;\&#39;B&quot;&quot;  %B\&#39;&quot;  B)&quot;  B&quot;&quot;%&quot;)B  B&gt;&quot;   B7&quot;B&quot;&quot;*  &quot;B&quot;  B$&quot; &quot;&quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;   B&quot;  !B&quot; &quot;!&quot; &quot; 	  &quot;B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  \&#39; &quot;\&#39;   &quot;  B &quot; &quot;B&quot;&quot;    &quot; \n  &quot;   (&quot;(   &quot; \r  	&quot;&quot;  B&quot;B&quot;&quot; B &quot; %B=&quot;	 .B )&quot; B&quot;\r  -B&quot;&quot;%  *B&quot;  B&quot;  &amp;B&quot;\n&quot;&amp;  B8&quot;  ,B&quot;  !B$&quot;&quot;!  B&quot;  B&gt;&quot;  B7&quot;&quot; &quot;B  +B\&#39;&quot;  &quot;B)&quot; &quot;&quot;  B\n&quot;   B&quot;B&quot;&quot;)  (B&quot;   B&quot;(B&quot;&quot;*  #B+&quot;  B&quot; &quot;  $B&quot;  \&#39;B-&quot; 	B&quot;$&quot;#&quot;   &quot;B&quot;     &quot;   &quot;   &quot;\&#39; 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;   &quot;  ( \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; #B \r&quot; B-&quot;	  &quot;B=&quot;\rB&quot;&quot;  B&quot;  B&quot;  !B&quot;!B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;#B&quot;&quot;  &amp;B\&#39;&quot;   B)&quot;  B&quot;&quot;&amp;&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  B&quot;  +B$&quot; &quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  \&#39;B&quot;  %B&quot; &quot;%&quot;\&#39;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  # &quot;#  ! &quot;!  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; \&#39;B&quot;B&quot;&quot;\&#39; B &quot; &amp;B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;&amp;  )B&quot;  B&quot;  &quot;B&quot;\n&quot;&quot;  B8&quot;  ,B&quot;  %B$&quot;&quot;%  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  B)&quot; &quot;  !B\n&quot;   B&quot;!B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  #B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot;# 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  ! &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  B=&quot;\rB&quot;!  B&quot;  B&quot;  %B&quot;%B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;B&quot;&quot;   &quot;B\&#39;&quot;  B)&quot;  B&quot;&quot;&quot;&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  \&#39;B&quot;  +B$&quot; &quot;\&#39;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  #B&quot;  &amp;B&quot; &quot;&amp;&quot;#&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;   &quot;  % &quot;%  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; #B&quot;B&quot;&quot;# B &quot; &quot;B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;&quot;  )B&quot;  B&quot;  !B&quot;\n&quot;!  B8&quot;  ,B&quot;  &amp;B$&quot;&quot;&amp;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  \&#39;B)&quot; &quot;\&#39;  %B\n&quot;    B&quot;%B&quot; &quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot;    &quot;   &quot;   &quot; 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  % &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; (B \r&quot; B-&quot;	  \&#39;B=&quot;\rB&quot;%  B&quot;  B&quot;  &amp;B&quot;&amp;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;\&#39;B&quot;&quot;  !B\&#39;&quot;   B)&quot;  B&quot;&quot;!&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  #B&quot;  +B$&quot; &quot;#  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  B&quot;  &quot;B&quot; &quot;&quot;&quot;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  \&#39; &quot;\&#39;  &amp; &quot;&amp;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; B&quot;B&quot;&quot; B &quot; !B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;!  )B&quot;  B&quot;  %B&quot;\n&quot;%  B8&quot;  ,B&quot;  &quot;B$&quot;&quot;&quot;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  #B)&quot; &quot;#  &amp;B\n&quot;   B&quot;&amp;B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  \&#39;B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot;\&#39; 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  &amp; &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  #B=&quot;\rB&quot;&amp;  B&quot;  B&quot;  &quot;B&quot;&quot;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;#B&quot;&quot;   %B\&#39;&quot;  B)&quot;  B&quot;&quot;%&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  B&quot;  +B$&quot; &quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  \&#39;B&quot;  !B&quot; &quot;!&quot;\&#39;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  # &quot;#  &quot; &quot;&quot;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; \&#39;B&quot;B&quot;&quot;\&#39; B &quot; %B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;%  )B&quot;  B&quot;  &amp;B&quot;\n&quot;&amp;  B8&quot;  ,B&quot;  !B$&quot;&quot;!  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  B)&quot; &quot;  &quot;B\n&quot;    B&quot;&quot;B&quot; &quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  #B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot;    &quot;   &quot;   &quot;# 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  &quot; &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; (B \r&quot; B-&quot;	  B=&quot;\rB&quot;&quot;  B&quot;  B&quot;  !B&quot;!B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;B&quot;&quot;  &amp;B\&#39;&quot;   B)&quot;  B&quot;&quot;&amp;&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  \&#39;B&quot;  +B$&quot; &quot;\&#39;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  #B&quot;  %B&quot; &quot;%&quot;#&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;   &quot;  ! &quot;!  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; #B&quot;B&quot;&quot;# B &quot; &amp;B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;&amp;  )B&quot;  B&quot;  &quot;B&quot;\n&quot;&quot;  B8&quot;  ,B&quot;  %B$&quot;&quot;%  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  \&#39;B)&quot; &quot;\&#39;  !B\n&quot;   B&quot;!B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot; 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  ! &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  \&#39;B=&quot;\rB&quot;!  B&quot;  B&quot;  %B&quot;%B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;\&#39;B&quot;&quot;   &quot;B\&#39;&quot;  B)&quot;  B&quot;&quot;&quot;&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  #B&quot;  +B$&quot; &quot;#  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  B&quot;  &amp;B&quot; &quot;&amp;&quot;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  \&#39; &quot;\&#39;  % &quot;%  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; B&quot;B&quot;&quot; B &quot; &quot;B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;&quot;  )B&quot;  B&quot;  !B&quot;\n&quot;!  B8&quot;  ,B&quot;  &amp;B$&quot;&quot;&amp;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  #B)&quot; &quot;#  %B\n&quot;    B&quot;%B&quot; &quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  \&#39;B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot;    &quot;   &quot;   &quot;\&#39; 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  % &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; (B \r&quot; B-&quot;	  #B=&quot;\rB&quot;%  B&quot;  B&quot;  &amp;B&quot;&amp;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;#B&quot;&quot;  !B\&#39;&quot;   B)&quot;  B&quot;&quot;!&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  B&quot;  +B$&quot; &quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  \&#39;B&quot;  &quot;B&quot; &quot;&quot;&quot;\&#39;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  # &quot;#  &amp; &quot;&amp;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; \&#39;B&quot;B&quot;&quot;\&#39; B &quot; !B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;!  )B&quot;  B&quot;  %B&quot;\n&quot;%  B8&quot;  ,B&quot;  &quot;B$&quot;&quot;&quot;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  B)&quot; &quot;  &amp;B\n&quot;   B&quot;&amp;B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  #B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot;# 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  &amp; &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  B=&quot;\rB&quot;&amp;  B&quot;  B&quot;  &quot;B&quot;&quot;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;B&quot;&quot;   %B\&#39;&quot;  B)&quot;  B&quot;&quot;%&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  \&#39;B&quot;  +B$&quot; &quot;\&#39;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  #B&quot;  !B&quot; &quot;!&quot;#&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;   &quot;  &quot; &quot;&quot;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; #B&quot;B&quot;&quot;# B &quot; %B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;%  )B&quot;  B&quot;  &amp;B&quot;\n&quot;&amp;  B8&quot;  ,B&quot;  !B$&quot;&quot;!  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  \&#39;B)&quot; &quot;\&#39;  &quot;B\n&quot;    B&quot;&quot;B&quot; &quot;  B&quot;   B&quot;B&quot;&quot;)  (B+&quot;  B&quot; &quot;  $B&quot;  B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot; ) B&quot;  &quot;   &quot; &quot;&quot;   \n&quot;  B &quot;)   &quot;*&quot;+   &quot;    &quot;   &quot; 	 \r &quot;&quot;B&quot;B+&quot;B   &quot;   &quot; \n  &quot;	   B&quot;   \r&quot;&quot; (B&quot; *B,&quot;&quot;( B &quot; %B&quot; +B &quot; 	B&quot;	  &quot;B-&quot;\r&quot;&quot;  $B&quot;  B&quot;  !B&quot;!&quot;%  B$&quot;  B\n&quot;\n  B&quot;$&quot;  B7&quot;B&quot;  &amp;B\&#39;&quot;  B)&quot;&quot;&amp;&quot;B   B&quot;   B&gt;&quot;&quot;  B8&quot;  #B&quot; &quot;#  B&quot;  )B&quot; &quot;   B&quot;   &quot;&quot;  \&#39;B=&quot;  B&quot; &quot;\&#39;&quot;&quot;   B&quot;&quot; &quot;   &quot;&quot;  \n &quot;   &quot;  	  &quot;&quot;   &quot;)  $B&quot; \n&quot;$   !B&quot;&quot;\n   &quot;! \r B 	&quot;&quot;	B&quot;B,&quot; \n    &quot;   &quot;*   &quot;\n   &quot;   \r&quot;&quot;B&quot;B+&quot;B&quot;+  B 	&quot;B&quot;	 B &quot; \&#39;B&quot;\r  B&quot;&quot;\&#39;  (B&quot;  B&quot;  \nB&quot;\n&quot;(  B&quot;  B$&quot;  %B\n&quot;&quot;%  !B&gt;&quot;   B\&#39;&quot;  B7&quot;!B&quot;&quot;&quot; B  B)&quot;  &amp;B&quot; &quot;&amp;  $B&quot;$B&quot;  B8&quot; &quot;  #B&quot;#B&quot;  &quot;B&quot; &quot;&quot;  *B&quot;  B&quot; &quot;  B-&quot;  )B=&quot; 	&quot;&quot;)&quot;  ! &quot;B&quot; +   &quot;   &quot;!   &quot;* 	 \r &quot;+ &quot;   &quot;  $ &quot;	 \n # &quot;$  B &quot;   \r&quot;#&quot;\rB&quot;&quot;   &quot;   &quot;   \n&quot;   &quot;  B &quot;&quot; B&quot; B&quot;&quot; B  &quot; 	B-&quot; )B \r&quot; B=&quot;	  B&quot;\r&quot;  B&quot;B&quot;   B&quot;  B&quot;&quot;  B&quot;B&quot;  &amp;B8&quot;  *B&quot;\n&quot;&amp;  %B)&quot;  B&quot;  B&gt;&quot;&quot;%&quot;B  B7&quot;B&quot;  !B\&#39;&quot; &quot;!  \&#39;B$&quot;   $B\n&quot;&quot;$  B&quot;  &quot;B&quot; &quot;&quot;  #B,&quot;   B+&quot;B&quot;#  +B&quot;  (B&quot; &quot;(&quot;\&#39;&quot;   &quot;B&gt;&quot;    &quot;   &quot;    &quot;    	B &quot;&quot;   &quot; \n  &quot;)   &quot;   &quot; \r  	&quot;*&quot;	B&quot;B7&quot;+   &quot;   \n&quot;\n   &quot;   B&quot;   \r&quot;\r&quot; B&quot; !B&quot;7À   \&#39;B 	&quot; \nB)&quot;  7¸   B &quot; B\&#39;&quot;	  7°    \rB$&quot;  &quot;B\n&quot;\r  B&quot;7    B&quot; \r 7x    B&quot;  #B&quot;  B&quot;\n7p   \n  B&quot; 7P    $B-&quot;  B=&quot;  B&quot;7@    *B&quot;  B&quot; 70    B&quot;  (B,&quot;  &quot;7    +B&quot; 	 7¨   	  7     %B8&quot;  7   B&quot;  7     \r7    )B&quot;B&quot;  7h     \n7X     7H    B 78     7(    &amp;B&quot;  7     B+&quot;  7    B 7     B7      7` j# Ak&quot;$ @  L\r  AÀq\r     k&quot;A AI&quot;@ E@@   A Ak&quot;AÿK\r      Aj$   -  A qE@@  (&quot;   7\r  (  (&quot;k I@      ($ @@  (PA H\r  E\r  !@  j&quot;Ak-  A\nG@ Ak&quot;\r      ($  I\r  k!  (! ! !@ AO@ @   ü\n    j!@  sAqE@@ AqE\r  E\r @  -  :   Aj! Aj&quot;AqE\r  I\r  A|q!@ AÀ I\r   A@j&quot;K\r @  ( 6   (6  (6  (6  (6  (6  (6  (6  ( 6   ($6$  ((6(  (,6,  (060  (464  (868  (&lt;6&lt; A@k! A@k&quot; M\r   O\r@  ( 6  Aj! Aj&quot; I\r  AI\r  AI\r  Ak!@  -  :    - :   - :   - :  Aj! Aj&quot; M\r   I@@  -  :   Aj! Aj&quot; G\r     ( j68   A AÈü   B7   B7  B7`  B7@  B7  B7Î@   Atj&quot; . &quot;AÅ}lAuAÿel A¡ljAv;   .&quot;AÅ}lAuAÿel A¡ljAv; Aj&quot;AG\r Aÿ !@   Atj&quot; /&quot; / &quot;j&quot;ÁA¿lAjAuAÿel j;   /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  AtAÀj. &quot;  kÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv; Ak! AüI Aj!\r A?!A !@   Atj&quot; /&quot; / &quot;j&quot;ÁA¿lAjAuAÿel j;   /\n&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  /&quot;	 /&quot;\nj&quot;ÁA¿lAjAuAÿel j;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  AtAÀj. &quot;  kÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv;\n   	 \nkÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv; Ak! AøI Aj!\r A!A !@   Atj&quot; /&quot; / &quot;j&quot;ÁA¿lAjAuAÿel j;   /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  /&quot;	 /&quot;\nj&quot;ÁA¿lAjAuAÿel j;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  /&quot;\r /&quot;j&quot;ÁA¿lAjAuAÿel j;  AtAÀj. &quot;  kÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv;   	 \nkÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv;   \r kÁl&quot;AlAuAÿel jAv;  /&quot; /\n&quot;j&quot;ÁA¿lAjAuAÿel j;\n    kÁl&quot;AlAuAÿel jAv;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;    kÁl&quot;AlAuAÿel jAv;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;    kÁl&quot;AlAuAÿel jAv; Ak! AðI Aj!\r A !@   Atj&quot; / &quot; / &quot;kÁ&quot;AðÍlAuAÿel A¼ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AG\r A !@   Atj&quot; / &quot; / &quot;kÁ&quot;Aø¡}lAuAÿel A¾tljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A0G\r AÀ !@   Atj&quot; / &quot; / &quot;kÁ&quot;A¸*lAuAÿel AÎvljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÐ G\r Aà !@   Atj&quot; / &quot; / &quot;kÁ&quot;AÎlAuAÿel AÂljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;Að G\r A!@   Atj&quot; / &quot; / &quot;kÁ&quot;AØ|lAuAÿel A¶ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AG\r A !@   Atj&quot; / &quot; / &quot;kÁ&quot;A¤lAuAÿel A©ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A°G\r AÀ!@   Atj&quot; / &quot; / &quot;kÁ&quot;A¸ãlAuAÿel AîljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÐG\r Aà!@   Atj&quot; / &quot; / &quot;kÁ&quot;AÔòzlAuAÿel AÕ~ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AðG\r A !@   Atj&quot; /@&quot; / &quot;kÁ&quot;A¨ö{lAuAÿel AÊljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A G\r AÀ !@   Atj&quot; /@&quot; / &quot;kÁ&quot;AüðlAuAÿel AljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;Aà G\r A!@   Atj&quot; /@&quot; / &quot;kÁ&quot;A¸ü|lAuAÿel AljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A G\r AÀ!@   Atj&quot; /@&quot; / &quot;kÁ&quot;AÔ¦lAuAÿel AÕljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AàG\r A !@   Atj&quot; /&quot; / &quot;kÁ&quot;AÌlAuAÿel AtljAv;   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÀ G\r A!@   Atj&quot; /&quot; / &quot;kÁ&quot;AäÌlAuAÿel A}ljAv;   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÀG\r A !@   Atj&quot; /&quot; / &quot;kÁ&quot;A¨ØlAuAÿel AzljAv;   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AG\r @   At&quot;j&quot;  j/  / j;    Ar&quot;j&quot;  j/  / j;    Ar&quot;j&quot;  j/  / j;    Ar&quot;j&quot;  j/  / j;  Aj&quot;AG\r Z@A    Atj&quot;. &quot;A¿lAjAuAÿel j&quot;ÁAvk!  Aj s Avq s;  Aj&quot;AG\r    (  ( Aàü\n  3   ( ! A¬( Aß·ÞG@	A¬Aß·Þ6     B 7È   ( Aà(¨~ )È&quot; ­&quot;T@     §&quot;k   (È!  ­&quot;7È   j!   k&quot; K@@   A    (È!  7È   j!    k&quot;I\r  ­!     §k   )È }7Èg# Ak&quot;$   AàA&quot; 6   E@ AÊ\n6 A (  ?A  A¬( Aß·ÞG@	A¬Aß·Þ6     B 7È Aj$ Í# &quot;\nAkA`q&quot;	$  	 ) 7 	 ) 7 	 ) 7 	 )  7  	 ) 7X 	 ) 7P 	 ) 7H 	 )  7@ 	 )  7 	 ) 7 	 ) 7 	 ) 7 	 )  7À 	 ) 7È 	 ) 7Ð 	 ) 7Ø 	 :   	 : ` 	 :   	 : à 	Aj&quot; 	Aj&quot; 	Aj&quot; 	Aj&quot;A 	 	A@k 	Aj 	AÀjA!A( ( \n           A Aü  	A Aü  \n$      Aj  Aj   !  Aj!  Aj!æ@   Atj&quot;  Atj(  &quot;AvAÕªÕªq AÕªÕªqj&quot;AvAq Avk;  AvAq AvAqk;  AvAq AvAqk;\n  AvAq AvAqk;  AvAq AvAqk;  AvAq A\nvAqk;  AvAq AvAqk;  Aq AvAqk;  Aj&quot;A G\r # &quot; A kA`q&quot;$  Aj&quot;A( (   A( (     A@k Aj AÀjA&quot;A( (  A( (   A j A j&quot; A j&quot; A j&quot;Aø A( ( A!@ A j j&quot;- &quot;AtAq -  r&quot;AM@   Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r    Atj ;  Aj! AÿM@ &quot;Aj! &quot;AöI\r AI!  Aj!A !A!A !@  j&quot;- &quot;AtAq -  r&quot;AM@  Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r   Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AI!	  Aj!A !A!A !@  j&quot;- &quot;AtAq -  r&quot;\nAM@  Atj \n;  Aj!@ AÿK\r  - At Avr&quot;AK\r   Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AI!  Aj!\nA !A!A !@  j&quot;- &quot;\rAtAq -  r&quot;AM@ \n Atj ;  Aj!@ AÿK\r  - At \rAvr&quot;AK\r  \n Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AI!\r@@ AI\r  AI\r  AI\r  AÿK\r@ A j   A¨ AjA( ( @ E\r A !A!@ A j j&quot;- &quot;AtAq -  r&quot;AM@   Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r    Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r @ 	E\r A !A!@  j&quot;- &quot;	AtAq -  r&quot;AM@  Atj ;  Aj!@ AÿK\r  - At 	Avr&quot;AK\r   Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r @ E\r A !A!@  j&quot;- &quot;	AtAq -  r&quot;AM@  Atj ;  Aj!@ AÿK\r  - At 	Avr&quot;AK\r   Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r @ \rE\r A !A!@  j&quot;- &quot;	AtAq -  r&quot;AM@ \n Atj ;  Aj!@ AÿK\r  - At 	Avr&quot;AK\r  \n Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r  AI&quot;!\r AI&quot;! AI!	 AI&quot;\r  	\r  \r  \r  AjA( (   A jA Aü $ ~@  )È&quot;P\r  ­ }&quot; ­V\r     § §&quot;  B !  B 7È  j!  k!  M@@   A      j!  k&quot; O\r   )È!    §     )È ­|7È     AÈj  Aj  AØjª~# Ak&quot;$ @ E@ Av&quot;At&quot;@    ü\n  @ AI\r   - As:   - 	As: 	  - \nAs: \n  - As:   - As:   - \rAs: \r  - As:   - As:  AF\r   - As:   - As:   - As:   - As:   - As:   - As:   - As:   - As:  A	I\r   - @As: @  - AAs: A  - BAs: B  - CAs: C  - DAs: D  - EAs: E  - FAs: F  - GAs: G A\rI\r   - `As: `  - aAs: a  - bAs: b  - cAs: c  - dAs: d  - eAs: e  - fAs: f  - gAs: g AI\r   - As:   - As:   - As:   - As:   - As:   - As:   - As:   - As:  AI\r   -  As:    - ¡As: ¡  - ¢As: ¢  - £As: £  - ¤As: ¤  - ¥As: ¥  - ¦As: ¦  - §As: § Aq!   Axq&quot;j) !@ AK\r A tA¢È qE\r  B!  7 E\r  j Aj ü\n   E\r A Aq&quot;k&quot;   K!   Av&quot;Atj) !@ AK\r A tA¢È qE\r  B!  7 @  Aj r ü\n    k&quot;E\r   j!@A  AO!   Aj&quot;Atj) !@ AK\r A tA¢È qE\r  B!  7 @  Aj ü\n    j!  k&quot;\r  Aj$ ~# Ak&quot;$ @ E@ Av!A !@  &quot; rAq@ At&quot; E\r@  j&quot; -    j-  s:    Ar&quot;j&quot; -    j-  s:    Ar&quot;j&quot; -    j-  s:    Ar&quot;j&quot; -    j-  s:   Aj&quot;  G\r A!  AO@@  At&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   A r&quot;j&quot; )   j) 7   A(r&quot;j&quot; )   j) 7   A0r&quot;j&quot; )   j) 7   A8r&quot;j&quot; )   j) 7   &quot;Aj&quot;  M\r   Ar&quot; O@@  At&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   &quot;Aj&quot;  M\r   Aj&quot; O@@  At&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   &quot;Aj&quot;  M\r   O\r   At&quot; j&quot; )    j) 7   Axqj! ~@@ Aq&quot;   1   B 7 @ Aj   ü\n   )!	  Atj&quot;   )  	7  E\r  Av!~A Aq&quot;k&quot;   I&quot;AG@ B 7 @ Aj  ü\n   ) 1  !	   Atj&quot; )  	 At­7   k&quot;E\r   j!@A  AO!   Aj&quot;Atj&quot;~ AF@ 1   B 7 @ Aj  ü\n   ) ) 7   j!  k&quot;\r  Aj$ $    &quot;  Aj Aj&quot;  Aj Aj&quot;$    $  Aj Aj$  Aj Aj$$    %  Aj Aj%  Aj Aj%@   Atj&quot; / &quot; .&quot;A¨ØlAuAÿel AzljAv&quot;k;   j;   /&quot; .&quot;A¨ØlAuAÿel AzljAv&quot;k;   j; Aj&quot;AG\r @   Atj&quot; / &quot; .&quot;AäÌlAuAÿel A}ljAv&quot;k;   j;   /&quot; .&quot;AäÌlAuAÿel A}ljAv&quot;k;   j; Aj&quot;AÀ G\r A!@   Atj&quot; / &quot; .&quot;AÌlAuAÿel AtljAv&quot;k;   j;   /&quot; .&quot;AÌlAuAÿel AtljAv&quot;k;   j; Aj&quot;AÀG\r A !@   Atj&quot; / &quot; .@&quot;AÔ¦lAuAÿel AÕljAv&quot;k;@   j;   /&quot; .B&quot;AÔ¦lAuAÿel AÕljAv&quot;k;B   j; Aj&quot;A G\r AÀ !@   Atj&quot; / &quot; .@&quot;A¸ü|lAuAÿel AljAv&quot;k;@   j;   /&quot; .B&quot;A¸ü|lAuAÿel AljAv&quot;k;B   j; Aj&quot;Aà G\r A!@   Atj&quot; / &quot; .@&quot;AüðlAuAÿel AljAv&quot;k;@   j;   /&quot; .B&quot;AüðlAuAÿel AljAv&quot;k;B   j; Aj&quot;A G\r AÀ!@   Atj&quot; / &quot; .@&quot;A¨ö{lAuAÿel AÊljAv&quot;k;@   j;   /&quot; .B&quot;A¨ö{lAuAÿel AÊljAv&quot;k;B   j; Aj&quot;AàG\r A!A !@A!   Atj&quot; / &quot; AtAÀj. &quot; . l&quot;AlAuAÿel jAv&quot;k;    j;   /&quot;  .&quot;l&quot;AlAuAÿel jAv&quot;k;&quot;   j;  /&quot;  .$l&quot;AlAuAÿel jAv&quot;k;$   j;  /&quot;  .&amp;l&quot;AlAuAÿel jAv&quot;k;&amp;   j;  /&quot;  .(l&quot;AlAuAÿel jAv&quot;k;(   j;  /\n&quot;  .*l&quot;AlAuAÿel jAv&quot;k;*   j;\n  /&quot;  .,l&quot;AlAuAÿel jAv&quot;k;,   j;  /&quot;  ..l&quot;AlAuAÿel jAv&quot;k;.   j;  /&quot;  .0l&quot;AlAuAÿel jAv&quot;k;0   j;  /&quot;  .2l&quot;AlAuAÿel jAv&quot;k;2   j;  /&quot;  .4l&quot;AlAuAÿel jAv&quot;k;4   j;  /&quot;  .6l&quot;AlAuAÿel jAv&quot;k;6   j;  /&quot;  .8l&quot;AlAuAÿel jAv&quot;k;8   j;  /&quot;  .:l&quot;AlAuAÿel jAv&quot;k;:   j;  /&quot;  .&lt;l&quot;AlAuAÿel jAv&quot;k;&lt;   j;  /&quot;  .&gt;l&quot;AlAuAÿel jAv&quot;k;&gt;   j; A j! Aj&quot;AG\r A !@   Atj&quot; / &quot; AtAÀj. &quot; .l&quot;AlAuAÿel jAv&quot;k;   j;   /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /\n&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;\n  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j; Aj!A ! Aj&quot;A G\r A !@   Atj&quot; / &quot; AtAÀj. &quot; .l&quot;AlAuAÿel jAv&quot;k;   j;   /&quot;  .\nl&quot;AlAuAÿel jAv&quot;k;\n   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j; Aj!AÀ ! Aj&quot;AÀ G\r A !@   Atj&quot; / &quot; AtAÀj. &quot; .l&quot;AlAuAÿel jAv&quot;k;   j;   /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j; Aj! Aj&quot;AG\r {@   Atj&quot; AtAÀj.&quot;  Atj&quot;.l&quot;AlAuAÿel jAv;   .A  kÁl&quot;AlAuAÿel jAv; Aj&quot;AÀ G\r d@   Atj&quot; . &quot;A¤lAuAÿel AÉ\nljAv;   .&quot;A¤lAuAÿel AÉ\nljAv; Aj&quot;AG\r T@  Alj&quot;-  !   Atj&quot; - At - &quot;Avr;   AtAqr;  Aj&quot;AG\r @  Atj&quot;/!   Alj&quot; / &quot;:    Av:   At Avr:   Ar&quot;Atj&quot;/!   Alj&quot; / &quot;:    Av:   At Avr:  Aj&quot;AG\r ¶@  Alj&quot;-  ! - ! - !   Atj&quot; - At - &quot;AvrAlAjA\nv;  AtAðq AvrAlAjA\nv;  AtAÀq AvrAlAjA\nv;   AtAqrAlAjA\nv;  Aj&quot;AÀ G\r Ý~@  Atj&quot;3! 3! 3 !   Alj&quot; 3Bøöë	~B|&quot;B#&lt;   Bøöë	~B|&quot;B!&lt;    B§AÀq Bøöë	~B|&quot;B%§A?qr:   B§Aðq Bøöë	~B|&quot;B\&#39;§Aqr:   B§Aüq B)§Aqr:  Aj&quot;AÀ G\r    @  A  @  )Ì  @  Ak&quot;( &quot;! !  Ak( &quot;   A~q&quot; G@   k&quot;(&quot; (&quot;6  6   j!  j&quot; ( &quot;   jAk( G@  (&quot;  (&quot; 6   6  j!  6   A|qjAk Ar6   ( Ak&quot; Aÿ M@  AvAk  g!  A kvAs AtkAî j  AÿM\r A?  A kvAs AtkAÇ j&quot;   A?O&quot;At&quot; Aj6   Aj&quot; ( 6   6  ( 6AA) B ­7    Aj&quot;jAkA  kq&quot; j    ( &quot;jAkM  (&quot;  (&quot;6  6  G@    Ak( A~qk&quot;  k&quot; ( j&quot;6   A|qjAk 6    j&quot;   k&quot;6   AjO@   j&quot;  kAk&quot;6 Aj&quot; A|qjAk Ar6   (Ak&quot;Aÿ M@ AvAk g! A kvAs AtkAî j AÿM\r A? A kvAs AtkAÇ j&quot; A?O&quot;At&quot;Aj6  Aj&quot;( 6  6  ( 6AA) B ­7    Aj&quot;6    A|qj   jAk 6   AjA ~A    AM&quot;A0j!@@@    Akq\r AGK\rA) &quot;	A AjA|q AM&quot;Aÿ M@ AvAk g! A kvAs AtkAî j AÿM\r A? A kvAs AtkAÇ j&quot; A?O&quot;­&quot;\nB R@@ \n \nz&quot;	!\n~  	§j&quot;At&quot;Aj( &quot; Aj&quot;G@   *&quot;\r (&quot; (&quot;6  6  6  (6  6 ( 6 Aj! \nBAA) B~ ­7  \nB&quot;\nB R\r A) !	A? 	y§k!@ 	P@A ! At&quot;Aj( ! 	BT\r Aã !  Aj&quot;F\r @ E\r   *&quot;\r Ak! (&quot; G\r   AK! !   A0 jC\r  E\r   AtAj&quot; F\r @   *&quot;\r (&quot;  G\r A ! P# Ak&quot;$ @ AO@AÐA6 A!   &quot; AÐ  6 AA ! ( Aj$  ´ @@@@@@@@@@@ A	k 	\n	\n	\n\n	  ( &quot;Aj6    ( 6   ( &quot;Aj6    2 7   ( &quot;Aj6    3 7   ( &quot;Aj6    0  7   ( &quot;Aj6    1  7   ( AjAxq&quot;Aj6    + 9    ( &quot;Aj6    4 7   ( &quot;Aj6    5 7   ( AjAxq&quot;Aj6    ) 7 ­	~# &quot;A æ kA`q&quot;$  A*j&quot;   ) 	7f  ) 	7f  ) 	7f  ) 	7f A\nj!@  Atj&quot;A   j&quot;-  AqkAvA\rq;  A  -  AqkAvA\rq; A  -  AqkAvA\rq; A  -  AqkAvA\rq; A  -  AqkAvA\rq; A  -  A qkAvA\rq;\n A  -  AÀ qkAvA\rq; A  -  AqkAvA\rq; Aj&quot;A G\r   )f&quot;76  )f&quot;76  )f&quot;76  )f&quot;76  7À6  7È6  7Ð6  7Ø6  77  77  77  77  7Ø7  7Ð7  7È7  7À7 A;à7 A; 7 A;à6 A ; 6 AÂ j&quot;	 A6j&quot; A;à7 A; 7 A;à6 A; 6 AÒ j  A; 6 Aâ j 2 A Aü   A:j A&gt;j Aj&quot; A AAAÿ Aj&quot;\n A&quot;j A&amp;j Aj&quot; AAAA     	   Aj AÎ j   Aj AÚ j   Aj&quot;    \r Aj&quot;\r Aj&quot;\r \r  \n0         \&#39;  AÀj \&#39;  Aj \&#39;  AÀj!A !@  Atj&quot; /!\r  / !  /!  /!  /\n!  /!  Atj&quot;  /A°ßÎ lA@kAvAðq  /A°ßÎ lA@kAvr:   A°ßÎ lA@kAvAðq A°ßÎ lA@kAvr:   A°ßÎ lA@kAvAðq A°ßÎ lA@kAvr:   \rA°ßÎ lA@kAvAðq A°ßÎ lA@kAvr:   Aj&quot;A G\r  B 7f B 7f B 7f B 7f A Aü  A Aü  A Aü  A Aü  	A A$ü  A Aü  \nA Aü  A Aü  $ ï~# &quot;AÏ kA`q&quot;$   ) 7  ) 7  ) 7  )  7  A:   AÀÎ j A!A°( (8   )ØN&quot;	7Ø  )ÐN&quot;\n7Ð  )ÈN&quot;7È  )ÀN&quot;7À  7  7  \n7  	7  7À  7È  \n7Ð  	7Ø  	7   \n7   7   7  A;   A;à A;  A ;à AÀ*j&quot; AÀj&quot; A;   A;  A;à A;à AÀ:j  A;à AÀÊ j 2 A Aü  AÀj&quot; AÀ\nj AÀj AÀj&quot; AàÎ j&quot;A AAAÿ  AÀ&quot;j AÀ&amp;j  AAAAÿ   A@k&quot;      AÀj AÀ6j   AÀj AÀÂ j   # Aj# Aj#  0            )ØN7 	   )ÐN7 	   )ÈN7 	   )ÀN7 	 B 7ÀN B 7ÈN B 7ÐN B 7ØN B 7àN B 7èN B 7ðN B 7øN A :   B 7 B 7 B 7 B 7  A A$ü  A Aü  A Aü  A Aü  $ $      Aj Aj  Aj Ajo  ( &quot;,  A0k&quot;A	K@A @A! AÌ³æ M@A  A\nl&quot;j  AÿÿÿÿsK!   Aj&quot;6  ,  ! !A0k&quot;A\nI\r  Û# &quot; AkA`q&quot;$  Aüj&quot;A°( (X   A°( (p    A&quot;A°( (\\  A°( (`   Aø A°( (d A !A!A !@  j&quot;- &quot;AtAq -  r&quot;AM@   Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r    Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AÿM@@ A¨ AüjA°( (d A !A!@  j&quot;- ! -   - &quot;AtAqr&quot;AM@   Atj ;  Aj!@ AÿK\r  At Avr&quot;AK\r    Atj ;  Aj! AÿM@ &quot;Aj! A¦I\r AI\r  AüjA°( (h   A Aøü $ þ~A!# A@j&quot;$  A6&lt; A)j! A\&#39;j! A(j!@@@@@A !@ !	  AÿÿÿÿsJ\r  j!@@@@ &quot;-  &quot;\n@@@@ \nAÿq&quot;E@ ! A%G\r !\n@ \n- A%G@ \n! Aj! \n-  \nAj&quot;!\nA%F\r   	k&quot; Aÿÿÿÿs&quot;J\r	  @   	  \r  6&lt; Aj!A!@ , A0k&quot;A	K\r  - A$G\r  Aj!A! !  6&lt;A !@ ,  &quot;\nA k&quot;AK@ ! !A t&quot;AÑqE\r @  Aj&quot;6&lt;  r! , &quot;\nA k&quot;A O\r !A t&quot;AÑq\r @ \nA*F@@ , A0k&quot;A	K\r  - A$G\r   E@  AtjA\n6 A   Atj( !\r Aj!A \r Aj!  E@  6&lt;A !A !\r  ( &quot;Aj6  ( !\rA !  6&lt; \rA N\rA  \rk!\r AÀ r! A&lt;j1&quot;\rA H\r\n (&lt;!A !A!A  -  A.G\r  - A*F@@ , A0k&quot;A	K\r  - A$G\r  Aj!  E@  AtjA\n6 A   Atj(  \r Aj!A   E\r   ( &quot;Aj6  ( !  6&lt; A N  Aj6&lt; A&lt;j1! (&lt;!A!@ !A! &quot;,  &quot;Aû kAFI\r Aj! A:l jAÿ\nj-  &quot;AkAÿqAI\r   6&lt;@ AG@ E\r A N@  E@  Atj 6    Atj) 70  E\r A0j  - A N\rA !  E\r  -  A q\r Aÿÿ{q&quot;\n  AÀ q!A !A! !@@@@@@@@@@@@@@@ -  &quot;À&quot;ASq  AqAF  &quot;AØ k!	\n @ AÁ k  AÓ F\r )0!AA !@@@@@@@   (0 6  (0 6  (0 ¬7  (0 ;  (0 :   (0 6  (0 ¬7 A  AM! Ar!Aø ! !	 )0&quot;&quot;B R@ A q!@ 	Ak&quot;	 §Aq-  r:   B&quot;B R\r  P\r AqE\r AvAj!A! ! )0&quot;&quot;B R@@ Ak&quot; §AqA0r:   B&quot;B R\r  !	 AqE\r   k&quot;  H! )0&quot;B S@ B  }&quot;70A!A Aq@A!AAA Aq&quot;! ! &quot;BZ@@ Ak&quot; &quot; B\n&quot;B\n~}§A0r:   BÿÿÿÿV\r  B R@ §!	@ Ak&quot; 	 	A\nn&quot;A\nlkA0r:   	A	K !	\r  !	  A Hq\r Aÿÿ{q  !@ B R\r  \r  !	A !  P  	kj&quot;  H!\r - 0!Aÿÿÿÿ  AÿÿÿÿO&quot;&quot;A G!@@@ (0&quot;Aû\n &quot;	&quot;AqE\r  E\r @ -  E\r Ak&quot;A G! Aj&quot;AqE\r \r  E\r@ -  E\r  AI\r @A ( &quot;k rAxqAxG\r Aj! Ak&quot;AK\r  E\r@  -  E\r Aj! Ak&quot;\r A &quot; 	k  &quot; 	j! A N@ \n! ! \n! ! -  \r )0&quot;B R\rA !	 @ (0A !  A  \rA  \n A 6  &gt;  Aj&quot;60A! !\nA !@@ \n( &quot;	E\r  Aj 	4&quot;	A H\r 	  kK\r  \nAj!\n  	j&quot; I\rA=! A H\r  A  \r  \n E@A !A ! (0!\n@ \n( &quot;	E\r Aj&quot; 	4&quot;	 j&quot; K\r    	 \nAj!\n  K\r   A  \r  AÀ s\n \r   \rH!  A Hq\r	A=! +0  - !\n Aj!    \r	 E\rA!@  Atj( &quot; @  Atj   -A! Aj&quot;A\nG\r A\nO@A!\n@  Atj( \rA! Aj&quot;A\nG\r 	A!  : \&#39;A! !	 \n!   	k&quot;\n  \nJ&quot; AÿÿÿÿsJ\rA=! \r  j&quot;  \rH&quot; K\r  A    \n      A0   As\n  A0  \nA \n   	 \n  A    AÀ s\n (&lt;!A !A=!AÐ 6 A! A@k$     E@A @   Aÿ M\r@Aì( ( E@ AqA¿F\r AÿM@   A?qAr:    AvAÀr:  A A@qAÀG A°OqE@   A?qAr:    AvAàr:     AvA?qAr: A AkAÿÿ?M@   A?qAr:    AvAðr:     AvA?qAr:    AvA?qAr: AAÐA6 AA   :  A   ( A  3   ( ! A¨( Aß·ÞG@	A¨Aß·Þ6   &gt;  B 7 Y    (H&quot;Ak r6H  ( &quot;Aq@   A r6 A  B 7    (,&quot;6   6     (0j6A    (  ( AÀü\n     ( AÀ(~ ) &quot; ­&quot;	T@ A     §&quot;k  A   ( &quot;k  A   ( &quot;k  A   ( &quot;k   ( !  ­&quot;7   j!  j!  j!   j!   k&quot; K@@ A   A   A   ( &quot;k  A   ( &quot;k  A   ( &quot;k   ( !  7   j!  j!  j!   j!    k&quot;I\r  ­!	 A     §k  A   ( k  A   ( k  A   ( k   )  	}7 Ç    ( j&quot; -  As:    AÈj&quot;  ( j&quot; -  As:    Aj&quot;  ( j&quot; -  As:    AØj&quot;  ( j&quot; -  As:     Ak&quot;j&quot; -  As:    j&quot; -  As:    j&quot; -  As:    j&quot; -  As:    B 7 Ñ~@  ) &quot;P\r  ­ }&quot;	 ­V\r   A   § 	§&quot;  A   (    A   (    A   (    B !  B 7   j!  j!  j!  j!  k!  M@@  A  A    A A    A A    A A      j!  j!  j!  j!  k&quot; O\r   ) !  A   §   A   (    A   (    A   (      )  ­|7 g# Ak&quot;$   AÀA&quot; 6   E@ A\n6 A (  ?A  A¨( Aß·ÞG@	A¨Aß·Þ6   &gt;  B 7  Aj$      AÈj  Aj  AØj¯# Ak&quot;$   6# AÐk&quot;$   6Ì A j&quot;A A(ü   (Ì6È@A  AÈj AÐ j 3A H\r   (LA H    ( &quot;A_q6 @@  (0E@  AÐ 60  A 6  B 7  (,!   6,  (\rA  7\r   AÈj AÐ j A j3!   A A   ($   A 60   6,  A 6  (  B 7A      (  A qr6 \r  AÐj$  Aj$ ð~@ E\r    :     j&quot;Ak :   AI\r    :    :  Ak :   Ak :   AI\r    :  Ak :   A	I\r   A   kAq&quot;j&quot; AÿqAl&quot; 6    kA|q&quot;j&quot;Ak  6  A	I\r    6   6 Ak  6  Ak  6  AI\r    6   6   6   6 Ak  6  Ak  6  Ak  6  Ak  6   AqAr&quot;k&quot;A I\r   ­B~!  j!@  7  7  7  7  A j! A k&quot;AK\r    AqA A   + A  +¦~@  AjAxq&quot;­!A~ B|Bøÿÿÿÿÿÿÿÿ B B  }Bøÿÿÿÿÿÿÿÿ }AÀ( &quot;­|&quot;BÿÿÿÿX@ §&quot; ? AtM\r  \rAÐA06 AAÀ  6  &quot;AG@  j&quot; AkA6   Ak&quot;A6 @A( &quot; (A  F@  Ak( A~q&quot;k&quot;Ak( !   6  A~q&quot;k&quot;   ( jAk( Aq@  (&quot;  (&quot;6  6    j jAk&quot;6  Ak A6    6  6 A6A 6  Aj&quot;    k&quot;6    A|qjAk Ar6     ( Ak&quot;Aÿ M@ AvAk A g&quot;kvAs AtkAî j AÿM\r A? A kvAs AtkAÇ j&quot; A?O&quot;At&quot;Aj6   Aj&quot;( 6   6   (  6AA) B ­7  AGË@  E\r   Aó\nE\r   AÂ\nE\r   A\nE\r   A \nE\r   AñE\r   Añ	E\r   AØE\r   A·	E\r   A¤E\r   A	E\r   AE\r   AÐ	E\r   A¾E\r   Aé	E\r   A×\nE\r   A\nE\r   Aß\nE\r   A£	E\r   A¸\nE\r   Aè\nE\r   A¬	\r AA8+&quot;@ A&lt;6( BÀ7 BÀ7 B ¬7 A; A=60 A&gt;6$ A?64 AÀ 6, AÏ\n6 A¬	6    ¢~# &quot; Aà	kA`q&quot;$   A	j&quot;A 	A°( (   A¨j)  ! A°j)  ! A¸j)  ! )   )  B 7  )! B 7 )! B 7 )! B 7A!      P@ A 	j!# &quot;A&amp;kA`q&quot;	$  	Aj&quot;&quot; &amp; Aj AÀj&amp; Aj Aj&amp; 	A\nj! AÀj!@  Atj&quot;  j&quot;\n-  AqAlAjAv;   \n-  AvAlAjAv; Aj&quot;AG\r  	Aj&quot;\r   	  	Aj&quot;\n \r  	 \n\rA !@  At&quot;j&quot; /   \nj/ k;   Ar&quot;j&quot; /   \nj/ k;   Ar&quot;j&quot; /   \nj/ k;   Ar&quot;j&quot; /   \nj/ k;  Aj&quot;AG\r  A !@  j&quot;A :     Atj&quot;/ A¸ßÎ lAjAv&quot;:    /A¸ßÎ lAjAvAq r&quot;:     /A¸ßÎ lAjAvAqr&quot;:     /A¸ßÎ lAjAvAqr&quot;:     /A¸ßÎ lAjAvAqr&quot;:     /\nA¸ßÎ lAjAvA qr&quot;:     /A¸ßÎ lAjAvAÀ qr&quot;:     /A¸ßÎ lAjAvAqr:   Aj&quot;A G\r  \rA Aü  A Aü  	A Aü  A Aü  \nA Aü  $   A j&quot;) 7Ø	  ) 7Ð	  ) 7È	  )  7À	 Aàj AÀ A°( (8     A	j.A !A !A !@  Ar&quot;	j-    	j-  s&quot;	  j-    j-  s&quot; ss! 	  rr! Aj&quot;AÀG\r   ) Ø7  ) Ð7  ) È7  ) À7  A j AÀü\n    A  AàA°( (t   A A  AÿqkAvkAv&quot; - à&quot;  -  sq s:     - á&quot;  - s q s:    - â&quot;  - s q s:    - ã&quot;  - s q s:    - ä&quot;  - s q s:    - å&quot;  - s q s:    - æ&quot;  - s q s:    - ç&quot;  - s q s:    - è&quot;  - s q s:    - é&quot;  - 	s q s: 	   - ê&quot;  - \ns q s: \n   - ë&quot;  - s q s:    - ì&quot;  - s q s:    - í&quot;  - \rs q s: \r   - î&quot;  - s q s:    - ï&quot;  - s q s:    - ð&quot;  - s q s:    - ñ&quot;  - s q s:    - ò&quot;  - s q s:    - ó&quot;  - s q s:    - ô&quot;  - s q s:    - õ&quot;  - s q s:    - ö&quot;  - s q s:    - ÷&quot;  - s q s:    - ø&quot;  - s q s:    - ù&quot;  - s q s:    - ú&quot;  - s q s:    - û&quot;  - s q s:    - ü&quot;  - s q s:    - ý&quot;  - s q s:    - þ&quot;  - s q s:     - ÿ&quot;  - sq s:  B 7Ø	 B 7Ð	 B 7È	 B 7À	 B 7¸	 B 7°	 B 7¨	 B 7 	 B 7	 B 7	 B 7	 B 7	 B 7ø B 7ð B 7è B 7à A Aàü A !$  ^     / A	j  A 	ü\n   A j  A 	A°( (    ) 87 Ø  ) 07 Ð  ) (7 È  )  7 ÀA I# &quot;A kA`q&quot;$  A A´(       J B 7 B 7 B 7 B 7  $ ¸# &quot;A@jA`q&quot;$  AÀ A´(      / A	j  A 	ü\n   A j  A 	A°( (    )87 Ø  )07 Ð  )(7 È  ) 7 À B 7  B 7 B 7 B 7 B 7  B 7( B 70 B 78 $ A Ü# &quot; AkA`q&quot;$  A	j&quot;     A !@  Aj&quot;j-    j-  s&quot;  Aj&quot;j-    j-  s&quot;  j-    j-  s&quot; 	sss!	    rrr! Aj&quot;A	G\r  A A	ü  A	j&quot;A Aü  	A  AÿqkAvsA!Aÿq 	AÿqF@  ) 7	  ) 7	  ) 7	  )  7	 A 	j A 	A°( (    AÀ A°( (8      A j.  )7   )7   )7   ) 7   B 7	 B 7	 B 7	 B 7	 B 7 	 B 7¨	 B 7°	 B 7¸	 B 78 B 70 B 7( B 7  B 7 B 7 B 7 B 7 A !$      A´(  F @@ AO@@  A,\r  Aj!  Ak&quot;AK\r    ,\rA  A       ( A7  ( &quot; (È  j&quot; -  As:      - As:   B 7Èj# Ak&quot;$  Aj&quot;A°( (x     A°( (|  A°( (      A°( (  A°( (   Aj$      ( A¨7  ( &quot; (È  j&quot; -  As:      - §As: §  B 7È   ( A¨  g# Ak&quot;$  Aj&quot;A°( (X     A°( (\\  A°( (`      A°( (d  A°( (h   Aj$ D ( &quot;(È j&quot; -  As:    - GAs: G B 7È  AÀ  ( AÈ    ( AÈ   W# Ak&quot;$  Aj&quot;A°( (&lt;     A°( (@    A°( (D  A°( (H   Aj$ C ( &quot;(È j&quot; -  As:    - gAs: g B 7È  A0 ( Aè    ( Aè   W# Ak&quot;$  Aj&quot;A°( (      A°( ($    A°( ((  A°( (,   Aj$ E ( &quot;(È j&quot; -  As:    - As:  B 7È  A  ( AW# Ak&quot;$  Aj&quot;A°( (     A°( (    A°( (  A°( (   Aj$         ( A:   ( A;   ( A     &lt;s# Ak&quot;$  Aj&quot;\nA( ($   \n     	A( ((  \nA( (,         \nA( (0  \nA( (4   Aj$         ( A¨:   ( A¨;   ( A¨     &lt;s# Ak&quot;$  Aj&quot;\nA( (   \n     	A( (  \nA( (         \nA( (  \nA( (   Aj$ ò# A k&quot;$    (&quot;6  (!  6  6   k&quot;6  j!A!@@@  (&lt; Aj&quot;A Aj&quot;AÐ 6 AA @ !@  (&quot;F\r A H@ ! AA   (&quot;K&quot;	j&quot;  A  	k&quot; ( j6  AA 	j&quot; (  k6   k!  (&lt; &quot;  	k&quot; Aj&quot;AÐ 6 AA E\r  AG\r    (,&quot;6   6     (0j6   A 6  B 7    ( A r6 A  AF\r   (k A j$     #  #   kApq&quot; $      $    )   E@A     (4    E@A     (0    E@A    (( g@  At&quot; Aj&quot;6  6  Aj&quot; AÀ G\r A0CAìAô6 AÄA6 AÀA°¹6 A¤A*6 AÈAÄ( 6 ¨\n A±-+   0X0x Classic-McEliece-6960119f Classic-McEliece-6688128f Classic-McEliece-8192128f Classic-McEliece-460896f Classic-McEliece-348864f Classic-McEliece-6960119 Kyber768 ML-KEM-768 Classic-McEliece-6688128 Classic-McEliece-8192128 HQC-128 Classic-McEliece-460896 HQC-256 BIKE-L5 SHA3x4 Classic-McEliece-348864 Kyber1024 BIKE-L3 SHA3 FIPS203 HQC-192 Kyber512 ML-KEM-512 BIKE-L1 (null) Unexpected NULL returned from %s API. Exiting.\n AÀA            	             \n\n\n  	  	       A!         \r \r   	   	    AË A×        	        A\r A\r       	        A¿\r AË\r        	             A         	 A³ A¿        	        Aí Aù)        	         0123456789ABCDEFÈ AÀìû\nýþúÕÊ Uÿn)¶ ÂNû&gt;ú¼=ÓúÃü²¾ù~ÿWýùÜ`úù3ÿÝùÇØý÷óúÓæþøùøÿÀþfý®ùvû~ ½«ü¦ÿñþ&gt;k sú	ÿIürþÁú+ýÀ×û¥û±û®+Kûgi ¦K± ÿÝþ4þ&amp;u\nÿ\nmÿ÷üË¦ý_Êùü]¢Idÿµÿ1I[b*ûúGúAûxÿÂÉúüÜ ]ûù_ûúûúªüüÞÿÌþäß¾Lúò\\ AÀ	°      AÔ Aì\n      ( A Aÿÿÿÿÿÿÿÿ AØÝ            	   \n         \r                        X	                                    !   &quot;   #   $   %   &amp;   \&#39;   (   )   *   +   ,   -   .   /   0   1   2   3   4   5   6   7   8   9   :   	  ;&#39;);return a((await fa(b)).instance)}());
+(function(){function a(){d.calledRun=!0;if(!w){H=!0;Z.f();x?.(d);d.onRuntimeInitialized?.();if(d.postRun)for(&quot;function&quot;==typeof d.postRun&amp;&amp;(d.postRun=[d.postRun]);d.postRun.length;){var b=d.postRun.shift();N.push(b)}M(N)}}if(d.preRun)for(&quot;function&quot;==typeof d.preRun&amp;&amp;(d.preRun=[d.preRun]);d.preRun.length;)ia();M(O);d.setStatus?(d.setStatus(&quot;Running...&quot;),setTimeout(()=&gt;{setTimeout(()=&gt;d.setStatus(&quot;&quot;),1);a()},1)):a()})();H?moduleRtn=d:moduleRtn=new Promise((a,b)=&gt;{x=a;y=b});
+;return moduleRtn}export default LibOQS_ml_kem_768;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Evidence</th>
+		<td><pre><code>X-Powered-By: Express</code></pre></td>
+	</tr>
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Asegúrese de que su servidor web, servidor de aplicaciones, balanceador de carga, etc. está configurado para suprimir las cabeceras &quot;X-Powered-By&quot;.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-3">Falta encabezado X-Content-Type-Options</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:3000/dist/ml-kem-768.min.js</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/2021/A05_2021-Security_Misconfiguration/">OWASP_2021_A05</a></span> 
+				</li>
+				<li>
+					 <span>POLICY_QA_STD = </span>
+				</li>
+				<li>
+					 <span>POLICY_PENTEST = </span>
+				</li>
+				<li>
+					<span><a href="https://www.zaproxy.org/docs/desktop/addons/common-library/alerttags/#systemic">SYSTEMIC</a></span> 
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/693.html">CWE-693</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">OWASP_2017_A06</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/">OWASP_2025_A02</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>La cabecera Anti-MIME-Sniffing X-Content-Type-Options no se ha establecido en &#39;nosniff&#39;. Esto permite que las versiones anteriores de Internet Explorer y Chrome realicen MIME-sniffing en el cuerpo de la respuesta, lo que puede provocar que el cuerpo dé la respuesta se interprete y se muestre como un tipo de contenido distinto del tipo de contenido declarado. Las versiones actuales (principios de 2014) y heredadas de Firefox utilizarán el tipo de contenido declarado (si se establece uno), en lugar de realizar MIME-sniffing.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Other info</th>
+		<td> 
+<p>Este problema aún se aplica a las páginas de tipo error (401, 403, 500, etc.), ya que esas páginas a menudo se ven afectadas por problemas de inyección, en cuyo caso aún existe la preocupación de que los navegadores husmeen las páginas lejos de su tipo de contenido real.</p>
+
+<p>En el umbral «Alto» esta regla de análisis no alertará sobre respuestas de error del cliente o servidor.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (385 bytes)</summary>
+				
+				<pre><code>GET http://localhost:3000/dist/ml-kem-768.min.js HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0
+Accept: */*
+Accept-Language: es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Referer: http://localhost:3000/bundle.js
+Sec-Fetch-Dest: script
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (325 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Mon, 16 Nov 2026 18:01:20 GMT
+ETag: W/&quot;d904-1a1e5854cb9&quot;
+Content-Type: text/javascript; charset=utf-8
+Content-Length: 55556
+Date: Tue, 17 Nov 2026 22:27:36 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body">
+				<summary>Response body (55556 bytes)</summary>
+				
+				<pre><code>async function LibOQS_ml_kem_768(moduleArg={}){var moduleRtn;var d=moduleArg,aa=!!globalThis.window,ba=!!globalThis.WorkerGlobalScope,n=globalThis.process?.versions?.node&amp;&amp;&quot;renderer&quot;!=globalThis.process?.type;if(n){const {createRequire:a}=await import(&quot;node:module&quot;);var require=a(import.meta.url)}var p=(a,b)=&gt;{throw b;},q=import.meta.url;
+if(n){var fs=require(&quot;node:fs&quot;);q.startsWith(&quot;file:&quot;)&amp;&amp;require(&quot;node:path&quot;).dirname(require(&quot;node:url&quot;).fileURLToPath(q));process.argv.slice(2);p=(a,b)=&gt;{process.exitCode=a;throw b;}}else if(aa||ba)try{new URL(&quot;.&quot;,q)}catch{}var r=console.log.bind(console),v=console.error.bind(console),w=!1;function ca(a){for(var b=0,c=a.length,e=new Uint8Array(c),f;b&lt;c;++b)f=a.charCodeAt(b),e[b]=~f&gt;&gt;8&amp;f;return e}var x,y,z,A,B,C,D,E,F,G,H=!1;
+function I(){var a=J.buffer;z=new Int8Array(a);B=new Int16Array(a);d.HEAPU8=A=new Uint8Array(a);new Uint16Array(a);d.HEAP32=C=new Int32Array(a);D=new Uint32Array(a);E=new Float32Array(a);F=new Float64Array(a);G=new BigInt64Array(a);new BigUint64Array(a)}function K(a){d.onAbort?.(a);a=&quot;Aborted(&quot;+a+&quot;)&quot;;v(a);w=!0;a=new WebAssembly.RuntimeError(a+&quot;. Build with -sASSERTIONS for more info.&quot;);y?.(a);throw a;}var L;async function da(a){return a}
+async function ea(a){var b=L;try{var c=await da(b);return await WebAssembly.instantiate(c,a)}catch(e){v(`failed to asynchronously prepare wasm: ${e}`),K(e)}}async function fa(a){return ea(a)}class ha{name=&quot;ExitStatus&quot;;constructor(a){this.message=`Program terminated with exit(${a})`;this.status=a}}
+for(var M=a=&gt;{for(;0&lt;a.length;)a.shift()(d)},N=[],O=[],ia=()=&gt;{var a=d.preRun.shift();O.push(a)},P=!0,ja=[null,[],[]],Q=globalThis.TextDecoder&amp;&amp;new TextDecoder,R=(a,b=0,c,e)=&gt;{var f=b;c=f+c;if(e)e=c;else{for(;a[f]&amp;&amp;!(f&gt;=c);)++f;e=f}if(16&lt;e-b&amp;&amp;a.buffer&amp;&amp;Q)return Q.decode(a.subarray(b,e));for(f=&quot;&quot;;b&lt;e;)if(c=a[b++],c&amp;128){var h=a[b++]&amp;63;if(192==(c&amp;224))f+=String.fromCharCode((c&amp;31)&lt;&lt;6|h);else{var g=a[b++]&amp;63;c=224==(c&amp;240)?(c&amp;15)&lt;&lt;12|h&lt;&lt;6|g:(c&amp;7)&lt;&lt;18|h&lt;&lt;12|g&lt;&lt;6|a[b++]&amp;63;65536&gt;c?f+=String.fromCharCode(c):
+(c-=65536,f+=String.fromCharCode(55296|c&gt;&gt;10,56320|c&amp;1023))}}else f+=String.fromCharCode(c);return f},ka=()=&gt;{if(n){var a=require(&quot;node:crypto&quot;);return b=&gt;a.randomFillSync(b)}return b=&gt;crypto.getRandomValues(b)},S=a=&gt;{(S=ka())(a)},T=a=&gt;{for(var b=0,c=0;c&lt;a.length;++c){var e=a.charCodeAt(c);127&gt;=e?b++:2047&gt;=e?b+=2:55296&lt;=e&amp;&amp;57343&gt;=e?(b+=4,++c):b+=3}return b},U=(a,b,c)=&gt;{var e=A;if(!(0&lt;c))return 0;var f=b;c=b+c-1;for(var h=0;h&lt;a.length;++h){var g=a.codePointAt(h);if(127&gt;=g){if(b&gt;=c)break;e[b++]=g}else if(2047&gt;=
+g){if(b+1&gt;=c)break;e[b++]=192|g&gt;&gt;6;e[b++]=128|g&amp;63}else if(65535&gt;=g){if(b+2&gt;=c)break;e[b++]=224|g&gt;&gt;12;e[b++]=128|g&gt;&gt;6&amp;63;e[b++]=128|g&amp;63}else{if(b+3&gt;=c)break;e[b++]=240|g&gt;&gt;18;e[b++]=128|g&gt;&gt;12&amp;63;e[b++]=128|g&gt;&gt;6&amp;63;e[b++]=128|g&amp;63;h++}}e[b]=0;return b-f},ma=(a,b,c,e)=&gt;{var f={string:k=&gt;{var l=0;if(null!==k&amp;&amp;void 0!==k&amp;&amp;0!==k){l=T(k)+1;var t=V(l);U(k,t,l);l=t}return l},array:k=&gt;{var l=V(k.length);z.set(k,l);return l}};a=d[&quot;_&quot;+a];var h=[],g=0;if(e)for(var m=0;m&lt;e.length;m++){var u=f[c[m]];u?(0===g&amp;&amp;
+(g=W()),h[m]=u(e[m])):h[m]=e[m]}c=a(...h);return c=function(k){0!==g&amp;&amp;la(g);return&quot;string&quot;===b?k?R(A,k):&quot;&quot;:&quot;boolean&quot;===b?!!k:k}(c)},X=new Uint8Array(123),Y=25;0&lt;=Y;--Y)X[48+Y]=52+Y,X[65+Y]=Y,X[97+Y]=26+Y;X[43]=62;X[47]=63;d.noExitRuntime&amp;&amp;(P=d.noExitRuntime);d.print&amp;&amp;(r=d.print);d.printErr&amp;&amp;(v=d.printErr);if(d.preInit)for(&quot;function&quot;==typeof d.preInit&amp;&amp;(d.preInit=[d.preInit]);0&lt;d.preInit.length;)d.preInit.shift()();d.ccall=ma;
+d.cwrap=(a,b,c,e)=&gt;{var f=!c||c.every(h=&gt;&quot;number&quot;===h||&quot;boolean&quot;===h);return&quot;string&quot;!==b&amp;&amp;f&amp;&amp;!e?d[&quot;_&quot;+a]:(...h)=&gt;ma(a,b,c,h,e)};d.setValue=function(a,b,c=&quot;i8&quot;){c.endsWith(&quot;*&quot;)&amp;&amp;(c=&quot;*&quot;);switch(c){case &quot;i1&quot;:z[a]=b;break;case &quot;i8&quot;:z[a]=b;break;case &quot;i16&quot;:B[a&gt;&gt;1]=b;break;case &quot;i32&quot;:C[a&gt;&gt;2]=b;break;case &quot;i64&quot;:G[a&gt;&gt;3]=BigInt(b);break;case &quot;float&quot;:E[a&gt;&gt;2]=b;break;case &quot;double&quot;:F[a&gt;&gt;3]=b;break;case &quot;*&quot;:D[a&gt;&gt;2]=b;break;default:K(`invalid type for setValue: ${c}`)}};
+d.getValue=function(a,b=&quot;i8&quot;){b.endsWith(&quot;*&quot;)&amp;&amp;(b=&quot;*&quot;);switch(b){case &quot;i1&quot;:return z[a];case &quot;i8&quot;:return z[a];case &quot;i16&quot;:return B[a&gt;&gt;1];case &quot;i32&quot;:return C[a&gt;&gt;2];case &quot;i64&quot;:return G[a&gt;&gt;3];case &quot;float&quot;:return E[a&gt;&gt;2];case &quot;double&quot;:return F[a&gt;&gt;3];case &quot;*&quot;:return D[a&gt;&gt;2];default:K(`invalid type for getValue: ${b}`)}};d.UTF8ToString=(a,b,c)=&gt;a?R(A,a,b,c):&quot;&quot;;d.stringToUTF8=(a,b,c)=&gt;U(a,b,c);d.lengthBytesUTF8=T;
+var la,V,W,J,na={d:a=&gt;{var b=A.length;a&gt;&gt;&gt;=0;if(268435456&lt;a)return!1;for(var c=1;4&gt;=c;c*=2){var e=b*(1+.2/c);e=Math.min(e,a+100663296);a:{e=(Math.min(268435456,65536*Math.ceil(Math.max(a,e)/65536))-J.buffer.byteLength+65535)/65536|0;try{J.grow(e);I();var f=1;break a}catch(h){}f=void 0}if(f)return!0}return!1},a:a=&gt;{P||(d.onExit?.(a),w=!0);p(a,new ha(a))},b:(a,b,c,e)=&gt;{for(var f=0,h=0;h&lt;c;h++){var g=D[b&gt;&gt;2],m=D[b+4&gt;&gt;2];b+=8;for(var u=0;u&lt;m;u++){var k=a,l=A[g+u],t=ja[k];0===l||10===l?((1===k?r:v)(R(t)),
+t.length=0):t.push(l)}f+=m}D[e&gt;&gt;2]=f;return 0},c:(a,b)=&gt;{S(A.subarray(a,a+b));return 0}},Z;
+Z=await (async function(){function a(c){c=Z=c.exports;d._OQS_KEM_new=c.g;d._OQS_KEM_keypair=c.h;d._OQS_KEM_encaps=c.i;d._OQS_KEM_decaps=c.j;d._OQS_KEM_free=c.k;d._OQS_init=c.l;d._OQS_destroy=c.m;d._OQS_MEM_secure_free=c.n;d._OQS_MEM_malloc=c.o;d._OQS_randombytes=c.p;d._free=c.q;d._malloc=c.r;la=c.s;V=c.t;W=c.u;J=c.e;I();return Z}var b={a:na};if(d.instantiateWasm)return new Promise(c=&gt;{d.instantiateWasm(b,(e,f)=&gt;{c(a(e,f))})});L??=ca(&#39; asm   s` ` ` `` `` ``` `\n `  ` `	 `~~` aa  ab ac ad lk		 	      \r             \n \n  pAA 	A°¹Ee f ng Dh mi lj kk jl 	m 	n (o Bp Kq )r Bs it hu g	F A@fde	c=ba`986_=^]\\986	[5ZYXWVUTSRQPO5NMLIHGFE\nÃk¢  -  &quot;@@ -  &quot;E\r@  F\r  A r  AÁ kAI &quot;A r  AÁ kAIF\r   -  ! Aj!  - !  Aj!  \r A ! A &quot; A r    AÁ kAI -  &quot; A r    AÁ kAIk    AÈlj       AÈlj   ¸ Aj! Aj! Aj!	 Aj!\n@  Atj&quot;.! .! . !\r   At&quot;j&quot;  j. &quot;  Ar&quot;j. &quot;l  j. &quot;  j. &quot;l  j. &quot;  j. lj  	j. &quot;  \nj. &quot;lj  \nj. &quot;  	j. ljj  j. &quot;  j. lj&quot;AlAuAÿel jAv;  \r l  lj  lj  lj  lj  lj&quot;AlAuAÿel jAv;  Aj&quot;AG\r éf.~    )°&quot;  )&quot;  )`&quot;\n  )8&quot;  )&quot;&quot;  )À&quot;  )&quot;  )p&quot;  )H&quot;  ) &quot;&quot;B&quot;  )h&quot;B&quot;   )¨&quot;  )&quot;	  )X&quot;  )0&quot;  )&quot;&quot;\rB&quot;  ) &quot;B&quot;   )¸&quot;  )&quot;  )@&quot;!  )&quot;&quot; &quot;%   )x&quot;  )P&quot;  )(&quot;&amp;  ) &quot;$&quot;B&quot;B&quot;(B&quot;#&quot;\&#39;  B&quot; B &quot; 	B-&quot;	  %B \r&quot;B=&quot;\rB&quot;%  B\&#39;&quot;  B)&quot;  B&quot;&quot;  \nB+&quot;\n  B&quot;  B&quot;&quot;  B\n&quot;  B8&quot;  B&quot;B&quot;&quot; &quot;B  B&gt;&quot;   !B7&quot;!B&quot;&quot;)  B&quot;   B&quot;&quot;*  B&quot;  &amp;B$&quot; &quot;&amp;  $&quot; \n  B,&quot;B&quot;  &quot;B&quot;   B&quot;&quot;&quot;&quot;&quot; 	  &quot;$B,&quot;   ! &quot;   \r&quot;!   &quot;+   &quot;,   &quot;-&quot;.  ( &quot;(  \nB &quot;\n   &quot; $   &quot;$&quot;B&quot;&quot;    &quot;  \r 	&quot;   &quot;   #&quot;#   &quot;\r&quot; &quot;B&quot;B&quot;&quot;&quot; B &quot; B=&quot;	 .B &quot; \rB&quot;\r  !B&quot;&quot;!  )B&quot;  \nB&quot;  %B&quot;\n&quot;%  B8&quot;  B$&quot;  -B&quot;&quot;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  ,B\&#39;&quot;  &amp;B)&quot; &quot;&amp;  (B\n&quot;    B&quot;(B&quot; &quot;  #B&quot;   +B&quot;#B&quot;&quot;)  \&#39;B+&quot;  B&quot; &quot;  *B&quot;  $B-&quot; 	B&quot;$&quot;\&#39;&quot;    &quot;B&quot;    &quot;   &quot; 	 \r &quot;   &quot;  &quot;  B&quot;	 &quot;   &quot; \n  &quot;   B&quot;   \r&quot;&quot;\rB&quot;B&quot;   	&quot;  ( &quot;	  # \n&quot;\n  B &quot;   &quot;&quot; B&quot; )B+&quot;&quot; B &quot; B&quot; \&#39;B \r&quot; 	B-&quot;	  &amp;B=&quot;\rB&quot;&amp;  B&quot;  B&quot;  B&quot;B&quot;(&quot;#  \nB\n&quot;  B8&quot;\n  B&quot;\&#39;B&quot;&quot;  %B\&#39;&quot;  B)&quot;  B&quot;&quot;%&quot;)B  B&gt;&quot;   B7&quot;B&quot;&quot;*  &quot;B&quot;  B$&quot; &quot;&quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;   B&quot;  !B&quot; &quot;!&quot; &quot; 	  &quot;B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  \&#39; &quot;\&#39;   &quot;  B &quot; &quot;B&quot;&quot;    &quot; \n  &quot;   (&quot;(   &quot; \r  	&quot;&quot;  B&quot;B&quot;&quot; B &quot; %B=&quot;	 .B )&quot; B&quot;\r  -B&quot;&quot;%  *B&quot;  B&quot;  &amp;B&quot;\n&quot;&amp;  B8&quot;  ,B&quot;  !B$&quot;&quot;!  B&quot;  B&gt;&quot;  B7&quot;&quot; &quot;B  +B\&#39;&quot;  &quot;B)&quot; &quot;&quot;  B\n&quot;   B&quot;B&quot;&quot;)  (B&quot;   B&quot;(B&quot;&quot;*  #B+&quot;  B&quot; &quot;  $B&quot;  \&#39;B-&quot; 	B&quot;$&quot;#&quot;   &quot;B&quot;     &quot;   &quot;   &quot;\&#39; 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;   &quot;  ( \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; #B \r&quot; B-&quot;	  &quot;B=&quot;\rB&quot;&quot;  B&quot;  B&quot;  !B&quot;!B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;#B&quot;&quot;  &amp;B\&#39;&quot;   B)&quot;  B&quot;&quot;&amp;&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  B&quot;  +B$&quot; &quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  \&#39;B&quot;  %B&quot; &quot;%&quot;\&#39;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  # &quot;#  ! &quot;!  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; \&#39;B&quot;B&quot;&quot;\&#39; B &quot; &amp;B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;&amp;  )B&quot;  B&quot;  &quot;B&quot;\n&quot;&quot;  B8&quot;  ,B&quot;  %B$&quot;&quot;%  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  B)&quot; &quot;  !B\n&quot;   B&quot;!B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  #B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot;# 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  ! &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  B=&quot;\rB&quot;!  B&quot;  B&quot;  %B&quot;%B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;B&quot;&quot;   &quot;B\&#39;&quot;  B)&quot;  B&quot;&quot;&quot;&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  \&#39;B&quot;  +B$&quot; &quot;\&#39;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  #B&quot;  &amp;B&quot; &quot;&amp;&quot;#&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;   &quot;  % &quot;%  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; #B&quot;B&quot;&quot;# B &quot; &quot;B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;&quot;  )B&quot;  B&quot;  !B&quot;\n&quot;!  B8&quot;  ,B&quot;  &amp;B$&quot;&quot;&amp;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  \&#39;B)&quot; &quot;\&#39;  %B\n&quot;    B&quot;%B&quot; &quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot;    &quot;   &quot;   &quot; 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  % &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; (B \r&quot; B-&quot;	  \&#39;B=&quot;\rB&quot;%  B&quot;  B&quot;  &amp;B&quot;&amp;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;\&#39;B&quot;&quot;  !B\&#39;&quot;   B)&quot;  B&quot;&quot;!&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  #B&quot;  +B$&quot; &quot;#  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  B&quot;  &quot;B&quot; &quot;&quot;&quot;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  \&#39; &quot;\&#39;  &amp; &quot;&amp;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; B&quot;B&quot;&quot; B &quot; !B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;!  )B&quot;  B&quot;  %B&quot;\n&quot;%  B8&quot;  ,B&quot;  &quot;B$&quot;&quot;&quot;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  #B)&quot; &quot;#  &amp;B\n&quot;   B&quot;&amp;B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  \&#39;B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot;\&#39; 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  &amp; &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  #B=&quot;\rB&quot;&amp;  B&quot;  B&quot;  &quot;B&quot;&quot;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;#B&quot;&quot;   %B\&#39;&quot;  B)&quot;  B&quot;&quot;%&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  B&quot;  +B$&quot; &quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  \&#39;B&quot;  !B&quot; &quot;!&quot;\&#39;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  # &quot;#  &quot; &quot;&quot;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; \&#39;B&quot;B&quot;&quot;\&#39; B &quot; %B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;%  )B&quot;  B&quot;  &amp;B&quot;\n&quot;&amp;  B8&quot;  ,B&quot;  !B$&quot;&quot;!  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  B)&quot; &quot;  &quot;B\n&quot;    B&quot;&quot;B&quot; &quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  #B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot;    &quot;   &quot;   &quot;# 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  &quot; &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; (B \r&quot; B-&quot;	  B=&quot;\rB&quot;&quot;  B&quot;  B&quot;  !B&quot;!B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;B&quot;&quot;  &amp;B\&#39;&quot;   B)&quot;  B&quot;&quot;&amp;&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  \&#39;B&quot;  +B$&quot; &quot;\&#39;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  #B&quot;  %B&quot; &quot;%&quot;#&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;   &quot;  ! &quot;!  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; #B&quot;B&quot;&quot;# B &quot; &amp;B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;&amp;  )B&quot;  B&quot;  &quot;B&quot;\n&quot;&quot;  B8&quot;  ,B&quot;  %B$&quot;&quot;%  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  \&#39;B)&quot; &quot;\&#39;  !B\n&quot;   B&quot;!B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot; 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  ! &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  \&#39;B=&quot;\rB&quot;!  B&quot;  B&quot;  %B&quot;%B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;\&#39;B&quot;&quot;   &quot;B\&#39;&quot;  B)&quot;  B&quot;&quot;&quot;&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  #B&quot;  +B$&quot; &quot;#  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  B&quot;  &amp;B&quot; &quot;&amp;&quot;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  \&#39; &quot;\&#39;  % &quot;%  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; B&quot;B&quot;&quot; B &quot; &quot;B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;&quot;  )B&quot;  B&quot;  !B&quot;\n&quot;!  B8&quot;  ,B&quot;  &amp;B$&quot;&quot;&amp;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  #B)&quot; &quot;#  %B\n&quot;    B&quot;%B&quot; &quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  \&#39;B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot;    &quot;   &quot;   &quot;\&#39; 	 \r &quot; &quot;	   B&quot;&quot;   &quot;  \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  % &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B &quot; B&quot; (B \r&quot; B-&quot;	  #B=&quot;\rB&quot;%  B&quot;  B&quot;  &amp;B&quot;&amp;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;#B&quot;&quot;  !B\&#39;&quot;   B)&quot;  B&quot;&quot;!&quot; B  B&gt;&quot;   B7&quot;B&quot;&quot;)  B&quot;  +B$&quot; &quot;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  \&#39;B&quot;  &quot;B&quot; &quot;&quot;&quot;\&#39;&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;  # &quot;#  &amp; &quot;&amp;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; \&#39;B&quot;B&quot;&quot;\&#39; B &quot; !B=&quot;	 .B  &quot; B&quot;\r  -B&quot;&quot;!  )B&quot;  B&quot;  %B&quot;\n&quot;%  B8&quot;  ,B&quot;  &quot;B$&quot;&quot;&quot;  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot; B  +B\&#39;&quot;  B)&quot; &quot;  &amp;B\n&quot;   B&quot;&amp;B&quot;&quot;)  B&quot;   B&quot;B&quot;&quot;*  (B+&quot;  B&quot; &quot;  $B&quot;  #B-&quot; 	B&quot;$&quot;(&quot;   &quot;B&quot;    &quot;   &quot;   &quot;# 	 \r &quot; &quot;	   B&quot;&quot;   &quot; \n  &quot;   B&quot;   \r&quot;+&quot;\rB&quot;B&quot;   &quot;  &amp; &quot;   \n&quot;\n  B &quot;   &quot;&quot; 	B&quot; *B+&quot;&quot; B  &quot; B&quot; (B \r&quot; B-&quot;	  B=&quot;\rB&quot;&amp;  B&quot;  B&quot;  &quot;B&quot;&quot;B&quot;&quot;(  \nB\n&quot;  B8&quot;\n  )B&quot;B&quot;&quot;   %B\&#39;&quot;  B)&quot;  B&quot;&quot;%&quot;B  B&gt;&quot;   B7&quot;B&quot;&quot;)  \&#39;B&quot;  +B$&quot; &quot;\&#39;  B&quot;  $B&quot; &quot;$  &quot;  B,&quot; B&quot;  #B&quot;  !B&quot; &quot;!&quot;#&quot; 	  &quot;*B,&quot;    &quot;   \n&quot;   &quot;+   &quot;,   \r&quot;-&quot;.   &quot;   &quot;  &quot; &quot;&quot;  B &quot; *&quot;B&quot;&quot;    &quot; \n  &quot;   &quot;   &quot; \r  	&quot;&quot; #B&quot;B&quot;&quot;# B &quot; %B=&quot;	 .B &quot; B&quot;\r  -B&quot;&quot;%  )B&quot;  B&quot;  &amp;B&quot;\n&quot;&amp;  B8&quot;  ,B&quot;  !B$&quot;&quot;!  B&quot;  B&gt;&quot;  B7&quot;&quot;&quot;B  +B\&#39;&quot;  \&#39;B)&quot; &quot;\&#39;  &quot;B\n&quot;    B&quot;&quot;B&quot; &quot;  B&quot;   B&quot;B&quot;&quot;)  (B+&quot;  B&quot; &quot;  $B&quot;  B-&quot; 	B&quot;$&quot;(&quot;    &quot;B&quot; ) B&quot;  &quot;   &quot; &quot;&quot;   \n&quot;  B &quot;)   &quot;*&quot;+   &quot;    &quot;   &quot; 	 \r &quot;&quot;B&quot;B+&quot;B   &quot;   &quot; \n  &quot;	   B&quot;   \r&quot;&quot; (B&quot; *B,&quot;&quot;( B &quot; %B&quot; +B &quot; 	B&quot;	  &quot;B-&quot;\r&quot;&quot;  $B&quot;  B&quot;  !B&quot;!&quot;%  B$&quot;  B\n&quot;\n  B&quot;$&quot;  B7&quot;B&quot;  &amp;B\&#39;&quot;  B)&quot;&quot;&amp;&quot;B   B&quot;   B&gt;&quot;&quot;  B8&quot;  #B&quot; &quot;#  B&quot;  )B&quot; &quot;   B&quot;   &quot;&quot;  \&#39;B=&quot;  B&quot; &quot;\&#39;&quot;&quot;   B&quot;&quot; &quot;   &quot;&quot;  \n &quot;   &quot;  	  &quot;&quot;   &quot;)  $B&quot; \n&quot;$   !B&quot;&quot;\n   &quot;! \r B 	&quot;&quot;	B&quot;B,&quot; \n    &quot;   &quot;*   &quot;\n   &quot;   \r&quot;&quot;B&quot;B+&quot;B&quot;+  B 	&quot;B&quot;	 B &quot; \&#39;B&quot;\r  B&quot;&quot;\&#39;  (B&quot;  B&quot;  \nB&quot;\n&quot;(  B&quot;  B$&quot;  %B\n&quot;&quot;%  !B&gt;&quot;   B\&#39;&quot;  B7&quot;!B&quot;&quot;&quot; B  B)&quot;  &amp;B&quot; &quot;&amp;  $B&quot;$B&quot;  B8&quot; &quot;  #B&quot;#B&quot;  &quot;B&quot; &quot;&quot;  *B&quot;  B&quot; &quot;  B-&quot;  )B=&quot; 	&quot;&quot;)&quot;  ! &quot;B&quot; +   &quot;   &quot;!   &quot;* 	 \r &quot;+ &quot;   &quot;  $ &quot;	 \n # &quot;$  B &quot;   \r&quot;#&quot;\rB&quot;&quot;   &quot;   &quot;   \n&quot;   &quot;  B &quot;&quot; B&quot; B&quot;&quot; B  &quot; 	B-&quot; )B \r&quot; B=&quot;	  B&quot;\r&quot;  B&quot;B&quot;   B&quot;  B&quot;&quot;  B&quot;B&quot;  &amp;B8&quot;  *B&quot;\n&quot;&amp;  %B)&quot;  B&quot;  B&gt;&quot;&quot;%&quot;B  B7&quot;B&quot;  !B\&#39;&quot; &quot;!  \&#39;B$&quot;   $B\n&quot;&quot;$  B&quot;  &quot;B&quot; &quot;&quot;  #B,&quot;   B+&quot;B&quot;#  +B&quot;  (B&quot; &quot;(&quot;\&#39;&quot;   &quot;B&gt;&quot;    &quot;   &quot;    &quot;    	B &quot;&quot;   &quot; \n  &quot;)   &quot;   &quot; \r  	&quot;*&quot;	B&quot;B7&quot;+   &quot;   \n&quot;\n   &quot;   B&quot;   \r&quot;\r&quot; B&quot; !B&quot;7À   \&#39;B 	&quot; \nB)&quot;  7¸   B &quot; B\&#39;&quot;	  7°    \rB$&quot;  &quot;B\n&quot;\r  B&quot;7    B&quot; \r 7x    B&quot;  #B&quot;  B&quot;\n7p   \n  B&quot; 7P    $B-&quot;  B=&quot;  B&quot;7@    *B&quot;  B&quot; 70    B&quot;  (B,&quot;  &quot;7    +B&quot; 	 7¨   	  7     %B8&quot;  7   B&quot;  7     \r7    )B&quot;B&quot;  7h     \n7X     7H    B 78     7(    &amp;B&quot;  7     B+&quot;  7    B 7     B7      7` j# Ak&quot;$ @  L\r  AÀq\r     k&quot;A AI&quot;@ E@@   A Ak&quot;AÿK\r      Aj$   -  A qE@@  (&quot;   7\r  (  (&quot;k I@      ($ @@  (PA H\r  E\r  !@  j&quot;Ak-  A\nG@ Ak&quot;\r      ($  I\r  k!  (! ! !@ AO@ @   ü\n    j!@  sAqE@@ AqE\r  E\r @  -  :   Aj! Aj&quot;AqE\r  I\r  A|q!@ AÀ I\r   A@j&quot;K\r @  ( 6   (6  (6  (6  (6  (6  (6  (6  ( 6   ($6$  ((6(  (,6,  (060  (464  (868  (&lt;6&lt; A@k! A@k&quot; M\r   O\r@  ( 6  Aj! Aj&quot; I\r  AI\r  AI\r  Ak!@  -  :    - :   - :   - :  Aj! Aj&quot; M\r   I@@  -  :   Aj! Aj&quot; G\r     ( j68   A AÈü   B7   B7  B7`  B7@  B7  B7Î@   Atj&quot; . &quot;AÅ}lAuAÿel A¡ljAv;   .&quot;AÅ}lAuAÿel A¡ljAv; Aj&quot;AG\r Aÿ !@   Atj&quot; /&quot; / &quot;j&quot;ÁA¿lAjAuAÿel j;   /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  AtAÀj. &quot;  kÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv; Ak! AüI Aj!\r A?!A !@   Atj&quot; /&quot; / &quot;j&quot;ÁA¿lAjAuAÿel j;   /\n&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  /&quot;	 /&quot;\nj&quot;ÁA¿lAjAuAÿel j;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  AtAÀj. &quot;  kÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv;\n   	 \nkÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv; Ak! AøI Aj!\r A!A !@   Atj&quot; /&quot; / &quot;j&quot;ÁA¿lAjAuAÿel j;   /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  /&quot;	 /&quot;\nj&quot;ÁA¿lAjAuAÿel j;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;  /&quot;\r /&quot;j&quot;ÁA¿lAjAuAÿel j;  AtAÀj. &quot;  kÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv;   	 \nkÁl&quot;AlAuAÿel jAv;    kÁl&quot;AlAuAÿel jAv;   \r kÁl&quot;AlAuAÿel jAv;  /&quot; /\n&quot;j&quot;ÁA¿lAjAuAÿel j;\n    kÁl&quot;AlAuAÿel jAv;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;    kÁl&quot;AlAuAÿel jAv;  /&quot; /&quot;j&quot;ÁA¿lAjAuAÿel j;    kÁl&quot;AlAuAÿel jAv; Ak! AðI Aj!\r A !@   Atj&quot; / &quot; / &quot;kÁ&quot;AðÍlAuAÿel A¼ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AG\r A !@   Atj&quot; / &quot; / &quot;kÁ&quot;Aø¡}lAuAÿel A¾tljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A0G\r AÀ !@   Atj&quot; / &quot; / &quot;kÁ&quot;A¸*lAuAÿel AÎvljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÐ G\r Aà !@   Atj&quot; / &quot; / &quot;kÁ&quot;AÎlAuAÿel AÂljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;Að G\r A!@   Atj&quot; / &quot; / &quot;kÁ&quot;AØ|lAuAÿel A¶ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AG\r A !@   Atj&quot; / &quot; / &quot;kÁ&quot;A¤lAuAÿel A©ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A°G\r AÀ!@   Atj&quot; / &quot; / &quot;kÁ&quot;A¸ãlAuAÿel AîljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÐG\r Aà!@   Atj&quot; / &quot; / &quot;kÁ&quot;AÔòzlAuAÿel AÕ~ljAv;    j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AðG\r A !@   Atj&quot; /@&quot; / &quot;kÁ&quot;A¨ö{lAuAÿel AÊljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A G\r AÀ !@   Atj&quot; /@&quot; / &quot;kÁ&quot;AüðlAuAÿel AljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;Aà G\r A!@   Atj&quot; /@&quot; / &quot;kÁ&quot;A¸ü|lAuAÿel AljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;A G\r AÀ!@   Atj&quot; /@&quot; / &quot;kÁ&quot;AÔ¦lAuAÿel AÕljAv;@   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AàG\r A !@   Atj&quot; /&quot; / &quot;kÁ&quot;AÌlAuAÿel AtljAv;   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÀ G\r A!@   Atj&quot; /&quot; / &quot;kÁ&quot;AäÌlAuAÿel A}ljAv;   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AÀG\r A !@   Atj&quot; /&quot; / &quot;kÁ&quot;A¨ØlAuAÿel AzljAv;   j&quot;ÁA¿lAjAuAÿel j;  Aj&quot;AG\r @   At&quot;j&quot;  j/  / j;    Ar&quot;j&quot;  j/  / j;    Ar&quot;j&quot;  j/  / j;    Ar&quot;j&quot;  j/  / j;  Aj&quot;AG\r Z@A    Atj&quot;. &quot;A¿lAjAuAÿel j&quot;ÁAvk!  Aj s Avq s;  Aj&quot;AG\r    (  ( Aàü\n  3   ( ! A¬( Aß·ÞG@	A¬Aß·Þ6     B 7È   ( Aà(¨~ )È&quot; ­&quot;T@     §&quot;k   (È!  ­&quot;7È   j!   k&quot; K@@   A    (È!  7È   j!    k&quot;I\r  ­!     §k   )È }7Èg# Ak&quot;$   AàA&quot; 6   E@ AÊ\n6 A (  ?A  A¬( Aß·ÞG@	A¬Aß·Þ6     B 7È Aj$ Í# &quot;\nAkA`q&quot;	$  	 ) 7 	 ) 7 	 ) 7 	 )  7  	 ) 7X 	 ) 7P 	 ) 7H 	 )  7@ 	 )  7 	 ) 7 	 ) 7 	 ) 7 	 )  7À 	 ) 7È 	 ) 7Ð 	 ) 7Ø 	 :   	 : ` 	 :   	 : à 	Aj&quot; 	Aj&quot; 	Aj&quot; 	Aj&quot;A 	 	A@k 	Aj 	AÀjA!A( ( \n           A Aü  	A Aü  \n$      Aj  Aj   !  Aj!  Aj!æ@   Atj&quot;  Atj(  &quot;AvAÕªÕªq AÕªÕªqj&quot;AvAq Avk;  AvAq AvAqk;  AvAq AvAqk;\n  AvAq AvAqk;  AvAq AvAqk;  AvAq A\nvAqk;  AvAq AvAqk;  Aq AvAqk;  Aj&quot;A G\r # &quot; A kA`q&quot;$  Aj&quot;A( (   A( (     A@k Aj AÀjA&quot;A( (  A( (   A j A j&quot; A j&quot; A j&quot;Aø A( ( A!@ A j j&quot;- &quot;AtAq -  r&quot;AM@   Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r    Atj ;  Aj! AÿM@ &quot;Aj! &quot;AöI\r AI!  Aj!A !A!A !@  j&quot;- &quot;AtAq -  r&quot;AM@  Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r   Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AI!	  Aj!A !A!A !@  j&quot;- &quot;AtAq -  r&quot;\nAM@  Atj \n;  Aj!@ AÿK\r  - At Avr&quot;AK\r   Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AI!  Aj!\nA !A!A !@  j&quot;- &quot;\rAtAq -  r&quot;AM@ \n Atj ;  Aj!@ AÿK\r  - At \rAvr&quot;AK\r  \n Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AI!\r@@ AI\r  AI\r  AI\r  AÿK\r@ A j   A¨ AjA( ( @ E\r A !A!@ A j j&quot;- &quot;AtAq -  r&quot;AM@   Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r    Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r @ 	E\r A !A!@  j&quot;- &quot;	AtAq -  r&quot;AM@  Atj ;  Aj!@ AÿK\r  - At 	Avr&quot;AK\r   Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r @ E\r A !A!@  j&quot;- &quot;	AtAq -  r&quot;AM@  Atj ;  Aj!@ AÿK\r  - At 	Avr&quot;AK\r   Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r @ \rE\r A !A!@  j&quot;- &quot;	AtAq -  r&quot;AM@ \n Atj ;  Aj!@ AÿK\r  - At 	Avr&quot;AK\r  \n Atj ;  Aj! AÿK\r &quot;Aj! A¦I\r  AI&quot;!\r AI&quot;! AI!	 AI&quot;\r  	\r  \r  \r  AjA( (   A jA Aü $ ~@  )È&quot;P\r  ­ }&quot; ­V\r     § §&quot;  B !  B 7È  j!  k!  M@@   A      j!  k&quot; O\r   )È!    §     )È ­|7È     AÈj  Aj  AØjª~# Ak&quot;$ @ E@ Av&quot;At&quot;@    ü\n  @ AI\r   - As:   - 	As: 	  - \nAs: \n  - As:   - As:   - \rAs: \r  - As:   - As:  AF\r   - As:   - As:   - As:   - As:   - As:   - As:   - As:   - As:  A	I\r   - @As: @  - AAs: A  - BAs: B  - CAs: C  - DAs: D  - EAs: E  - FAs: F  - GAs: G A\rI\r   - `As: `  - aAs: a  - bAs: b  - cAs: c  - dAs: d  - eAs: e  - fAs: f  - gAs: g AI\r   - As:   - As:   - As:   - As:   - As:   - As:   - As:   - As:  AI\r   -  As:    - ¡As: ¡  - ¢As: ¢  - £As: £  - ¤As: ¤  - ¥As: ¥  - ¦As: ¦  - §As: § Aq!   Axq&quot;j) !@ AK\r A tA¢È qE\r  B!  7 E\r  j Aj ü\n   E\r A Aq&quot;k&quot;   K!   Av&quot;Atj) !@ AK\r A tA¢È qE\r  B!  7 @  Aj r ü\n    k&quot;E\r   j!@A  AO!   Aj&quot;Atj) !@ AK\r A tA¢È qE\r  B!  7 @  Aj ü\n    j!  k&quot;\r  Aj$ ~# Ak&quot;$ @ E@ Av!A !@  &quot; rAq@ At&quot; E\r@  j&quot; -    j-  s:    Ar&quot;j&quot; -    j-  s:    Ar&quot;j&quot; -    j-  s:    Ar&quot;j&quot; -    j-  s:   Aj&quot;  G\r A!  AO@@  At&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   A r&quot;j&quot; )   j) 7   A(r&quot;j&quot; )   j) 7   A0r&quot;j&quot; )   j) 7   A8r&quot;j&quot; )   j) 7   &quot;Aj&quot;  M\r   Ar&quot; O@@  At&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   &quot;Aj&quot;  M\r   Aj&quot; O@@  At&quot;j&quot; )   j) 7   Ar&quot;j&quot; )   j) 7   &quot;Aj&quot;  M\r   O\r   At&quot; j&quot; )    j) 7   Axqj! ~@@ Aq&quot;   1   B 7 @ Aj   ü\n   )!	  Atj&quot;   )  	7  E\r  Av!~A Aq&quot;k&quot;   I&quot;AG@ B 7 @ Aj  ü\n   ) 1  !	   Atj&quot; )  	 At­7   k&quot;E\r   j!@A  AO!   Aj&quot;Atj&quot;~ AF@ 1   B 7 @ Aj  ü\n   ) ) 7   j!  k&quot;\r  Aj$ $    &quot;  Aj Aj&quot;  Aj Aj&quot;$    $  Aj Aj$  Aj Aj$$    %  Aj Aj%  Aj Aj%@   Atj&quot; / &quot; .&quot;A¨ØlAuAÿel AzljAv&quot;k;   j;   /&quot; .&quot;A¨ØlAuAÿel AzljAv&quot;k;   j; Aj&quot;AG\r @   Atj&quot; / &quot; .&quot;AäÌlAuAÿel A}ljAv&quot;k;   j;   /&quot; .&quot;AäÌlAuAÿel A}ljAv&quot;k;   j; Aj&quot;AÀ G\r A!@   Atj&quot; / &quot; .&quot;AÌlAuAÿel AtljAv&quot;k;   j;   /&quot; .&quot;AÌlAuAÿel AtljAv&quot;k;   j; Aj&quot;AÀG\r A !@   Atj&quot; / &quot; .@&quot;AÔ¦lAuAÿel AÕljAv&quot;k;@   j;   /&quot; .B&quot;AÔ¦lAuAÿel AÕljAv&quot;k;B   j; Aj&quot;A G\r AÀ !@   Atj&quot; / &quot; .@&quot;A¸ü|lAuAÿel AljAv&quot;k;@   j;   /&quot; .B&quot;A¸ü|lAuAÿel AljAv&quot;k;B   j; Aj&quot;Aà G\r A!@   Atj&quot; / &quot; .@&quot;AüðlAuAÿel AljAv&quot;k;@   j;   /&quot; .B&quot;AüðlAuAÿel AljAv&quot;k;B   j; Aj&quot;A G\r AÀ!@   Atj&quot; / &quot; .@&quot;A¨ö{lAuAÿel AÊljAv&quot;k;@   j;   /&quot; .B&quot;A¨ö{lAuAÿel AÊljAv&quot;k;B   j; Aj&quot;AàG\r A!A !@A!   Atj&quot; / &quot; AtAÀj. &quot; . l&quot;AlAuAÿel jAv&quot;k;    j;   /&quot;  .&quot;l&quot;AlAuAÿel jAv&quot;k;&quot;   j;  /&quot;  .$l&quot;AlAuAÿel jAv&quot;k;$   j;  /&quot;  .&amp;l&quot;AlAuAÿel jAv&quot;k;&amp;   j;  /&quot;  .(l&quot;AlAuAÿel jAv&quot;k;(   j;  /\n&quot;  .*l&quot;AlAuAÿel jAv&quot;k;*   j;\n  /&quot;  .,l&quot;AlAuAÿel jAv&quot;k;,   j;  /&quot;  ..l&quot;AlAuAÿel jAv&quot;k;.   j;  /&quot;  .0l&quot;AlAuAÿel jAv&quot;k;0   j;  /&quot;  .2l&quot;AlAuAÿel jAv&quot;k;2   j;  /&quot;  .4l&quot;AlAuAÿel jAv&quot;k;4   j;  /&quot;  .6l&quot;AlAuAÿel jAv&quot;k;6   j;  /&quot;  .8l&quot;AlAuAÿel jAv&quot;k;8   j;  /&quot;  .:l&quot;AlAuAÿel jAv&quot;k;:   j;  /&quot;  .&lt;l&quot;AlAuAÿel jAv&quot;k;&lt;   j;  /&quot;  .&gt;l&quot;AlAuAÿel jAv&quot;k;&gt;   j; A j! Aj&quot;AG\r A !@   Atj&quot; / &quot; AtAÀj. &quot; .l&quot;AlAuAÿel jAv&quot;k;   j;   /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /\n&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;\n  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j; Aj!A ! Aj&quot;A G\r A !@   Atj&quot; / &quot; AtAÀj. &quot; .l&quot;AlAuAÿel jAv&quot;k;   j;   /&quot;  .\nl&quot;AlAuAÿel jAv&quot;k;\n   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j;  /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j; Aj!AÀ ! Aj&quot;AÀ G\r A !@   Atj&quot; / &quot; AtAÀj. &quot; .l&quot;AlAuAÿel jAv&quot;k;   j;   /&quot;  .l&quot;AlAuAÿel jAv&quot;k;   j; Aj! Aj&quot;AG\r {@   Atj&quot; AtAÀj.&quot;  Atj&quot;.l&quot;AlAuAÿel jAv;   .A  kÁl&quot;AlAuAÿel jAv; Aj&quot;AÀ G\r d@   Atj&quot; . &quot;A¤lAuAÿel AÉ\nljAv;   .&quot;A¤lAuAÿel AÉ\nljAv; Aj&quot;AG\r T@  Alj&quot;-  !   Atj&quot; - At - &quot;Avr;   AtAqr;  Aj&quot;AG\r @  Atj&quot;/!   Alj&quot; / &quot;:    Av:   At Avr:   Ar&quot;Atj&quot;/!   Alj&quot; / &quot;:    Av:   At Avr:  Aj&quot;AG\r ¶@  Alj&quot;-  ! - ! - !   Atj&quot; - At - &quot;AvrAlAjA\nv;  AtAðq AvrAlAjA\nv;  AtAÀq AvrAlAjA\nv;   AtAqrAlAjA\nv;  Aj&quot;AÀ G\r Ý~@  Atj&quot;3! 3! 3 !   Alj&quot; 3Bøöë	~B|&quot;B#&lt;   Bøöë	~B|&quot;B!&lt;    B§AÀq Bøöë	~B|&quot;B%§A?qr:   B§Aðq Bøöë	~B|&quot;B\&#39;§Aqr:   B§Aüq B)§Aqr:  Aj&quot;AÀ G\r    @  A  @  )Ì  @  Ak&quot;( &quot;! !  Ak( &quot;   A~q&quot; G@   k&quot;(&quot; (&quot;6  6   j!  j&quot; ( &quot;   jAk( G@  (&quot;  (&quot; 6   6  j!  6   A|qjAk Ar6   ( Ak&quot; Aÿ M@  AvAk  g!  A kvAs AtkAî j  AÿM\r A?  A kvAs AtkAÇ j&quot;   A?O&quot;At&quot; Aj6   Aj&quot; ( 6   6  ( 6AA) B ­7    Aj&quot;jAkA  kq&quot; j    ( &quot;jAkM  (&quot;  (&quot;6  6  G@    Ak( A~qk&quot;  k&quot; ( j&quot;6   A|qjAk 6    j&quot;   k&quot;6   AjO@   j&quot;  kAk&quot;6 Aj&quot; A|qjAk Ar6   (Ak&quot;Aÿ M@ AvAk g! A kvAs AtkAî j AÿM\r A? A kvAs AtkAÇ j&quot; A?O&quot;At&quot;Aj6  Aj&quot;( 6  6  ( 6AA) B ­7    Aj&quot;6    A|qj   jAk 6   AjA ~A    AM&quot;A0j!@@@    Akq\r AGK\rA) &quot;	A AjA|q AM&quot;Aÿ M@ AvAk g! A kvAs AtkAî j AÿM\r A? A kvAs AtkAÇ j&quot; A?O&quot;­&quot;\nB R@@ \n \nz&quot;	!\n~  	§j&quot;At&quot;Aj( &quot; Aj&quot;G@   *&quot;\r (&quot; (&quot;6  6  6  (6  6 ( 6 Aj! \nBAA) B~ ­7  \nB&quot;\nB R\r A) !	A? 	y§k!@ 	P@A ! At&quot;Aj( ! 	BT\r Aã !  Aj&quot;F\r @ E\r   *&quot;\r Ak! (&quot; G\r   AK! !   A0 jC\r  E\r   AtAj&quot; F\r @   *&quot;\r (&quot;  G\r A ! P# Ak&quot;$ @ AO@AÐA6 A!   &quot; AÐ  6 AA ! ( Aj$  ´ @@@@@@@@@@@ A	k 	\n	\n	\n\n	  ( &quot;Aj6    ( 6   ( &quot;Aj6    2 7   ( &quot;Aj6    3 7   ( &quot;Aj6    0  7   ( &quot;Aj6    1  7   ( AjAxq&quot;Aj6    + 9    ( &quot;Aj6    4 7   ( &quot;Aj6    5 7   ( AjAxq&quot;Aj6    ) 7 ­	~# &quot;A æ kA`q&quot;$  A*j&quot;   ) 	7f  ) 	7f  ) 	7f  ) 	7f A\nj!@  Atj&quot;A   j&quot;-  AqkAvA\rq;  A  -  AqkAvA\rq; A  -  AqkAvA\rq; A  -  AqkAvA\rq; A  -  AqkAvA\rq; A  -  A qkAvA\rq;\n A  -  AÀ qkAvA\rq; A  -  AqkAvA\rq; Aj&quot;A G\r   )f&quot;76  )f&quot;76  )f&quot;76  )f&quot;76  7À6  7È6  7Ð6  7Ø6  77  77  77  77  7Ø7  7Ð7  7È7  7À7 A;à7 A; 7 A;à6 A ; 6 AÂ j&quot;	 A6j&quot; A;à7 A; 7 A;à6 A; 6 AÒ j  A; 6 Aâ j 2 A Aü   A:j A&gt;j Aj&quot; A AAAÿ Aj&quot;\n A&quot;j A&amp;j Aj&quot; AAAA     	   Aj AÎ j   Aj AÚ j   Aj&quot;    \r Aj&quot;\r Aj&quot;\r \r  \n0         \&#39;  AÀj \&#39;  Aj \&#39;  AÀj!A !@  Atj&quot; /!\r  / !  /!  /!  /\n!  /!  Atj&quot;  /A°ßÎ lA@kAvAðq  /A°ßÎ lA@kAvr:   A°ßÎ lA@kAvAðq A°ßÎ lA@kAvr:   A°ßÎ lA@kAvAðq A°ßÎ lA@kAvr:   \rA°ßÎ lA@kAvAðq A°ßÎ lA@kAvr:   Aj&quot;A G\r  B 7f B 7f B 7f B 7f A Aü  A Aü  A Aü  A Aü  	A A$ü  A Aü  \nA Aü  A Aü  $ ï~# &quot;AÏ kA`q&quot;$   ) 7  ) 7  ) 7  )  7  A:   AÀÎ j A!A°( (8   )ØN&quot;	7Ø  )ÐN&quot;\n7Ð  )ÈN&quot;7È  )ÀN&quot;7À  7  7  \n7  	7  7À  7È  \n7Ð  	7Ø  	7   \n7   7   7  A;   A;à A;  A ;à AÀ*j&quot; AÀj&quot; A;   A;  A;à A;à AÀ:j  A;à AÀÊ j 2 A Aü  AÀj&quot; AÀ\nj AÀj AÀj&quot; AàÎ j&quot;A AAAÿ  AÀ&quot;j AÀ&amp;j  AAAAÿ   A@k&quot;      AÀj AÀ6j   AÀj AÀÂ j   # Aj# Aj#  0            )ØN7 	   )ÐN7 	   )ÈN7 	   )ÀN7 	 B 7ÀN B 7ÈN B 7ÐN B 7ØN B 7àN B 7èN B 7ðN B 7øN A :   B 7 B 7 B 7 B 7  A A$ü  A Aü  A Aü  A Aü  $ $      Aj Aj  Aj Ajo  ( &quot;,  A0k&quot;A	K@A @A! AÌ³æ M@A  A\nl&quot;j  AÿÿÿÿsK!   Aj&quot;6  ,  ! !A0k&quot;A\nI\r  Û# &quot; AkA`q&quot;$  Aüj&quot;A°( (X   A°( (p    A&quot;A°( (\\  A°( (`   Aø A°( (d A !A!A !@  j&quot;- &quot;AtAq -  r&quot;AM@   Atj ;  Aj!@ AÿK\r  - At Avr&quot;AK\r    Atj ;  Aj! AÿM@ &quot;Aj! AöI\r AÿM@@ A¨ AüjA°( (d A !A!@  j&quot;- ! -   - &quot;AtAqr&quot;AM@   Atj ;  Aj!@ AÿK\r  At Avr&quot;AK\r    Atj ;  Aj! AÿM@ &quot;Aj! A¦I\r AI\r  AüjA°( (h   A Aøü $ þ~A!# A@j&quot;$  A6&lt; A)j! A\&#39;j! A(j!@@@@@A !@ !	  AÿÿÿÿsJ\r  j!@@@@ &quot;-  &quot;\n@@@@ \nAÿq&quot;E@ ! A%G\r !\n@ \n- A%G@ \n! Aj! \n-  \nAj&quot;!\nA%F\r   	k&quot; Aÿÿÿÿs&quot;J\r	  @   	  \r  6&lt; Aj!A!@ , A0k&quot;A	K\r  - A$G\r  Aj!A! !  6&lt;A !@ ,  &quot;\nA k&quot;AK@ ! !A t&quot;AÑqE\r @  Aj&quot;6&lt;  r! , &quot;\nA k&quot;A O\r !A t&quot;AÑq\r @ \nA*F@@ , A0k&quot;A	K\r  - A$G\r   E@  AtjA\n6 A   Atj( !\r Aj!A \r Aj!  E@  6&lt;A !A !\r  ( &quot;Aj6  ( !\rA !  6&lt; \rA N\rA  \rk!\r AÀ r! A&lt;j1&quot;\rA H\r\n (&lt;!A !A!A  -  A.G\r  - A*F@@ , A0k&quot;A	K\r  - A$G\r  Aj!  E@  AtjA\n6 A   Atj(  \r Aj!A   E\r   ( &quot;Aj6  ( !  6&lt; A N  Aj6&lt; A&lt;j1! (&lt;!A!@ !A! &quot;,  &quot;Aû kAFI\r Aj! A:l jAÿ\nj-  &quot;AkAÿqAI\r   6&lt;@ AG@ E\r A N@  E@  Atj 6    Atj) 70  E\r A0j  - A N\rA !  E\r  -  A q\r Aÿÿ{q&quot;\n  AÀ q!A !A! !@@@@@@@@@@@@@@@ -  &quot;À&quot;ASq  AqAF  &quot;AØ k!	\n @ AÁ k  AÓ F\r )0!AA !@@@@@@@   (0 6  (0 6  (0 ¬7  (0 ;  (0 :   (0 6  (0 ¬7 A  AM! Ar!Aø ! !	 )0&quot;&quot;B R@ A q!@ 	Ak&quot;	 §Aq-  r:   B&quot;B R\r  P\r AqE\r AvAj!A! ! )0&quot;&quot;B R@@ Ak&quot; §AqA0r:   B&quot;B R\r  !	 AqE\r   k&quot;  H! )0&quot;B S@ B  }&quot;70A!A Aq@A!AAA Aq&quot;! ! &quot;BZ@@ Ak&quot; &quot; B\n&quot;B\n~}§A0r:   BÿÿÿÿV\r  B R@ §!	@ Ak&quot; 	 	A\nn&quot;A\nlkA0r:   	A	K !	\r  !	  A Hq\r Aÿÿ{q  !@ B R\r  \r  !	A !  P  	kj&quot;  H!\r - 0!Aÿÿÿÿ  AÿÿÿÿO&quot;&quot;A G!@@@ (0&quot;Aû\n &quot;	&quot;AqE\r  E\r @ -  E\r Ak&quot;A G! Aj&quot;AqE\r \r  E\r@ -  E\r  AI\r @A ( &quot;k rAxqAxG\r Aj! Ak&quot;AK\r  E\r@  -  E\r Aj! Ak&quot;\r A &quot; 	k  &quot; 	j! A N@ \n! ! \n! ! -  \r )0&quot;B R\rA !	 @ (0A !  A  \rA  \n A 6  &gt;  Aj&quot;60A! !\nA !@@ \n( &quot;	E\r  Aj 	4&quot;	A H\r 	  kK\r  \nAj!\n  	j&quot; I\rA=! A H\r  A  \r  \n E@A !A ! (0!\n@ \n( &quot;	E\r Aj&quot; 	4&quot;	 j&quot; K\r    	 \nAj!\n  K\r   A  \r  AÀ s\n \r   \rH!  A Hq\r	A=! +0  - !\n Aj!    \r	 E\rA!@  Atj( &quot; @  Atj   -A! Aj&quot;A\nG\r A\nO@A!\n@  Atj( \rA! Aj&quot;A\nG\r 	A!  : \&#39;A! !	 \n!   	k&quot;\n  \nJ&quot; AÿÿÿÿsJ\rA=! \r  j&quot;  \rH&quot; K\r  A    \n      A0   As\n  A0  \nA \n   	 \n  A    AÀ s\n (&lt;!A !A=!AÐ 6 A! A@k$     E@A @   Aÿ M\r@Aì( ( E@ AqA¿F\r AÿM@   A?qAr:    AvAÀr:  A A@qAÀG A°OqE@   A?qAr:    AvAàr:     AvA?qAr: A AkAÿÿ?M@   A?qAr:    AvAðr:     AvA?qAr:    AvA?qAr: AAÐA6 AA   :  A   ( A  3   ( ! A¨( Aß·ÞG@	A¨Aß·Þ6   &gt;  B 7 Y    (H&quot;Ak r6H  ( &quot;Aq@   A r6 A  B 7    (,&quot;6   6     (0j6A    (  ( AÀü\n     ( AÀ(~ ) &quot; ­&quot;	T@ A     §&quot;k  A   ( &quot;k  A   ( &quot;k  A   ( &quot;k   ( !  ­&quot;7   j!  j!  j!   j!   k&quot; K@@ A   A   A   ( &quot;k  A   ( &quot;k  A   ( &quot;k   ( !  7   j!  j!  j!   j!    k&quot;I\r  ­!	 A     §k  A   ( k  A   ( k  A   ( k   )  	}7 Ç    ( j&quot; -  As:    AÈj&quot;  ( j&quot; -  As:    Aj&quot;  ( j&quot; -  As:    AØj&quot;  ( j&quot; -  As:     Ak&quot;j&quot; -  As:    j&quot; -  As:    j&quot; -  As:    j&quot; -  As:    B 7 Ñ~@  ) &quot;P\r  ­ }&quot;	 ­V\r   A   § 	§&quot;  A   (    A   (    A   (    B !  B 7   j!  j!  j!  j!  k!  M@@  A  A    A A    A A    A A      j!  j!  j!  j!  k&quot; O\r   ) !  A   §   A   (    A   (    A   (      )  ­|7 g# Ak&quot;$   AÀA&quot; 6   E@ A\n6 A (  ?A  A¨( Aß·ÞG@	A¨Aß·Þ6   &gt;  B 7  Aj$      AÈj  Aj  AØj¯# Ak&quot;$   6# AÐk&quot;$   6Ì A j&quot;A A(ü   (Ì6È@A  AÈj AÐ j 3A H\r   (LA H    ( &quot;A_q6 @@  (0E@  AÐ 60  A 6  B 7  (,!   6,  (\rA  7\r   AÈj AÐ j A j3!   A A   ($   A 60   6,  A 6  (  B 7A      (  A qr6 \r  AÐj$  Aj$ ð~@ E\r    :     j&quot;Ak :   AI\r    :    :  Ak :   Ak :   AI\r    :  Ak :   A	I\r   A   kAq&quot;j&quot; AÿqAl&quot; 6    kA|q&quot;j&quot;Ak  6  A	I\r    6   6 Ak  6  Ak  6  AI\r    6   6   6   6 Ak  6  Ak  6  Ak  6  Ak  6   AqAr&quot;k&quot;A I\r   ­B~!  j!@  7  7  7  7  A j! A k&quot;AK\r    AqA A   + A  +¦~@  AjAxq&quot;­!A~ B|Bøÿÿÿÿÿÿÿÿ B B  }Bøÿÿÿÿÿÿÿÿ }AÀ( &quot;­|&quot;BÿÿÿÿX@ §&quot; ? AtM\r  \rAÐA06 AAÀ  6  &quot;AG@  j&quot; AkA6   Ak&quot;A6 @A( &quot; (A  F@  Ak( A~q&quot;k&quot;Ak( !   6  A~q&quot;k&quot;   ( jAk( Aq@  (&quot;  (&quot;6  6    j jAk&quot;6  Ak A6    6  6 A6A 6  Aj&quot;    k&quot;6    A|qjAk Ar6     ( Ak&quot;Aÿ M@ AvAk A g&quot;kvAs AtkAî j AÿM\r A? A kvAs AtkAÇ j&quot; A?O&quot;At&quot;Aj6   Aj&quot;( 6   6   (  6AA) B ­7  AGË@  E\r   Aó\nE\r   AÂ\nE\r   A\nE\r   A \nE\r   AñE\r   Añ	E\r   AØE\r   A·	E\r   A¤E\r   A	E\r   AE\r   AÐ	E\r   A¾E\r   Aé	E\r   A×\nE\r   A\nE\r   Aß\nE\r   A£	E\r   A¸\nE\r   Aè\nE\r   A¬	\r AA8+&quot;@ A&lt;6( BÀ7 BÀ7 B ¬7 A; A=60 A&gt;6$ A?64 AÀ 6, AÏ\n6 A¬	6    ¢~# &quot; Aà	kA`q&quot;$   A	j&quot;A 	A°( (   A¨j)  ! A°j)  ! A¸j)  ! )   )  B 7  )! B 7 )! B 7 )! B 7A!      P@ A 	j!# &quot;A&amp;kA`q&quot;	$  	Aj&quot;&quot; &amp; Aj AÀj&amp; Aj Aj&amp; 	A\nj! AÀj!@  Atj&quot;  j&quot;\n-  AqAlAjAv;   \n-  AvAlAjAv; Aj&quot;AG\r  	Aj&quot;\r   	  	Aj&quot;\n \r  	 \n\rA !@  At&quot;j&quot; /   \nj/ k;   Ar&quot;j&quot; /   \nj/ k;   Ar&quot;j&quot; /   \nj/ k;   Ar&quot;j&quot; /   \nj/ k;  Aj&quot;AG\r  A !@  j&quot;A :     Atj&quot;/ A¸ßÎ lAjAv&quot;:    /A¸ßÎ lAjAvAq r&quot;:     /A¸ßÎ lAjAvAqr&quot;:     /A¸ßÎ lAjAvAqr&quot;:     /A¸ßÎ lAjAvAqr&quot;:     /\nA¸ßÎ lAjAvA qr&quot;:     /A¸ßÎ lAjAvAÀ qr&quot;:     /A¸ßÎ lAjAvAqr:   Aj&quot;A G\r  \rA Aü  A Aü  	A Aü  A Aü  \nA Aü  $   A j&quot;) 7Ø	  ) 7Ð	  ) 7È	  )  7À	 Aàj AÀ A°( (8     A	j.A !A !A !@  Ar&quot;	j-    	j-  s&quot;	  j-    j-  s&quot; ss! 	  rr! Aj&quot;AÀG\r   ) Ø7  ) Ð7  ) È7  ) À7  A j AÀü\n    A  AàA°( (t   A A  AÿqkAvkAv&quot; - à&quot;  -  sq s:     - á&quot;  - s q s:    - â&quot;  - s q s:    - ã&quot;  - s q s:    - ä&quot;  - s q s:    - å&quot;  - s q s:    - æ&quot;  - s q s:    - ç&quot;  - s q s:    - è&quot;  - s q s:    - é&quot;  - 	s q s: 	   - ê&quot;  - \ns q s: \n   - ë&quot;  - s q s:    - ì&quot;  - s q s:    - í&quot;  - \rs q s: \r   - î&quot;  - s q s:    - ï&quot;  - s q s:    - ð&quot;  - s q s:    - ñ&quot;  - s q s:    - ò&quot;  - s q s:    - ó&quot;  - s q s:    - ô&quot;  - s q s:    - õ&quot;  - s q s:    - ö&quot;  - s q s:    - ÷&quot;  - s q s:    - ø&quot;  - s q s:    - ù&quot;  - s q s:    - ú&quot;  - s q s:    - û&quot;  - s q s:    - ü&quot;  - s q s:    - ý&quot;  - s q s:    - þ&quot;  - s q s:     - ÿ&quot;  - sq s:  B 7Ø	 B 7Ð	 B 7È	 B 7À	 B 7¸	 B 7°	 B 7¨	 B 7 	 B 7	 B 7	 B 7	 B 7	 B 7ø B 7ð B 7è B 7à A Aàü A !$  ^     / A	j  A 	ü\n   A j  A 	A°( (    ) 87 Ø  ) 07 Ð  ) (7 È  )  7 ÀA I# &quot;A kA`q&quot;$  A A´(       J B 7 B 7 B 7 B 7  $ ¸# &quot;A@jA`q&quot;$  AÀ A´(      / A	j  A 	ü\n   A j  A 	A°( (    )87 Ø  )07 Ð  )(7 È  ) 7 À B 7  B 7 B 7 B 7 B 7  B 7( B 70 B 78 $ A Ü# &quot; AkA`q&quot;$  A	j&quot;     A !@  Aj&quot;j-    j-  s&quot;  Aj&quot;j-    j-  s&quot;  j-    j-  s&quot; 	sss!	    rrr! Aj&quot;A	G\r  A A	ü  A	j&quot;A Aü  	A  AÿqkAvsA!Aÿq 	AÿqF@  ) 7	  ) 7	  ) 7	  )  7	 A 	j A 	A°( (    AÀ A°( (8      A j.  )7   )7   )7   ) 7   B 7	 B 7	 B 7	 B 7	 B 7 	 B 7¨	 B 7°	 B 7¸	 B 78 B 70 B 7( B 7  B 7 B 7 B 7 B 7 A !$      A´(  F @@ AO@@  A,\r  Aj!  Ak&quot;AK\r    ,\rA  A       ( A7  ( &quot; (È  j&quot; -  As:      - As:   B 7Èj# Ak&quot;$  Aj&quot;A°( (x     A°( (|  A°( (      A°( (  A°( (   Aj$      ( A¨7  ( &quot; (È  j&quot; -  As:      - §As: §  B 7È   ( A¨  g# Ak&quot;$  Aj&quot;A°( (X     A°( (\\  A°( (`      A°( (d  A°( (h   Aj$ D ( &quot;(È j&quot; -  As:    - GAs: G B 7È  AÀ  ( AÈ    ( AÈ   W# Ak&quot;$  Aj&quot;A°( (&lt;     A°( (@    A°( (D  A°( (H   Aj$ C ( &quot;(È j&quot; -  As:    - gAs: g B 7È  A0 ( Aè    ( Aè   W# Ak&quot;$  Aj&quot;A°( (      A°( ($    A°( ((  A°( (,   Aj$ E ( &quot;(È j&quot; -  As:    - As:  B 7È  A  ( AW# Ak&quot;$  Aj&quot;A°( (     A°( (    A°( (  A°( (   Aj$         ( A:   ( A;   ( A     &lt;s# Ak&quot;$  Aj&quot;\nA( ($   \n     	A( ((  \nA( (,         \nA( (0  \nA( (4   Aj$         ( A¨:   ( A¨;   ( A¨     &lt;s# Ak&quot;$  Aj&quot;\nA( (   \n     	A( (  \nA( (         \nA( (  \nA( (   Aj$ ò# A k&quot;$    (&quot;6  (!  6  6   k&quot;6  j!A!@@@  (&lt; Aj&quot;A Aj&quot;AÐ 6 AA @ !@  (&quot;F\r A H@ ! AA   (&quot;K&quot;	j&quot;  A  	k&quot; ( j6  AA 	j&quot; (  k6   k!  (&lt; &quot;  	k&quot; Aj&quot;AÐ 6 AA E\r  AG\r    (,&quot;6   6     (0j6   A 6  B 7    ( A r6 A  AF\r   (k A j$     #  #   kApq&quot; $      $    )   E@A     (4    E@A     (0    E@A    (( g@  At&quot; Aj&quot;6  6  Aj&quot; AÀ G\r A0CAìAô6 AÄA6 AÀA°¹6 A¤A*6 AÈAÄ( 6 ¨\n A±-+   0X0x Classic-McEliece-6960119f Classic-McEliece-6688128f Classic-McEliece-8192128f Classic-McEliece-460896f Classic-McEliece-348864f Classic-McEliece-6960119 Kyber768 ML-KEM-768 Classic-McEliece-6688128 Classic-McEliece-8192128 HQC-128 Classic-McEliece-460896 HQC-256 BIKE-L5 SHA3x4 Classic-McEliece-348864 Kyber1024 BIKE-L3 SHA3 FIPS203 HQC-192 Kyber512 ML-KEM-512 BIKE-L1 (null) Unexpected NULL returned from %s API. Exiting.\n AÀA            	             \n\n\n  	  	       A!         \r \r   	   	    AË A×        	        A\r A\r       	        A¿\r AË\r        	             A         	 A³ A¿        	        Aí Aù)        	         0123456789ABCDEFÈ AÀìû\nýþúÕÊ Uÿn)¶ ÂNû&gt;ú¼=ÓúÃü²¾ù~ÿWýùÜ`úù3ÿÝùÇØý÷óúÓæþøùøÿÀþfý®ùvû~ ½«ü¦ÿñþ&gt;k sú	ÿIürþÁú+ýÀ×û¥û±û®+Kûgi ¦K± ÿÝþ4þ&amp;u\nÿ\nmÿ÷üË¦ý_Êùü]¢Idÿµÿ1I[b*ûúGúAûxÿÂÉúüÜ ]ûù_ûúûúªüüÞÿÌþäß¾Lúò\\ AÀ	°      AÔ Aì\n      ( A Aÿÿÿÿÿÿÿÿ AØÝ            	   \n         \r                        X	                                    !   &quot;   #   $   %   &amp;   \&#39;   (   )   *   +   ,   -   .   /   0   1   2   3   4   5   6   7   8   9   :   	  ;&#39;);return a((await fa(b)).instance)}());
+(function(){function a(){d.calledRun=!0;if(!w){H=!0;Z.f();x?.(d);d.onRuntimeInitialized?.();if(d.postRun)for(&quot;function&quot;==typeof d.postRun&amp;&amp;(d.postRun=[d.postRun]);d.postRun.length;){var b=d.postRun.shift();N.push(b)}M(N)}}if(d.preRun)for(&quot;function&quot;==typeof d.preRun&amp;&amp;(d.preRun=[d.preRun]);d.preRun.length;)ia();M(O);d.setStatus?(d.setStatus(&quot;Running...&quot;),setTimeout(()=&gt;{setTimeout(()=&gt;d.setStatus(&quot;&quot;),1);a()},1)):a()})();H?moduleRtn=d:moduleRtn=new Promise((a,b)=&gt;{x=a;y=b});
+;return moduleRtn}export default LibOQS_ml_kem_768;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Parameter</th>
+		<td><pre><code>x-content-type-options</code></pre></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Asegúrese de que la aplicación/servidor web establece el encabezado Content-Type adecuadamente, y que establece el encabezado X-Content-Type-Options a &#39;nosniff&#39; para todas las páginas web.</p>
+
+<p>Si es posible, asegúrese de que el usuario final utiliza un navegador web moderno y compatible con los estándares que no realiza MIME-sniffing en absoluto, o que puede ser dirigido por la aplicación web/servidor web para que no realice MIME-sniffing.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				
+				  
+				 
+				
+				
+				
+				
+				<li id="alerts--risk-0-confidence-2">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Informativo</span>, <span>Confidence</span>=<span
+							class="confidence-level">Media</span> <span>(2)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">http://localhost:3000</span> <span>(2)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-4">Aplicación Web Moderna</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:3000/</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					 <span>POLICY_QA_STD = </span>
+				</li>
+				<li>
+					 <span>POLICY_PENTEST = </span>
+				</li>
+				<li>
+					<span><a href="https://www.zaproxy.org/docs/desktop/addons/common-library/alerttags/#systemic">SYSTEMIC</a></span> 
+				</li>
+				<li>
+					 <span>POLICY_DEV_STD = </span>
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>The application appears to be a modern web application. If you need to explore it automatically then the Client Spider may well be more effective than the standard one.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Other info</th>
+		<td> 
+<p>No se han encontrado enlaces aunque sí scripts, lo que indica que se trata de una aplicación web moderna.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (448 bytes)</summary>
+				
+				<pre><code>GET http://localhost:3000/ HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (317 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Tue, 17 Nov 2026 14:47:30 GMT
+ETag: W/&quot;7dd-1a1e9fa3147&quot;
+Content-Type: text/html; charset=utf-8
+Content-Length: 2013
+Date: Tue, 17 Nov 2026 22:27:36 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (2013 bytes)</summary>
+				
+				<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Burblit&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    #messages {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .message { margin-bottom: 8px; word-wrap: break-word; }
+    .info { color: grey; font-style: italic; }
+    input, button {
+      padding: 8px;
+      margin-right: 5px;
+    }
+    #chat-section { display: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Burblit&lt;/h1&gt;
+
+  &lt;!-- Registration section --&gt;
+  &lt;div id=&quot;register-section&quot;&gt;
+    &lt;h3&gt;Register&lt;/h3&gt;
+    &lt;input type=&quot;text&quot; id=&quot;username-input&quot; placeholder=&quot;Enter your username&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;connect-button&quot;&gt;Connect&lt;/button&gt;
+    &lt;button type=&quot;button&quot; id=&quot;reset-button&quot;&gt;Reset keys&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Chat section (hidden until registered) --&gt;
+  &lt;div id=&quot;chat-section&quot;&gt;
+    &lt;h3&gt;Chat&lt;/h3&gt;
+    &lt;label for=&quot;mode-select&quot;&gt;Key agreement&lt;/label&gt;
+    &lt;select id=&quot;mode-select&quot;&gt;
+      &lt;option value=&quot;auto&quot;&gt;Automatic (hybrid when available)&lt;/option&gt;
+      &lt;option value=&quot;hybrid&quot;&gt;Require hybrid (X25519 + ML-KEM-768)&lt;/option&gt;
+      &lt;option value=&quot;x25519&quot;&gt;Classical only (X25519)&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div id=&quot;messages&quot;&gt;&lt;/div&gt;
+    &lt;input type=&quot;text&quot; id=&quot;recipient-input&quot; placeholder=&quot;Send to (username)&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;message-input&quot; placeholder=&quot;Type a message&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;send-button&quot;&gt;Send&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Bundled from src/client/main.ts by esbuild. The document contains no
+       inline script and no inline event handler, which is what allows a
+       restrictive Content Security Policy to be applied later. --&gt;
+  &lt;script src=&quot;bundle.js&quot; defer&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Evidence</th>
+		<td><pre><code>&lt;script src=&quot;bundle.js&quot; defer&gt;&lt;/script&gt;</code></pre></td>
+	</tr>
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Se trata de una alerta informativa, por lo que no es necesario realizar ningún cambio.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-5">Divulgación de información - Comentarios sospechosos</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:3000/</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/2021/A01_2021-Broken_Access_Control/">OWASP_2021_A01</a></span> 
+				</li>
+				<li>
+					 <span>POLICY_PENTEST = </span>
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/615.html">CWE-615</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage">WSTG-v42-INFO-05</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure.html">OWASP_2017_A03</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/">OWASP_2025_A01</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>The response appears to contain suspicious comments which may help an attacker.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Other info</th>
+		<td> 
+<p>The following pattern was used: \bFROM\b and was detected in likely comment: &quot;&lt;!-- Bundled from src/client/main.ts by esbuild. The document contains no</p>
+
+<p>       inline script and no inline event handler, whic&quot;, see evidence field for the suspicious comment/snippet.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (448 bytes)</summary>
+				
+				<pre><code>GET http://localhost:3000/ HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (317 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Tue, 17 Nov 2026 14:47:30 GMT
+ETag: W/&quot;7dd-1a1e9fa3147&quot;
+Content-Type: text/html; charset=utf-8
+Content-Length: 2013
+Date: Tue, 17 Nov 2026 22:27:36 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (2013 bytes)</summary>
+				
+				<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Burblit&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    #messages {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .message { margin-bottom: 8px; word-wrap: break-word; }
+    .info { color: grey; font-style: italic; }
+    input, button {
+      padding: 8px;
+      margin-right: 5px;
+    }
+    #chat-section { display: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Burblit&lt;/h1&gt;
+
+  &lt;!-- Registration section --&gt;
+  &lt;div id=&quot;register-section&quot;&gt;
+    &lt;h3&gt;Register&lt;/h3&gt;
+    &lt;input type=&quot;text&quot; id=&quot;username-input&quot; placeholder=&quot;Enter your username&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;connect-button&quot;&gt;Connect&lt;/button&gt;
+    &lt;button type=&quot;button&quot; id=&quot;reset-button&quot;&gt;Reset keys&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Chat section (hidden until registered) --&gt;
+  &lt;div id=&quot;chat-section&quot;&gt;
+    &lt;h3&gt;Chat&lt;/h3&gt;
+    &lt;label for=&quot;mode-select&quot;&gt;Key agreement&lt;/label&gt;
+    &lt;select id=&quot;mode-select&quot;&gt;
+      &lt;option value=&quot;auto&quot;&gt;Automatic (hybrid when available)&lt;/option&gt;
+      &lt;option value=&quot;hybrid&quot;&gt;Require hybrid (X25519 + ML-KEM-768)&lt;/option&gt;
+      &lt;option value=&quot;x25519&quot;&gt;Classical only (X25519)&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div id=&quot;messages&quot;&gt;&lt;/div&gt;
+    &lt;input type=&quot;text&quot; id=&quot;recipient-input&quot; placeholder=&quot;Send to (username)&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;message-input&quot; placeholder=&quot;Type a message&quot; autocomplete=&quot;off&quot; /&gt;
+    &lt;button type=&quot;button&quot; id=&quot;send-button&quot;&gt;Send&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Bundled from src/client/main.ts by esbuild. The document contains no
+       inline script and no inline event handler, which is what allows a
+       restrictive Content Security Policy to be applied later. --&gt;
+  &lt;script src=&quot;bundle.js&quot; defer&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Evidence</th>
+		<td><pre><code>&lt;!-- Bundled from src/client/main.ts </code></pre></td>
+	</tr>
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Eliminar todos los comentarios que muestren información que pueda ayudar a un atacante y solucionar el problema al que se refieren.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				
+				  
+			</ol>
+		</section>
+
+		<section id="appendix" class="appendix">
+			<h2>Appendix</h2>
+
+			<section id="alert-types" class="alert-types">
+				<h3>Alert Types</h3>
+				<p class="alert-types-intro">This section contains additional information on the types of alerts in the report.</p>
+				<ol>
+					<li
+						id="alert-type-0">
+						<h4>Cabecera Content Security Policy (CSP) no configurada</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10038/">Cabecera Content Security Policy (CSP) no configurada</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/693.html">693</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP</a></li>
+										<li><a
+											href="https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html</a></li>
+										<li><a
+											href="https://www.w3.org/TR/CSP/">https://www.w3.org/TR/CSP/</a></li>
+										<li><a
+											href="https://w3c.github.io/webappsec-csp/">https://w3c.github.io/webappsec-csp/</a></li>
+										<li><a
+											href="https://web.dev/articles/csp">https://web.dev/articles/csp</a></li>
+										<li><a
+											href="https://caniuse.com/#feat=contentsecuritypolicy">https://caniuse.com/#feat=contentsecuritypolicy</a></li>
+										<li><a
+											href="https://content-security-policy.com/">https://content-security-policy.com/</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-1">
+						<h4>Falta de cabecera Anti-Clickjacking</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10020/">Cabecera Anti-Clickjacking</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/1021.html">1021</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-2">
+						<h4>El servidor divulga información mediante un campo(s) de encabezado de respuesta HTTP &#39;&#39;&#39;&#39;X-Powered-By&#39;&#39;&#39;&#39;</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10037/">El servidor divulga información mediante un campo(s) de encabezado de respuesta HTTP &#39;&#39;&#39;&#39;X-Powered-By&#39;&#39;&#39;&#39;</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/497.html">497</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>13</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework</a></li>
+										<li><a
+											href="https://www.troyhunt.com/shhh-dont-let-your-response-headers/">https://www.troyhunt.com/shhh-dont-let-your-response-headers/</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-3">
+						<h4>Falta encabezado X-Content-Type-Options</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10021/">Falta encabezado X-Content-Type-Options</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/693.html">693</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)">https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)</a></li>
+										<li><a
+											href="https://owasp.org/www-community/Security_Headers">https://owasp.org/www-community/Security_Headers</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-4">
+						<h4>Aplicación Web Moderna</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10109/">Aplicación Web Moderna</a>)
+									</span>   
+								</td>
+							</tr>
+							
+							
+							
+						</table>
+					</li>
+					<li
+						id="alert-type-5">
+						<h4>Divulgación de información - Comentarios sospechosos</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10027/">Divulgación de información - Comentarios sospechosos</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/615.html">615</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>13</td>
+							</tr>
+							
+						</table>
+					</li>
+				</ol>
+			</section>
+		</section>
+		 
+	</main>
+</body>
+</html>
+
+
+
