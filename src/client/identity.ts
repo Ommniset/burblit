@@ -10,8 +10,12 @@
  * halves are converted to X25519 when a Diffie-Hellman is required. The two
  * representations are the same underlying key, so this preserves the property
  * X3DH depends on, that the key used for the authenticating DH is the key that
- * signed the prekey. The difference from Signal is one of construction rather
- * than of security goal, and is recorded as such in the design chapter.
+ * signed the prekey.
+ *
+ * The identity key also signs the post-quantum prekey, for the same reason it
+ * signs the classical one: without a signature the relay could substitute its
+ * own encapsulation key and recover the post-quantum half of every handshake
+ * it served.
  *
  * PRIVATE KEYS ARE STORED IN CLEARTEXT IN IndexedDB. This is a structural
  * limitation of browser-based end-to-end encryption, not an oversight. The
@@ -20,8 +24,7 @@
  * are mutually exclusive. The consequence is that script execution in this
  * origin is equivalent to full compromise of the user's conversations, which
  * is why the cross-site scripting vector in the renderer was removed before
- * any key material existed to steal. The residual risk is analysed in the
- * critical reflection.
+ * any key material existed to steal.
  *
  * Material is stored per username. Two tabs of the same browser share one
  * IndexedDB, so a single global record would give every local user the same
@@ -36,6 +39,7 @@ import {
   type RegistryStatusResponse,
 } from '../shared/protocol';
 import { initSodium, sodium, toBase64, fromBase64 } from './crypto';
+import { generateKemKeyPair, initMlKem, type KemKeyPair } from './pqc';
 
 const DB_NAME = 'burblit';
 const DB_VERSION = 1;
@@ -45,7 +49,7 @@ const STORE_NAME = 'identities';
 // Types
 // ---------------------------------------------------------------------------
 
-interface KeyPair {
+export interface KeyPair {
   publicKey: Uint8Array;
   privateKey: Uint8Array;
 }
@@ -68,6 +72,18 @@ export interface Identity {
    * this map is what lets the recipient find the matching private key.
    */
   oneTimePrekeys: Record<number, KeyPair>;
+
+  /**
+   * ML-KEM-768 keypair, used for the post-quantum half of a hybrid handshake.
+   *
+   * Optional because a record written before post-quantum support existed has
+   * none. Such a record is treated as diverged and republished rather than
+   * read as a client that has opted out.
+   */
+  kemKeyPair?: KemKeyPair;
+
+  /** Detached Ed25519 signature over the ML-KEM public key. */
+  kemPrekeySignature?: Uint8Array;
 }
 
 // ---------------------------------------------------------------------------
@@ -134,10 +150,6 @@ export function clearIdentity(username: string): Promise<void> {
 
 // ---------------------------------------------------------------------------
 // Curve conversion
-//
-// Exported because the handshake needs them on both sides: the initiator
-// converts the recipient's published Ed25519 identity key, and the recipient
-// converts its own private key.
 // ---------------------------------------------------------------------------
 
 export function identityPublicToX25519(ed25519PublicKey: Uint8Array): Uint8Array {
@@ -184,6 +196,25 @@ export function generateLongTermMaterial(): {
   return { identityKeyPair, signedPrekeyPair, signedPrekeySignature };
 }
 
+/**
+ * Generates the post-quantum prekey and signs it with the identity key.
+ *
+ * Kept separate from the classical material because it is asynchronous: the
+ * WebAssembly module must be instantiated before a keypair can be produced.
+ */
+export async function generateKemMaterial(identityPrivateKey: Uint8Array): Promise<{
+  kemKeyPair: KemKeyPair;
+  kemPrekeySignature: Uint8Array;
+}> {
+  await initMlKem();
+  const kemKeyPair = await generateKemKeyPair();
+
+  return {
+    kemKeyPair,
+    kemPrekeySignature: sodium.crypto_sign_detached(kemKeyPair.publicKey, identityPrivateKey),
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Registry interaction
 // ---------------------------------------------------------------------------
@@ -199,24 +230,16 @@ async function registryStatus(username: string): Promise<RegistryStatusResponse 
   return (await response.json()) as RegistryStatusResponse;
 }
 
-/**
- * Publishes a bundle and returns the identifiers the server assigned to the
- * one-time prekeys, in publication order.
- */
-async function publish(
-  username: string,
-  identityKeyPair: KeyPair,
-  signedPrekeyPair: KeyPair,
-  signedPrekeySignature: Uint8Array,
-  oneTimePrekeyPairs: KeyPair[]
-): Promise<number[]> {
-
+async function publish(identity: Identity, oneTimePrekeyPairs: KeyPair[]): Promise<number[]> {
   const body: PublishKeysRequest = {
-    username,
-    identityKey: toBase64(identityKeyPair.publicKey),
-    signedPrekey: toBase64(signedPrekeyPair.publicKey),
-    signedPrekeySignature: toBase64(signedPrekeySignature),
+    username: identity.username,
+    identityKey: toBase64(identity.identityKeyPair.publicKey),
+    signedPrekey: toBase64(identity.signedPrekeyPair.publicKey),
+    signedPrekeySignature: toBase64(identity.signedPrekeySignature),
     oneTimePrekeys: oneTimePrekeyPairs.map((pair) => toBase64(pair.publicKey)),
+    kemPrekey: identity.kemKeyPair === undefined ? null : toBase64(identity.kemKeyPair.publicKey),
+    kemPrekeySignature:
+      identity.kemPrekeySignature === undefined ? null : toBase64(identity.kemPrekeySignature),
   };
 
   const response = await fetch('/keys', {
@@ -250,19 +273,26 @@ function indexById(ids: number[], pairs: KeyPair[]): Record<number, KeyPair> {
  * True when the registry's record of this user is one the stored material can
  * actually service.
  *
- * Both conditions are necessary. The identity key must match, or a
- * correspondent would authenticate against a key this client cannot use. And
- * every prekey the registry is still willing to serve must be held locally,
+ * All three conditions are necessary. The identity key must match, or a
+ * correspondent would authenticate against a key this client cannot use.
+ * Every prekey the registry is still willing to serve must be held locally,
  * because a republication replaces the batch without touching the identity
- * key: checking the identity key alone would accept a state in which the
- * server hands out identifiers this client has no private key for, and every
- * handshake would then fail at the responding end with no indication of why.
+ * key. And the published post-quantum key must be the one this client holds
+ * the secret half of, or a correspondent would encapsulate to a key that
+ * cannot be decapsulated and the hybrid handshake would fail at the far end
+ * with nothing to indicate why.
  */
 function canService(stored: Identity, status: RegistryStatusResponse | null): boolean {
   if (status === null) {
     return false;
   }
   if (status.identityKey !== toBase64(stored.identityKeyPair.publicKey)) {
+    return false;
+  }
+  if (stored.kemKeyPair === undefined || stored.kemPrekeySignature === undefined) {
+    return false;
+  }
+  if (status.kemPrekey !== toBase64(stored.kemKeyPair.publicKey)) {
     return false;
   }
   return status.availablePrekeyIds.every((id) => stored.oneTimePrekeys[id] !== undefined);
@@ -278,9 +308,7 @@ function canService(stored: Identity, status: RegistryStatusResponse | null): bo
  * Publication is destructive: the server replaces a user's entire prekey batch
  * on each call. Two concurrent loads therefore race, and the loser's batch is
  * deleted from the registry while its identifiers remain in local storage,
- * leaving the client unable to answer any handshake. The user interface can
- * issue concurrent calls easily, for instance from a button and a keyboard
- * shortcut, so the guard belongs here rather than at each call site.
+ * leaving the client unable to answer any handshake.
  */
 const inFlight = new Map<string, Promise<Identity>>();
 
@@ -311,10 +339,10 @@ export function loadOrCreateIdentity(username: string): Promise<Identity> {
  * aborts. Reconciling on each connection turns that permanent failure into a
  * transparent repair.
  *
- * Divergence is repaired by republishing the SAME long-term keys with a fresh
- * batch of one-time prekeys, rather than by generating a new identity. The
- * fingerprint a correspondent may have verified out of band therefore survives
- * a server-side reset, which a full regeneration would silently invalidate.
+ * Divergence is repaired by republishing the SAME long-term keys, rather than
+ * by generating a new identity. The fingerprint a correspondent may have
+ * verified out of band therefore survives a server-side reset, which a full
+ * regeneration would silently invalidate.
  */
 async function resolveIdentity(username: string): Promise<Identity> {
   await initSodium();
@@ -328,41 +356,42 @@ async function resolveIdentity(username: string): Promise<Identity> {
 
     console.warn(`Registry diverged from stored material for ${username}; republishing`);
 
-    const oneTimePrekeyPairs = generateOneTimePrekeys();
-    const ids = await publish(
-      username,
-      stored.identityKeyPair,
-      stored.signedPrekeyPair,
-      stored.signedPrekeySignature,
-      oneTimePrekeyPairs
-    );
+    // A record written before post-quantum support existed carries no KEM
+    // keypair, so one is generated and signed by the existing identity key.
+    // The identity itself is preserved.
+    const repaired: Identity = { ...stored };
+    if (repaired.kemKeyPair === undefined || repaired.kemPrekeySignature === undefined) {
+      const kem = await generateKemMaterial(stored.identityKeyPair.privateKey);
+      repaired.kemKeyPair = kem.kemKeyPair;
+      repaired.kemPrekeySignature = kem.kemPrekeySignature;
+    }
 
-    const repaired: Identity = {
-      ...stored,
-      oneTimePrekeys: indexById(ids, oneTimePrekeyPairs),
-    };
+    const oneTimePrekeyPairs = generateOneTimePrekeys();
+    const ids = await publish(repaired, oneTimePrekeyPairs);
+    repaired.oneTimePrekeys = indexById(ids, oneTimePrekeyPairs);
+
     await writeIdentity(repaired);
     return repaired;
   }
 
   const { identityKeyPair, signedPrekeyPair, signedPrekeySignature } = generateLongTermMaterial();
-  const oneTimePrekeyPairs = generateOneTimePrekeys();
-
-  const ids = await publish(
-    username,
-    identityKeyPair,
-    signedPrekeyPair,
-    signedPrekeySignature,
-    oneTimePrekeyPairs
+  const { kemKeyPair, kemPrekeySignature } = await generateKemMaterial(
+    identityKeyPair.privateKey
   );
+  const oneTimePrekeyPairs = generateOneTimePrekeys();
 
   const identity: Identity = {
     username,
     identityKeyPair,
     signedPrekeyPair,
     signedPrekeySignature,
-    oneTimePrekeys: indexById(ids, oneTimePrekeyPairs),
+    oneTimePrekeys: {},
+    kemKeyPair,
+    kemPrekeySignature,
   };
+
+  const ids = await publish(identity, oneTimePrekeyPairs);
+  identity.oneTimePrekeys = indexById(ids, oneTimePrekeyPairs);
 
   // Stored only after a successful publication. Persisting first would leave
   // a client holding private keys whose public halves the registry never
@@ -376,8 +405,8 @@ async function resolveIdentity(username: string): Promise<Identity> {
 // ---------------------------------------------------------------------------
 
 /**
- * Checks that a fetched bundle's signed prekey was vouched for by the identity
- * key published alongside it.
+ * Checks that a fetched bundle's prekeys were vouched for by the identity key
+ * published alongside them.
  *
  * This is the check that constrains a malicious relay. It does not establish
  * that the identity key belongs to the named user, which the registry cannot
@@ -385,13 +414,36 @@ async function resolveIdentity(username: string): Promise<Identity> {
  * server cannot splice its own prekey into someone else's bundle and read the
  * conversation. Binding a name to a key requires an out-of-band channel and
  * remains future work.
+ *
+ * The post-quantum prekey is verified on the same terms when present. A
+ * bundle that carries one without a signature is rejected rather than treated
+ * as classical-only, since accepting it would let a relay strip the signature
+ * and supply its own encapsulation key.
  */
 export async function verifyBundle(bundle: PrekeyBundle): Promise<boolean> {
   await initSodium();
   try {
-    return sodium.crypto_sign_verify_detached(
+    const signedPrekeyValid = sodium.crypto_sign_verify_detached(
       fromBase64(bundle.signedPrekeySignature),
       fromBase64(bundle.signedPrekey),
+      fromBase64(bundle.identityKey)
+    );
+
+    if (!signedPrekeyValid) {
+      return false;
+    }
+
+    if (bundle.kemPrekey === null) {
+      return true;
+    }
+
+    if (bundle.kemPrekeySignature === null) {
+      return false;
+    }
+
+    return sodium.crypto_sign_verify_detached(
+      fromBase64(bundle.kemPrekeySignature),
+      fromBase64(bundle.kemPrekey),
       fromBase64(bundle.identityKey)
     );
   } catch {

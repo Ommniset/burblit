@@ -31,7 +31,8 @@ const {
 } = require('../dist-test/client/identity');
 const { X25519Agreement } = require('../dist-test/client/x25519Agreement');
 const {
-  sessionFromRootKey,
+  initiatorSession,
+  responderSession,
   encryptMessage,
   decryptMessage,
 } = require('../dist-test/client/session');
@@ -107,6 +108,27 @@ async function createUser(name) {
     signedPrekeySignature,
     oneTimePrekeys,
   };
+}
+
+/**
+ * Runs the handshake and returns both sides' sessions, as the two clients
+ * would hold them.
+ */
+async function establish(alice, bob) {
+  const bundle = await (await fetch(`${BASE_URL}/keys/${bob.username}`)).json();
+  const { rootKey, header } = await new X25519Agreement(alice).initiate(bundle);
+
+  const aliceSession = initiatorSession(
+    bob.username,
+    rootKey,
+    bundle.signedPrekey,
+    toBase64(header)
+  );
+
+  const responded = await new X25519Agreement(bob).respond(header);
+  const bobSession = responderSession(alice.username, responded.rootKey, bob.signedPrekeyPair);
+
+  return { bundle, aliceSession, bobSession };
 }
 
 /** Opens a registered WebSocket connection for a user. */
@@ -202,18 +224,16 @@ test('a bundle with an altered signature is refused', async () => {
 test('the frame the relay receives carries no plaintext', async () => {
   const alice = await createUser(uniqueName('alice'));
   const bob = await createUser(uniqueName('bob'));
+  const { aliceSession } = await establish(alice, bob);
 
-  const bundle = await (await fetch(`${BASE_URL}/keys/${bob.username}`)).json();
-  const { rootKey, header } = await new X25519Agreement(alice).initiate(bundle);
-  const session = sessionFromRootKey(bob.username, 'initiator', rootKey, toBase64(header));
+  const { payload, header } = encryptMessage(
+    aliceSession,
+    PLAINTEXT,
+    alice.username,
+    bob.username
+  );
 
-  const payload = encryptMessage(session, PLAINTEXT, alice.username, bob.username);
-  const frame = JSON.stringify({
-    type: 'chat',
-    to: bob.username,
-    text: payload,
-    header: session.header,
-  });
+  const frame = JSON.stringify({ type: 'chat', to: bob.username, text: payload, header });
 
   // The encoded frame is what the server parses.
   assert.ok(!frame.includes(PLAINTEXT), 'the encoded frame must not contain the plaintext');
@@ -221,7 +241,9 @@ test('the frame the relay receives carries no plaintext', async () => {
   // Decoding every base64 field must not reveal it either: an encoding is not
   // encryption, and a test that only checked the encoded form would pass for
   // a message that had merely been base64-encoded.
-  const decoded = Buffer.from(fromBase64(payload)).toString('latin1');
+  const decoded =
+    Buffer.from(fromBase64(payload)).toString('latin1') +
+    Buffer.from(fromBase64(header)).toString('latin1');
   assert.ok(!decoded.includes(PLAINTEXT), 'the decoded payload must not contain the plaintext');
 
   // Nor any substantial run of it, which would indicate partial encryption.
@@ -241,42 +263,25 @@ test('the relay forwards the payload unmodified and the recipient reads it', asy
   const bobSocket = await connect(bob.username);
 
   try {
-    const bundle = await (await fetch(`${BASE_URL}/keys/${bob.username}`)).json();
-    const { rootKey, header } = await new X25519Agreement(alice).initiate(bundle);
-    const aliceSession = sessionFromRootKey(
-      bob.username,
-      'initiator',
-      rootKey,
-      toBase64(header)
+    const { aliceSession, bobSession } = await establish(alice, bob);
+    const { payload, header } = encryptMessage(
+      aliceSession,
+      PLAINTEXT,
+      alice.username,
+      bob.username
     );
-
-    const payload = encryptMessage(aliceSession, PLAINTEXT, alice.username, bob.username);
 
     const received = nextChatFrame(bobSocket);
-    aliceSocket.send(
-      JSON.stringify({
-        type: 'chat',
-        to: bob.username,
-        text: payload,
-        header: aliceSession.header,
-      })
-    );
+    aliceSocket.send(JSON.stringify({ type: 'chat', to: bob.username, text: payload, header }));
 
     const frame = await received;
 
     assert.equal(frame.text, payload, 'the relay must forward the payload byte for byte');
+    assert.equal(frame.header, header, 'the relay must forward the header byte for byte');
     assert.ok(!JSON.stringify(frame).includes(PLAINTEXT));
 
-    const responded = await new X25519Agreement(bob).respond(fromBase64(frame.header));
-    const bobSession = sessionFromRootKey(
-      alice.username,
-      'responder',
-      responded.rootKey,
-      frame.header
-    );
-
     assert.equal(
-      decryptMessage(bobSession, frame.text, alice.username, bob.username),
+      decryptMessage(bobSession, frame.text, frame.header, alice.username, bob.username),
       PLAINTEXT,
       'the recipient must recover the original message'
     );
@@ -289,27 +294,20 @@ test('the relay forwards the payload unmodified and the recipient reads it', asy
 test('a modified ciphertext is rejected rather than decrypted', async () => {
   const alice = await createUser(uniqueName('alice'));
   const bob = await createUser(uniqueName('bob'));
+  const { aliceSession, bobSession } = await establish(alice, bob);
 
-  const bundle = await (await fetch(`${BASE_URL}/keys/${bob.username}`)).json();
-  const { rootKey, header } = await new X25519Agreement(alice).initiate(bundle);
-  const aliceSession = sessionFromRootKey(bob.username, 'initiator', rootKey, toBase64(header));
-
-  const payload = encryptMessage(aliceSession, PLAINTEXT, alice.username, bob.username);
-
-  const responded = await new X25519Agreement(bob).respond(header);
-  const bobSession = sessionFromRootKey(
+  const { payload, header } = encryptMessage(
+    aliceSession,
+    PLAINTEXT,
     alice.username,
-    'responder',
-    responded.rootKey,
-    toBase64(header)
+    bob.username
   );
 
   const raw = fromBase64(payload);
   raw[raw.length - 1] ^= 0x01;
-  const corrupted = toBase64(raw);
 
   assert.throws(
-    () => decryptMessage(bobSession, corrupted, alice.username, bob.username),
+    () => decryptMessage(bobSession, toBase64(raw), header, alice.username, bob.username),
     'a single flipped bit must make the whole message unreadable'
   );
 });
@@ -317,25 +315,19 @@ test('a modified ciphertext is rejected rather than decrypted', async () => {
 test('a message replayed towards another recipient fails to decrypt', async () => {
   const alice = await createUser(uniqueName('alice'));
   const bob = await createUser(uniqueName('bob'));
+  const { aliceSession, bobSession } = await establish(alice, bob);
 
-  const bundle = await (await fetch(`${BASE_URL}/keys/${bob.username}`)).json();
-  const { rootKey, header } = await new X25519Agreement(alice).initiate(bundle);
-  const aliceSession = sessionFromRootKey(bob.username, 'initiator', rootKey, toBase64(header));
-
-  const payload = encryptMessage(aliceSession, PLAINTEXT, alice.username, bob.username);
-
-  const responded = await new X25519Agreement(bob).respond(header);
-  const bobSession = sessionFromRootKey(
+  const { payload, header } = encryptMessage(
+    aliceSession,
+    PLAINTEXT,
     alice.username,
-    'responder',
-    responded.rootKey,
-    toBase64(header)
+    bob.username
   );
 
   // The names are authenticated as associated data, so the relay cannot
   // re-address a captured message without invalidating the tag.
   assert.throws(
-    () => decryptMessage(bobSession, payload, alice.username, 'someone-else'),
+    () => decryptMessage(bobSession, payload, header, alice.username, 'someone-else'),
     'altering the recipient name must invalidate the authenticator'
   );
 });
@@ -347,25 +339,22 @@ test('a message queued for an offline recipient is stored as ciphertext', async 
   const aliceSocket = await connect(alice.username);
 
   try {
-    const bundle = await (await fetch(`${BASE_URL}/keys/${bob.username}`)).json();
-    const { rootKey, header } = await new X25519Agreement(alice).initiate(bundle);
-    const session = sessionFromRootKey(bob.username, 'initiator', rootKey, toBase64(header));
-
-    aliceSocket.send(
-      JSON.stringify({
-        type: 'chat',
-        to: bob.username,
-        text: encryptMessage(session, PLAINTEXT, alice.username, bob.username),
-        header: session.header,
-      })
+    const { aliceSession } = await establish(alice, bob);
+    const { payload, header } = encryptMessage(
+      aliceSession,
+      PLAINTEXT,
+      alice.username,
+      bob.username
     );
+
+    aliceSocket.send(JSON.stringify({ type: 'chat', to: bob.username, text: payload, header }));
 
     // Allow the relay to persist the row.
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     const db = new Database(DB_PATH, { readonly: true });
     const rows = db
-      .prepare('SELECT payload FROM EncryptedMessages WHERE recipient = ?')
+      .prepare('SELECT payload, header FROM EncryptedMessages WHERE recipient = ?')
       .all(bob.username);
     db.close();
 

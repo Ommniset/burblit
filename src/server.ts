@@ -14,6 +14,7 @@ import {
   isKeyMaterial,
   type ClientMessage,
   type PublishKeysRequest,
+  isKemKeyMaterial,
 } from './shared/protocol';
 import {
   publishBundle,
@@ -139,6 +140,8 @@ function parseKeysBody(body: unknown): { bundle: PublishKeysRequest } | { error:
   }
 
   const candidate = body as Record<string, unknown>;
+  const kemPrekey = candidate.kemPrekey ?? null;
+  const kemPrekeySignature = candidate.kemPrekeySignature ?? null;
 
   if (typeof candidate.username !== 'string' || !USERNAME_PATTERN.test(candidate.username)) {
     return { error: 'invalid_username' };
@@ -161,6 +164,14 @@ function parseKeysBody(body: unknown): { bundle: PublishKeysRequest } | { error:
   if (!candidate.oneTimePrekeys.every(isKeyMaterial)) {
     return { error: 'invalid_one_time_prekeys' };
   }
+  if (kemPrekey !== null || kemPrekeySignature !== null) {
+    if (!isKemKeyMaterial(kemPrekey)) {
+      return { error: 'invalid_kem_prekey' };
+    }
+    if (!isKeyMaterial(kemPrekeySignature)) {
+      return { error: 'invalid_kem_signature' };
+    }
+  }  
 
   return {
     bundle: {
@@ -169,6 +180,8 @@ function parseKeysBody(body: unknown): { bundle: PublishKeysRequest } | { error:
       signedPrekey: candidate.signedPrekey,
       signedPrekeySignature: candidate.signedPrekeySignature,
       oneTimePrekeys: candidate.oneTimePrekeys as string[],
+      kemPrekey,
+      kemPrekeySignature,
     },
   };
 }

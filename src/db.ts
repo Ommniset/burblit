@@ -3,9 +3,9 @@
  *
  * The server stores exactly two categories of data: public key material, which
  * is public by definition, and undelivered message payloads, which are opaque
- * to it from day 7 onwards. It never stores a private key, a shared secret or
- * a plaintext message, and there is no code path by which it could: the
- * relevant values are never transmitted to it in the first place.
+ * to it. It never stores a private key, a shared secret or a plaintext
+ * message, and there is no code path by which it could: the relevant values
+ * are never transmitted to it in the first place.
  *
  * Undelivered payloads are removed on delivery rather than retained. Keeping
  * them would leave a growing archive of ciphertext on the relay, which an
@@ -75,6 +75,30 @@ db.exec(`
     ON EncryptedMessages(recipient, id);
 `);
 
+/**
+ * Adds a column to an existing table if it is absent.
+ *
+ * The post-quantum key material was introduced after the schema had already
+ * been created, and a database that predates it would otherwise have to be
+ * discarded. Recreating it is cheap in development and unacceptable in
+ * principle, and the nullable column it produces is useful in its own right:
+ * a user registered before the upgrade has no post-quantum key, which is
+ * exactly how a client discovers that a correspondent cannot perform a hybrid
+ * handshake.
+ *
+ * The table and column names are literals in this file, never user input.
+ */
+function ensureColumn(table: string, column: string, definition: string): void {
+  const columns = db.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
+  if (!columns.some((existing) => existing.name === column)) {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
+    console.log(`Schema: added ${table}.${column}`);
+  }
+}
+
+ensureColumn('Users', 'kem_public_key', 'TEXT');
+ensureColumn('Users', 'kem_signature', 'TEXT');
+
 // ---------------------------------------------------------------------------
 // Prepared statements
 //
@@ -84,9 +108,12 @@ db.exec(`
 // ---------------------------------------------------------------------------
 
 const upsertUser = db.prepare(`
-  INSERT INTO Users (username, identity_key, created_at)
-  VALUES (@username, @identityKey, @createdAt)
-  ON CONFLICT(username) DO UPDATE SET identity_key = excluded.identity_key
+  INSERT INTO Users (username, identity_key, kem_public_key, kem_signature, created_at)
+  VALUES (@username, @identityKey, @kemPrekey, @kemPrekeySignature, @createdAt)
+  ON CONFLICT(username) DO UPDATE SET
+    identity_key   = excluded.identity_key,
+    kem_public_key = excluded.kem_public_key,
+    kem_signature  = excluded.kem_signature
 `);
 
 const deletePrekeysFor = db.prepare(`DELETE FROM Prekeys WHERE username = ?`);
@@ -96,7 +123,9 @@ const insertPrekey = db.prepare(`
   VALUES (@username, @keyType, @publicKey, @signature, 0, @createdAt)
 `);
 
-const selectUser = db.prepare(`SELECT identity_key FROM Users WHERE username = ?`);
+const selectUser = db.prepare(`
+  SELECT identity_key, kem_public_key, kem_signature FROM Users WHERE username = ?
+`);
 
 const selectSignedPrekey = db.prepare(`
   SELECT public_key, signature FROM Prekeys
@@ -108,6 +137,12 @@ const selectUnusedOneTimePrekey = db.prepare(`
   SELECT id, public_key FROM Prekeys
   WHERE username = ? AND key_type = 'one_time' AND used = 0
   ORDER BY id ASC LIMIT 1
+`);
+
+const selectUnusedPrekeyIds = db.prepare(`
+  SELECT id FROM Prekeys
+  WHERE username = ? AND key_type = 'one_time' AND used = 0
+  ORDER BY id ASC
 `);
 
 const markPrekeyUsed = db.prepare(`UPDATE Prekeys SET used = 1 WHERE id = ?`);
@@ -134,6 +169,8 @@ const deletePending = db.prepare(`DELETE FROM EncryptedMessages WHERE id = ?`);
 
 interface UserRow {
   identity_key: string;
+  kem_public_key: string | null;
+  kem_signature: string | null;
 }
 
 interface SignedPrekeyRow {
@@ -168,12 +205,14 @@ export interface PendingRow {
  * does not verify that the caller controls the username being claimed, so an
  * adversary can publish their own identity key under an unclaimed name and be
  * accepted as that user by anyone who subsequently fetches the bundle. The
- * signature on the signed prekey (day 5) prevents the *server* from
- * substituting key material inside an existing bundle, but it cannot establish
- * who the legitimate owner of a name is: that requires an out-of-band channel,
- * trust-on-first-use pinning, or an authenticated account system. This is
- * recorded as future work and is the principal residual risk in the threat
- * model.
+ * signatures on the prekeys prevent the server from substituting key material
+ * inside an existing bundle, but they cannot establish who the legitimate
+ * owner of a name is: that requires an out-of-band channel, trust-on-first-use
+ * pinning, or an authenticated account system. This is recorded as future work
+ * and is the principal residual risk in the threat model.
+ *
+ * Returns the identifiers assigned to the one-time prekeys, in publication
+ * order, so the publisher can associate each with the private key it retained.
  */
 export const publishBundle = db.transaction((bundle: PublishKeysRequest): number[] => {
   const createdAt = Date.now();
@@ -181,6 +220,8 @@ export const publishBundle = db.transaction((bundle: PublishKeysRequest): number
   upsertUser.run({
     username: bundle.username,
     identityKey: bundle.identityKey,
+    kemPrekey: bundle.kemPrekey,
+    kemPrekeySignature: bundle.kemPrekeySignature,
     createdAt,
   });
 
@@ -196,10 +237,6 @@ export const publishBundle = db.transaction((bundle: PublishKeysRequest): number
     createdAt,
   });
 
-  // The assigned identifiers are returned in publication order, so the
-  // publisher can associate each one with the private key it retained.
-  // Without them the recipient of a handshake cannot tell which of its
-  // one-time prekeys the sender consumed.
   const oneTimePrekeyIds: number[] = [];
   for (const publicKey of bundle.oneTimePrekeys) {
     const info = insertPrekey.run({
@@ -228,6 +265,10 @@ export const publishBundle = db.transaction((bundle: PublishKeysRequest): number
  * Diffie-Hellman, at the cost of reduced forward secrecy for the initial
  * message. Refusing to serve a bundle instead would turn an exhausted pool
  * into a denial of service.
+ *
+ * `kemPrekey` is null for a user whose client does not publish post-quantum
+ * material. That is not an error either: it is how a sender discovers that a
+ * hybrid handshake is not available with this correspondent.
  */
 export const fetchBundle = db.transaction((username: string): PrekeyBundle | null => {
   const user = selectUser.get(username) as UserRow | undefined;
@@ -252,8 +293,32 @@ export const fetchBundle = db.transaction((username: string): PrekeyBundle | nul
     signedPrekeySignature: signed.signature,
     oneTimePrekey: oneTime?.public_key ?? null,
     oneTimePrekeyId: oneTime?.id ?? null,
+    kemPrekey: user.kem_public_key,
+    kemPrekeySignature: user.kem_signature,
   };
 });
+
+/**
+ * Reports what the registry holds for a user, consuming nothing.
+ *
+ * Exists separately from bundle retrieval because a client must be able to
+ * check its stored material against the registry on every connection, and
+ * checking by fetching a bundle would spend a one-time prekey each time.
+ */
+export function registryStatus(
+  username: string
+): { identityKey: string; kemPrekey: string | null; availablePrekeyIds: number[] } | null {
+  const row = selectUser.get(username) as UserRow | undefined;
+  if (row === undefined) {
+    return null;
+  }
+  const ids = (selectUnusedPrekeyIds.all(username) as { id: number }[]).map((r) => r.id);
+  return {
+    identityKey: row.identity_key,
+    kemPrekey: row.kem_public_key,
+    availablePrekeyIds: ids,
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Offline message queue
@@ -298,28 +363,4 @@ export function acknowledgePending(id: number): void {
 
 export function closeDatabase(): void {
   db.close();
-}
-
-const selectUnusedPrekeyIds = db.prepare(`
-  SELECT id FROM Prekeys
-  WHERE username = ? AND key_type = 'one_time' AND used = 0
-  ORDER BY id ASC
-`);
-
-/**
- * Reports what the registry holds for a user, consuming nothing.
- *
- * Exists separately from bundle retrieval because a client must be able to
- * check its stored material against the registry on every connection, and
- * checking by fetching a bundle would spend a one-time prekey each time.
- */
-export function registryStatus(
-  username: string
-): { identityKey: string; availablePrekeyIds: number[] } | null {
-  const row = selectUser.get(username) as UserRow | undefined;
-  if (row === undefined) {
-    return null;
-  }
-  const ids = (selectUnusedPrekeyIds.all(username) as { id: number }[]).map((r) => r.id);
-  return { identityKey: row.identity_key, availablePrekeyIds: ids };
 }

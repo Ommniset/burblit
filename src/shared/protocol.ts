@@ -49,6 +49,9 @@ export const MAX_PENDING_PER_RECIPIENT = 200;
 /** Maximum accepted body size for the key publication endpoint. */
 export const MAX_KEYS_BODY_BYTES = 128 * 1024;
 
+/** ML-KEM-768 keys are far larger than elliptic-curve ones: 1184 bytes encodes to about 1580 characters. */
+export const MAX_KEM_KEY_LENGTH = 4096;
+
 // ---------------------------------------------------------------------------
 // Client -> server (WebSocket)
 // ---------------------------------------------------------------------------
@@ -110,6 +113,9 @@ export interface PublishKeysRequest {
   /** Signature over the signed prekey, produced with the identity key. */
   signedPrekeySignature: string;
   oneTimePrekeys: string[];
+    /** ML-KEM-768 public key, or null from a client without post-quantum support. */
+  kemPrekey: string | null;
+  kemPrekeySignature: string | null;
 }
 
 /**
@@ -128,6 +134,9 @@ export interface PrekeyBundle {
   signedPrekeySignature: string;
   oneTimePrekey: string | null;
   oneTimePrekeyId: number | null;
+    /** ML-KEM-768 public key, or null from a client without post-quantum support. */
+  kemPrekey: string | null;
+  kemPrekeySignature: string | null;
 }
 
 /** True when `value` is a plausible base64 encoding of key material. */
@@ -142,9 +151,22 @@ export function isKeyMaterial(value: unknown): value is string {
 
 export interface PublishKeysResponse {
   oneTimePrekeyIds: number[];
+  kemPrekey: string | null;
 }
 
 export interface RegistryStatusResponse {
   identityKey: string;
+  /** The published ML-KEM key, or null from a client without post-quantum support. */
+  kemPrekey: string | null;
   availablePrekeyIds: number[];
+}
+
+/** True when `value` is a plausible base64 encoding of post-quantum key material. */
+export function isKemKeyMaterial(value: unknown): value is string {
+  return (
+    typeof value === 'string' &&
+    value.length > 0 &&
+    value.length <= MAX_KEM_KEY_LENGTH &&
+    BASE64_PATTERN.test(value)
+  );
 }

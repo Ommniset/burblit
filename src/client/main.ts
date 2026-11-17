@@ -7,6 +7,8 @@
  * no `unsafe-inline` allowance in a future Content Security Policy.
  */
 
+import { createMLKEM768 } from '@oqs/liboqs-js';
+
 import {
   USERNAME_PATTERN,
   MAX_TEXT_LENGTH,
@@ -15,13 +17,18 @@ import {
 } from '../shared/protocol';
 import { initSodium, toBase64, verifyX25519Exchange } from './crypto';
 import { loadOrCreateIdentity, clearIdentity, type Identity } from './identity';
+import { useMlKemFactory, verifyMlKemExchange } from './pqc';
 import {
   sessionAsInitiator,
   sessionAsResponder,
   existingSession,
   encryptMessage,
   decryptMessage,
+  handshakeHeaderFrom,
+  setModePolicy,
   clearSessions,
+  type ModePolicy,
+  type Session,
 } from './session';
 
 // ---------------------------------------------------------------------------
@@ -52,6 +59,7 @@ const messagesPanel = requireElement<HTMLDivElement>('messages');
 const recipientInput = requireElement<HTMLInputElement>('recipient-input');
 const messageInput = requireElement<HTMLInputElement>('message-input');
 const sendButton = requireElement<HTMLButtonElement>('send-button');
+const modeSelect = requireElement<HTMLSelectElement>('mode-select');
 
 // ---------------------------------------------------------------------------
 // Session state
@@ -124,6 +132,34 @@ function appendChat(from: string, text: string): void {
 }
 
 // ---------------------------------------------------------------------------
+// Reporting the agreement in force
+// ---------------------------------------------------------------------------
+
+/** Peers whose session mode has already been reported. */
+const announced = new Set<string>();
+
+/**
+ * States which agreement protects a conversation, once per correspondent.
+ *
+ * A security property the user cannot observe is not a property the user has.
+ * The distinction matters most in the case this is designed to surface: a
+ * conversation that silently fell back to the classical agreement looks
+ * exactly like one that did not.
+ */
+function announce(session: Session): void {
+  if (announced.has(session.peer)) {
+    return;
+  }
+  announced.add(session.peer);
+
+  appendNotice(
+    session.agreementMode === 'hybrid'
+      ? `Session with ${session.peer}: hybrid X25519 + ML-KEM-768`
+      : `Session with ${session.peer}: classical X25519 only`
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Inbound handling
 // ---------------------------------------------------------------------------
 
@@ -185,11 +221,16 @@ async function receive(from: string, payload: string, header?: string): Promise<
   if (identity === null) {
     return;
   }
+  if (header === undefined) {
+    appendNotice(`Discarded a message from ${from} that carried no header`);
+    return;
+  }
 
   try {
+    const handshake = handshakeHeaderFrom(header);
     const session =
-      header !== undefined
-        ? await sessionAsResponder(identity, from, header)
+      handshake !== null
+        ? await sessionAsResponder(identity, from, handshake)
         : existingSession(from);
 
     if (session === null) {
@@ -197,12 +238,13 @@ async function receive(from: string, payload: string, header?: string): Promise<
       return;
     }
 
-    appendChat(from, decryptMessage(session, payload, from, identity.username));
+    announce(session);
+    appendChat(from, decryptMessage(session, payload, header, from, identity.username));
   } catch (error) {
-    // Reached when authentication fails, which means the ciphertext or the
-    // sender and recipient names were altered in transit.
-    console.error('Decryption failed:', error);
-    appendNotice(`Message from ${from} could not be authenticated and was discarded`);
+    // Reached when authentication fails, and also when a correspondent opens
+    // a classical session while this client requires the hybrid agreement.
+    console.error('Could not read message:', error);
+    appendNotice(`Message from ${from} was discarded: ${String(error)}`);
   }
 }
 
@@ -322,15 +364,13 @@ async function sendMessage(): Promise<void> {
     // handshake is run only when none exists, since each one consumes a
     // one-time prekey from the recipient's finite published batch.
     const session = existingSession(to) ?? (await sessionAsInitiator(identity, to));
-    const payload = encryptMessage(session, text, identity.username, to);
+    announce(session);
 
-    send({
-      type: 'chat',
-      to,
-      text: payload,
-      ...(session.header !== null ? { header: session.header } : {}),
-    });
+    const { payload, header } = encryptMessage(session, text, identity.username, to);
+    send({ type: 'chat', to, text: payload, header });
   } catch (error) {
+    // Reached when the recipient has published no key material, and also when
+    // the policy requires the hybrid agreement and they cannot provide it.
     console.error('Could not send message:', error);
     appendNotice(`Could not send to ${to}: ${String(error)}`);
     return;
@@ -361,6 +401,23 @@ messageInput.addEventListener('keydown', (event: KeyboardEvent) => {
 });
 
 /**
+ * Changing the policy discards every established session.
+ *
+ * A session already derived under one agreement is not retroactively covered
+ * by another, so leaving it in place would leave the interface reporting a
+ * protection that the conversation does not have. Discarding forces a fresh
+ * handshake under the new policy, which costs one of the correspondent's
+ * one-time prekeys and is the honest outcome.
+ */
+modeSelect.addEventListener('change', () => {
+  const policy = modeSelect.value as ModePolicy;
+  setModePolicy(policy);
+  clearSessions();
+  announced.clear();
+  appendNotice(`Key agreement policy set to "${policy}"; existing sessions discarded`);
+});
+
+/**
  * Development aid: discards local key material and every session derived from
  * it, then closes the connection.
  *
@@ -377,6 +434,7 @@ resetButton.addEventListener('click', () => {
   }
   void clearIdentity(username).then(() => {
     clearSessions();
+    announced.clear();
     identity = null;
     socket?.close();
     window.alert(`Discarded local keys for ${username}. Reload before reconnecting.`);
@@ -387,14 +445,29 @@ resetButton.addEventListener('click', () => {
 // Start-up
 // ---------------------------------------------------------------------------
 
-// Confirms that libsodium runs in the browser from the application bundle, and
-// that the X25519 exchange the handshake depends on produces an agreeing
-// secret on both sides. Removed once the handshake itself is covered by tests.
+/**
+ * Confirms that both primitives work in this browser before any conversation
+ * depends on them.
+ *
+ * Each check performs a complete exchange rather than merely generating a key,
+ * because initialising successfully and agreeing on a secret are different
+ * claims, and only the second is the one the handshake rests on.
+ */
 async function verifyCryptoAvailable(): Promise<void> {
+  // The application's entry point is where the concrete implementation is
+  // chosen; the module that uses it depends only on the capability.
+  useMlKemFactory(createMLKEM768);
+
   try {
     await initSodium();
     const shared = await verifyX25519Exchange();
     console.log('libsodium ready; X25519 exchange agrees. Shared secret:', toBase64(shared));
+
+    const mlkem = await verifyMlKemExchange();
+    console.log(
+      `ML-KEM-768 ready; encapsulation agrees in ${mlkem.elapsedMs.toFixed(2)} ms.`,
+      `Shared secret: ${toBase64(mlkem.sharedSecret)}`
+    );
   } catch (error) {
     console.error('Cryptographic bootstrap failed:', error);
     appendNotice('Cryptography unavailable in this browser');

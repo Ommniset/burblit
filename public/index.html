@@ -43,6 +43,12 @@
   <!-- Chat section (hidden until registered) -->
   <div id="chat-section">
     <h3>Chat</h3>
+    <label for="mode-select">Key agreement</label>
+    <select id="mode-select">
+      <option value="auto">Automatic (hybrid when available)</option>
+      <option value="hybrid">Require hybrid (X25519 + ML-KEM-768)</option>
+      <option value="x25519">Classical only (X25519)</option>
+    </select>
     <div id="messages"></div>
     <input type="text" id="recipient-input" placeholder="Send to (username)" autocomplete="off" />
     <input type="text" id="message-input" placeholder="Type a message" autocomplete="off" />
