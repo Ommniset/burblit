@@ -14,7 +14,8 @@
     "build:test": "tsc -p tsconfig.test.json",
     "test": "npm run build && npm run build:test && node --test \"tests/**/*.test.js\"",
     "start": "node dist/server.js",
-    "db:dump": "node scripts/dump-messages.js"
+    "db:dump": "node scripts/dump-messages.js",
+    "bench": "npm run build:test && node scripts/benchmark.js"
   },
   "repository": {
     "type": "git",
